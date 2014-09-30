@@ -20,5 +20,6 @@
 	],
 	"support" : {
 		"email" : "adam@grabek.io"
-	}
+	},
+	"minimum-stability" : "beta"
 }
