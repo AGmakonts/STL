@@ -2,16 +2,59 @@
 
 namespace AGmakonts\STL\Number;
 
+use AGmakonts\STL\Number\Integer;
+use AGmakonts\STL\Number\Fraction;
+use AGmakonts\STL\Number\Exception\InvalidMixedNumberElementsException;
+
 /**
  *
  * @author Adam
  *        
  */
-class MixedNumber implements NumberInterface {
+class MixedNumber implements NumberInterface 
+{
+	/**
+	 * 
+	 * @var Integer
+	 */
+	private $_integer;
+	
+	/**
+	 * 
+	 * @var Fraction
+	 */
+	private $_fraction;
 	
 	/**
 	 */
-	function __construct() {
+	function __construct(NumberInterface $number, NumberInterface $secondPart = NULL) 
+	{
+		
+		if($number instanceof $secondPart) {
+			throw new InvalidMixedNumberElementsException();
+		}
+		
+		if (FALSE === ($number instanceof Integer) || FALSE === ($number instanceof Fraction)) {
+			throw new InvalidMixedNumberElementsException();
+		}
+		
+		if (FALSE === ($secondPart instanceof Integer) || FALSE === ($secondPart instanceof Fraction)) {
+			throw new InvalidMixedNumberElementsException();
+		}
+		
+		if($number instanceof Integer) {
+			$this->_integer = $number;
+		} elseif ($number instanceof Fraction) {
+			$this->_fraction = $number;
+		}
+		
+		if($secondPart instanceof Integer && NULL === $this->_integer) {
+			$this->_integer = $secondPart;
+		} elseif ($secondPart instanceof Fraction && NULL === $this->_fraction) {
+			$this->_fraction = $secondPart;
+		}
+		
+
 	}
 	
 	/**
@@ -20,7 +63,8 @@ class MixedNumber implements NumberInterface {
 	 * @see \AGmakonts\STL\Number\NumberInterface::getValue()
 	 *
 	 */
-	public function getValue() {
+	public function getValue() 
+	{
 	}
 	
 	/**

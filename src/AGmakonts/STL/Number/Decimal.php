@@ -31,8 +31,10 @@ class Decimal implements NumberInterface
 
     /**
      */
-    function __construct ()
-    {}
+    function __construct (Integer $numerator, Integer $denumerator, Integer $precision = NULL)
+    {
+    	
+    }
 
     /**
      * (non-PHPdoc)
