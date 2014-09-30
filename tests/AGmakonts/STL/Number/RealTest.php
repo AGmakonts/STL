@@ -1,4 +1,5 @@
 <?php
+namespace AGmakonts\STL\Number;
 use AGmakonts\STL\Number\Real;
 use AGmakonts\STL\Number\Integer;
 
