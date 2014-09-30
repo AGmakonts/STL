@@ -223,7 +223,7 @@ class RealTest extends PHPUnit_Framework_TestCase
     {
         $firstReal = new Real(10.3433);
 
-        self::assertEquals(10, $firstReal->round()->getValue());
+        self::assertEquals(11, $firstReal->round()->getValue());
     }
 
     /**
