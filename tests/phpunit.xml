@@ -1,0 +1,8 @@
+<phpunit bootstrap="bootstrap.php">
+<testsuites>
+    <testsuite name="number">
+      <file>Number/RealTest.php</file>
+      <file>Number/IntegerTest.php</file>
+    </testsuite>
+  </testsuites>
+</phpunit>

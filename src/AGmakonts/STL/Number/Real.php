@@ -13,7 +13,7 @@ use AGmakonts\STL\Number\ComparisonOperator;
  */
 class Real implements NumberInterface
 {
-	
+
     /**
      *
      * @var float
@@ -35,7 +35,7 @@ class Real implements NumberInterface
             throw new InvalidValueException($number, ['FLOAT']);
         }
 
-        $this->_value = $value;
+        $this->_value = (float) $value;
     }
 
     /*
@@ -136,7 +136,7 @@ class Real implements NumberInterface
 
     public function assertIsZero()
     {
-        return ($this->getValue() === 0);
+        return ($this->getValue() == 0);
     }
 
     /*
@@ -174,7 +174,7 @@ class Real implements NumberInterface
     }
 
     /*
-     * 
+     *
      * @return NumberInterface
      */
     public function multiply(NumberInterface $number)
@@ -209,11 +209,11 @@ class Real implements NumberInterface
     public function round(RoundingMode $mode = NULL)
     {
     	if(NULL === $mode) {
-    		
+
     		$mode = RoundingMode::get(RoundingMode::HALF_EVEN);
-    		
+
     	}
-    	
+
         return new static(round($this->getValue(), 0, $mode->getValue()));
     }
 
@@ -225,30 +225,30 @@ class Real implements NumberInterface
         return new static($number->getValue());
 
     }
-    
+
     /**
      * Check if number is positive
-     * 
+     *
      * @return boolean
      */
     public function assertIsPositive()
     {
     	return boolval($this->_getSign());
     }
-    
+
     /**
      * Check if number is negative
-     * 
+     *
      * @return boolean
      */
     public function assertIsNegative()
     {
     	return (FALSE === $this->assertIsPositive());
     }
-    
+
     /**
      * Return 0 for negative number and 1 for positive
-     * 
+     *
      * @return integer
      */
     private function _getSign()
@@ -258,13 +258,13 @@ class Real implements NumberInterface
 
 
     /**
-     * 
+     *
      * @return Real
      */
     public function getDigitCount()
     {
     	$digits = strlen((string) $this->getValue());
-    	
+
     	return new static($digits);
     }
 
