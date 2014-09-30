@@ -35,27 +35,29 @@ class Decimal implements NumberInterface
     function __construct (Integer $numerator, Natural $denumerator, Integer $precision = NULL)
     {
     	$this->_numerator = $numerator;
-    	
+
     	if(NULL !== $precision) {
-    		
+
     		$tempReal = Real::createFrom($denumerator);
-    		
+
     		$tempDivider = new Real(10);
-    		
+
     		$tempReal->divide($tempDivider->power($precision));
-    		
+
     		$this->_denumerator = $tempReal;
     		$this->_precision   = $precision;
-    		
+
     	} else {
-    		
+
     		$this->_denumerator = $denumerator;
     		$this->_precision = $denumerator->getDigitCount();
 
     	}
-    	
-    	
+
+
     }
+
+
 
     /**
      * (non-PHPdoc)
@@ -186,7 +188,7 @@ class Decimal implements NumberInterface
 	 */
 	public function round(RoundingMode $mode = NULL) {
 
-		
+
 	}
 
 	/* (non-PHPdoc)
@@ -194,7 +196,7 @@ class Decimal implements NumberInterface
 	 */
 	public function assertIsPositive() {
 
-		
+
 	}
 
 	/* (non-PHPdoc)
@@ -202,8 +204,36 @@ class Decimal implements NumberInterface
 	 */
 	public function assertIsNegative() {
 
-		
+
 	}
+
+	/**
+	 *
+	 * @return \AGmakonts\STL\Number\Integer
+	 */
+    public function getNumerator ()
+    {
+        return $this->_numerator;
+    }
+
+    /**
+     *
+     * @return \AGmakonts\STL\Number\Natural
+     */
+    public function getDenumerator ()
+    {
+        return $this->_denumerator;
+    }
+
+    /**
+     *
+     * @return \AGmakonts\STL\Number\Integer
+     */
+    public function getPrecision ()
+    {
+        return $this->_precision;
+    }
+
 
 
 

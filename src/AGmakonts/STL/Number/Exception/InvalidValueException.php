@@ -25,5 +25,3 @@ class InvalidValueException extends \InvalidArgumentException
 
 
 }
-
-?>

@@ -17,4 +17,3 @@ class DivisionByZeroException extends \BadMethodCallException
 
 }
 
-?>
