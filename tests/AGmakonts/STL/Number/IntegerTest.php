@@ -45,7 +45,7 @@ class IntegerTest extends PHPUnit_Framework_TestCase
 
     /**
      * Tests Integer->__construct()
-     * @expectedException InvalidValueException
+     * @expectedException AGmakonts\STL\Number\Exception\InvalidValueException
      */
     public function test__construct ()
     {
