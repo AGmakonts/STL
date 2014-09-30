@@ -125,6 +125,40 @@ class Fraction implements NumberInterface
     		
     	}
     }
+    
+    /**
+     * (non-PHPdoc)
+     *
+     * @see \AGmakonts\STL\Number\NumberInterface::add()
+     *
+     */
+    public function add (NumberInterface $number)
+    {
+    	if($number instanceof Fraction) {
+    		
+    		$newNumeratorValue = 
+    			($this->getNumerator()->getValue() * $number->getDenominator()->getValue()) -
+    			($number->getNumerator()->getValue() * $this->getDenominator()->getValue());
+    		
+    		$newDenominatorValue = $this->getDenominator()->getValue() * $number->getDenominator()->getValue();
+    		
+    		$numerator   = new Integer($newNumeratorValue);
+    		$denumarator = new Integer($newDenominatorValue);
+    		
+    		$fraction = $this->simplify(new Fraction($numerator, $denumerator));
+    		
+    	} elseif ($number instanceof Integer) {
+    		
+    		//TODO Mixed Numbers
+    		
+    	} elseif ($number instanceof Decimal) {
+    		
+    		//TODO wtite the code
+    		
+    	}
+    	
+    	return $fraction;
+    }
 
     /**
      * (non-PHPdoc)
@@ -144,14 +178,7 @@ class Fraction implements NumberInterface
     public function assertIsEqualTo (NumberInterface $number)
     {}
 
-    /**
-     * (non-PHPdoc)
-     *
-     * @see \AGmakonts\STL\Number\NumberInterface::add()
-     *
-     */
-    public function add (NumberInterface $number)
-    {}
+    
 
     /**
      * (non-PHPdoc)
@@ -220,6 +247,13 @@ class Fraction implements NumberInterface
 
     }
     
+    /**
+     * Simplify (recuce) fraction to 
+     * greatest common divisor.
+     * 
+     * @param Fraction $fraction
+     * @return Fraction
+     */
     public function simplify(Fraction $fraction)
     {
     	$gcd = $this->_gcd($fraction);
@@ -235,6 +269,8 @@ class Fraction implements NumberInterface
     }
     
     /**
+     * Find greatest common divisor for 
+     * numerator and denumerator of the Fraction
      * 
      * @param Fraction $fraction
      * @return Integer
@@ -249,7 +285,7 @@ class Fraction implements NumberInterface
     	}
     	
     	if($denumerator === 0) {
-    		return Integer($numerator);
+    		return new Integer($numerator);
     	}
     	
     	$result = $numerator % $denumerator;
@@ -290,13 +326,6 @@ class Fraction implements NumberInterface
 		
 	}
 
-	/* (non-PHPdoc)
-	 * @see \AGmakonts\STL\Number\NumberInterface::createFrom()
-	 */
-	public static function createFrom(NumberInterface $number) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
 
