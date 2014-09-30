@@ -3,6 +3,7 @@ namespace AGmakonts\STL\Number;
 use AGmakonts\STL\Number\NumberInterface;
 use AGmakonts\STL\Number\Integer;
 use AGmakonts\STL\Number\RoundingMode;
+use AGmakonts\STL\Number\Natural;
 
 /**
  *
@@ -19,7 +20,7 @@ class Decimal implements NumberInterface
 
     /**
      *
-     * @var Integer
+     * @var Natural
      */
     private $_denumerator;
 
@@ -31,9 +32,13 @@ class Decimal implements NumberInterface
 
     /**
      */
-    function __construct (Integer $numerator, Integer $denumerator, Integer $precision = NULL)
+    function __construct (Integer $numerator, Natural $denumerator, Integer $precision = NULL)
     {
+    	$this->_numerator = $numerator;
     	
+    	if(NULL !== $precision) {
+    		
+    	}
     }
 
     /**
@@ -157,14 +162,14 @@ class Decimal implements NumberInterface
      */
     public static function createFrom (NumberInterface $number)
     {
-        // TODO Auto-generated method stub
+
 
     }
 	/* (non-PHPdoc)
 	 * @see \AGmakonts\STL\Number\NumberInterface::round()
 	 */
 	public function round(RoundingMode $mode = NULL) {
-		// TODO Auto-generated method stub
+
 		
 	}
 
@@ -172,7 +177,7 @@ class Decimal implements NumberInterface
 	 * @see \AGmakonts\STL\Number\NumberInterface::assertIsPositive()
 	 */
 	public function assertIsPositive() {
-		// TODO Auto-generated method stub
+
 		
 	}
 
@@ -180,7 +185,7 @@ class Decimal implements NumberInterface
 	 * @see \AGmakonts\STL\Number\NumberInterface::assertIsNegative()
 	 */
 	public function assertIsNegative() {
-		// TODO Auto-generated method stub
+
 		
 	}
 

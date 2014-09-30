@@ -253,7 +253,7 @@ class Real implements NumberInterface
      */
     private function _getSign()
     {
-    	return min(1, max(0, (is_nan($this->getValue()) or $this->getValue() == 0) ? 0 : $this->getValue() * INF));
+    	return min(1, max(0, (is_nan($this->getValue()) || $this->getValue() == 0) ? 0 : $this->getValue() * INF));
     }
 
 
