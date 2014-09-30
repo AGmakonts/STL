@@ -1,0 +1,24 @@
+{
+	"autoload" : {
+		"psr-0" : {
+			"AGmakonts" : "src"
+		}
+	},
+	"name" : "AGmakonts/STL",
+	"type" : "library",
+	"description" : "Standard Type Lib",
+	"license" : "Apache-2.0",
+	"require" : {
+		"php" : ">=5.5",
+		"marc-mabe/php-enum" : "dev-master"
+	},
+	"authors" : [{
+			"name" : "Adam Grabek",
+			"email" : "adam@grabek.io",
+			"role" : "Author"
+		}
+	],
+	"support" : {
+		"email" : "adam@grabek.io"
+	}
+}
