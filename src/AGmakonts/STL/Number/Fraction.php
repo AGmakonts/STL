@@ -287,7 +287,9 @@ class Fraction implements NumberInterface
      *
      */
     public function assertIsZero ()
-    {}
+    {
+    	return ($this->getNumerator()->assertIsZero());
+    }
     
     public function assertIsInteger()
     {
