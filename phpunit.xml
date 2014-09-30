@@ -2,7 +2,7 @@
 <phpunit bootstrap="./tests/bootstrap.php">
 	<testsuites>
 		<testsuite name="Number">
-			<file>tests/AGmakonts/STL/Number/RealTest.php</file>
+			<directory>tests/AGmakonts/STL/Number</directory>
 		</testsuite>
 	</testsuites>
 </phpunit>
