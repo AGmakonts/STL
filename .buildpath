@@ -9,11 +9,6 @@
 	<buildpathentry kind="src" path="vendor/composer"/>
 	<buildpathentry kind="src" path="vendor/phpunit/phpunit/PHPUnit"/>
 	<buildpathentry kind="src" path="vendor/phpunit/php-timer/PHP"/>
-	<buildpathentry kind="con" path="org.eclipse.dltk.USER_LIBRARY/org.eclipse.php.core.PHPNature#PHPUnit">
-		<accessrules>
-			<accessrule kind="accessible" pattern="*"/>
-		</accessrules>
-	</buildpathentry>
 	<buildpathentry kind="src" path="vendor/phpunit/php-token-stream/PHP"/>
 	<buildpathentry kind="src" path="vendor/phpunit/phpunit-mock-objects/PHPUnit"/>
 	<buildpathentry kind="src" path="vendor/phpunit/php-file-iterator/File"/>
