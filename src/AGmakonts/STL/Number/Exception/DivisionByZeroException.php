@@ -8,7 +8,6 @@ namespace AGmakonts\STL\Number\Exception;
  */
 class DivisionByZeroException extends \BadMethodCallException
 {
-
 	public function __construct()
 	{
 

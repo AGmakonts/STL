@@ -13,7 +13,7 @@ use AGmakonts\STL\Number\ComparisonOperator;
  */
 class Real implements NumberInterface
 {
-
+	
     /**
      *
      * @var float

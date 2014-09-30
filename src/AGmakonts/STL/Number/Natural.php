@@ -10,7 +10,6 @@ use AGmakonts\STL\Number\NumberInterface;
  */
 class Natural extends Integer
 {
-
 	/* (non-PHPdoc)
 	 * @see \AGmakonts\STL\Number\Real::__construct()
 	 */

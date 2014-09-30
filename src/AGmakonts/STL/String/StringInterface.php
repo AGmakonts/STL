@@ -18,5 +18,4 @@ interface StringInterface
     public function lowercase();
     public function truncate(Natural $length, StringInterface $elipsis = NULL);
     public function reverse();
-
 }

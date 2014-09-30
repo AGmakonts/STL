@@ -10,6 +10,7 @@ use AGmakonts\STL\Number\NumberInterface;
  */
 class Integer extends Real
 {
+	
     /* (non-PHPdoc)
      * @see \AGmakonts\STL\Number\Real::__construct()
      */

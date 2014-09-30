@@ -8,9 +8,7 @@ namespace AGmakonts\STL\Number;
  */
 interface NumberInterface
 {
-    /**
-     *
-     */
+
     public function getValue();
 
     public function assertIsGreaterThan(NumberInterface $number);
