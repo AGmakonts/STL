@@ -2,7 +2,7 @@
 use AGmakonts\STL\Number\Integer;
 use AGmakonts\STL\Number\Exception\InvalidValueException;
 use AGmakonts\STL\Number\Real;
-require_once 'PHPUnit/Framework/TestCase.php';
+
 
 
 /**

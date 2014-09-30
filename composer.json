@@ -22,9 +22,6 @@
 		"email" : "adam@grabek.io"
 	},
 	"minimum-stability" : "beta",
-	"config" : {
-		"bin-dir" : "bin"
-	},
 	"require-dev" : {
 		"phpunit/phpunit" : "~3.7"
 	}
