@@ -36,6 +36,12 @@ interface NumberInterface
     public function root(NumberInterface $number);
 
     public function assertIsZero();
+    
+    public function round(RoundingMode $mode = NULL);
+    
+    public function assertIsPositive();
+    
+    public function assertIsNegative();
 
     static public function createFrom(NumberInterface $number);
 

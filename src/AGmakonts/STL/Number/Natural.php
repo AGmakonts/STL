@@ -2,6 +2,7 @@
 namespace AGmakonts\STL\Number;
 
 use AGmakonts\STL\Number\Exception\InvalidValueException;
+use AGmakonts\STL\Number\NumberInterface;
 /**
  *
  * @author adamgrabek
@@ -25,5 +26,22 @@ class Natural extends Integer
 	    parent::__construct($value);
 
 	}
+	
+	
+	/* (non-PHPdoc)
+	 * @see \AGmakonts\STL\Number\Integer::createFrom()
+	 */
+	public function createFrom(NumberInterface $number) {
+		
+		if(TRUE === $number->assertIsNegative()) {
+			
+			$number = new Natural(0);
+			
+		}
+		
+		parent::createFrom($number);
+
+	}
+
 
 }
