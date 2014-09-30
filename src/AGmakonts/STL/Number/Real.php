@@ -257,5 +257,15 @@ class Real implements NumberInterface
     }
 
 
+    /**
+     * 
+     * @return Real
+     */
+    public function getDigitCount()
+    {
+    	$digits = strlen((string) $this->getValue());
+    	
+    	return new static($digits);
+    }
 
 }

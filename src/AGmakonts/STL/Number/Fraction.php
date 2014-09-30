@@ -300,7 +300,7 @@ class Fraction implements NumberInterface
      */
     public static function createFrom (NumberInterface $number)
     {
-        // TODO Auto-generated method stub
+
 
     }
     
@@ -363,7 +363,7 @@ class Fraction implements NumberInterface
 	 * @see \AGmakonts\STL\Number\NumberInterface::round()
 	 */
 	public function round(RoundingMode $mode = NULL) {
-		// TODO Auto-generated method stub
+
 		
 	}
 
@@ -371,7 +371,7 @@ class Fraction implements NumberInterface
 	 * @see \AGmakonts\STL\Number\NumberInterface::assertIsPositive()
 	 */
 	public function assertIsPositive() {
-		// TODO Auto-generated method stub
+
 		
 	}
 
@@ -379,7 +379,7 @@ class Fraction implements NumberInterface
 	 * @see \AGmakonts\STL\Number\NumberInterface::assertIsNegative()
 	 */
 	public function assertIsNegative() {
-		// TODO Auto-generated method stub
+
 		
 	}
 

@@ -113,7 +113,8 @@ class String implements StringInterface
 	 * @see \AGmakonts\STL\String\StringInterface::substr()
 	 *
 	 */
-	public function substr($start, $length) {
+	public function substr($start, $length) 
+	{
 	}
 }
 

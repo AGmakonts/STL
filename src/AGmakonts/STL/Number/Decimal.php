@@ -38,7 +38,23 @@ class Decimal implements NumberInterface
     	
     	if(NULL !== $precision) {
     		
+    		$tempReal = Real::createFrom($denumerator);
+    		
+    		$tempDivider = new Real(10);
+    		
+    		$tempReal->divide($tempDivider->power($precision));
+    		
+    		$this->_denumerator = $tempReal;
+    		$this->_precision   = $precision;
+    		
+    	} else {
+    		
+    		$this->_denumerator = $denumerator;
+    		$this->_precision = $denumerator->getDigitCount();
+
     	}
+    	
+    	
     }
 
     /**

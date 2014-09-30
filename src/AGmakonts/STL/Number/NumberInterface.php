@@ -42,5 +42,6 @@ interface NumberInterface
     public function assertIsNegative();
 
     public static function createFrom(NumberInterface $number);
+    
 
 }

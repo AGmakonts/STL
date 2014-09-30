@@ -117,7 +117,7 @@ class StringCreationExpression
 	
 	public function getAsMixedNumber()
 	{
-		// TODO
+
 	}
 	
 	/**
