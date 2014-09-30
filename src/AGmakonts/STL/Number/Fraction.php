@@ -4,6 +4,7 @@ namespace AGmakonts\STL\Number;
 use AGmakonts\STL\Number\Exception\InvalidValueException;
 use AGmakonts\STL\Number\Integer;
 use AGmakonts\STL\Number\NumberInterface;
+use AGmakonts\STL\Number\StringCreationExpression as StringExpression;
 /**
  *
  * @author adamgrabek
@@ -30,8 +31,14 @@ class Fraction implements NumberInterface
      * @param Integer $denumerator
      * @throws InvalidValueException
      */
-    function __construct (Integer $numerator, Integer $denumerator)
+    function __construct (Integer $numerator, Integer $denumerator = NULL)
     {
+    	if(NULL === $denumerator) {
+    		
+    		$denumerator = new Integer(1);
+    		
+    	}
+    	
         if(TRUE === $denumerator->assertIsZero()) {
         	
             throw new InvalidValueException($denumerator->getValue(), ['INT (>0)']);
@@ -57,15 +64,17 @@ class Fraction implements NumberInterface
      * Proper usage example:
      * <code>
      * <?php
-     *  $fraction = Fraction::createFromString("23/675");
+     *  $fraction = Fraction::createFromString(new StringExpression("4 23/675"));
      *
      * </code>
      *
-     * @param string $expression
+     * @param StringExpression $expression
+     * @return Fraction
      */
-    static public function createFromString($expression)
+    static public function createFromString(StringExpression $stringExpression)
     {
-
+		return $stringExpression->getAsSimpleFraction();	
+		
     }
 
     /**
