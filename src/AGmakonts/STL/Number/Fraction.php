@@ -101,7 +101,7 @@ class Fraction implements NumberInterface
      * @see \AGmakonts\STL\Number\NumberInterface::root()
      *
      */
-    public function root (NumberInterface $number)
+    public function root(NumberInterface $number)
     {}
 
     /**
@@ -120,7 +120,11 @@ class Fraction implements NumberInterface
      *
      */
     public function multiply (NumberInterface $number)
-    {}
+    {
+    	if($number instanceof Fraction) {
+    		
+    	}
+    }
 
     /**
      * (non-PHPdoc)
@@ -202,6 +206,11 @@ class Fraction implements NumberInterface
      */
     public function assertIsZero ()
     {}
+    
+    public function assertIsInteger()
+    {
+    	return ($this->getDenominator()->getValue() === $this->getNumerator()->getValue());
+    }
 	/* (non-PHPdoc)
      * @see \AGmakonts\STL\Number\NumberInterface::createFrom()
      */
@@ -210,5 +219,87 @@ class Fraction implements NumberInterface
         // TODO Auto-generated method stub
 
     }
+    
+    public function simplify(Fraction $fraction)
+    {
+    	$gcd = $this->_gcd($fraction);
+    	
+    	$numeratorValue   = $fraction->getNumerator()->getValue();
+    	$denumeratorValue = $fraction->getDenominator()->getValue();
+    	
+    	$newNumerator   = new Integer($numeratorValue / $gcd->getValue());
+    	$newDenumerator = new Integer($denumeratorValue / $gcd->getValue());
+
+    	return new static($newNumerator, $newDenumerator);
+    	
+    }
+    
+    /**
+     * 
+     * @param Fraction $fraction
+     * @return Integer
+     */
+    private function _gcd(Fraction $fraction)
+    {
+    	$numerator   = abs($fraction->getNumerator()->getValue());
+    	$denumerator = abs($fraction->getDenominator()->getValue());
+    	
+    	if($numerator > $denumerator) {
+    		list($denumerator, $numerator) = [$numerator, $denumerator];
+    	}
+    	
+    	if($denumerator === 0) {
+    		return Integer($numerator);
+    	}
+    	
+    	$result = $numerator % $denumerator;
+    	
+    	while ($result > 0)
+    	{
+    		$numerator = $denumerator;
+    		
+    		$denumerator = $result;
+    		
+    		$result = $numerator % $denumerator;
+    	}
+
+    	return new Integer($result);
+    	
+    }
+	/* (non-PHPdoc)
+	 * @see \AGmakonts\STL\Number\NumberInterface::round()
+	 */
+	public function round(\AGmakonts\STL\Number\RoundingMode $mode = NULL) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/* (non-PHPdoc)
+	 * @see \AGmakonts\STL\Number\NumberInterface::assertIsPositive()
+	 */
+	public function assertIsPositive() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/* (non-PHPdoc)
+	 * @see \AGmakonts\STL\Number\NumberInterface::assertIsNegative()
+	 */
+	public function assertIsNegative() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/* (non-PHPdoc)
+	 * @see \AGmakonts\STL\Number\NumberInterface::createFrom()
+	 */
+	public static function createFrom(NumberInterface $number) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
 
 }

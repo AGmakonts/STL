@@ -2,6 +2,7 @@
 namespace AGmakonts\STL\Number;
 use AGmakonts\STL\Number\NumberInterface;
 use AGmakonts\STL\Number\Integer;
+use AGmakonts\STL\Number\RoundingMode;
 
 /**
  *
@@ -157,5 +158,30 @@ class Decimal implements NumberInterface
         // TODO Auto-generated method stub
 
     }
+	/* (non-PHPdoc)
+	 * @see \AGmakonts\STL\Number\NumberInterface::round()
+	 */
+	public function round(RoundingMode $mode = NULL) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/* (non-PHPdoc)
+	 * @see \AGmakonts\STL\Number\NumberInterface::assertIsPositive()
+	 */
+	public function assertIsPositive() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/* (non-PHPdoc)
+	 * @see \AGmakonts\STL\Number\NumberInterface::assertIsNegative()
+	 */
+	public function assertIsNegative() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 
 }
