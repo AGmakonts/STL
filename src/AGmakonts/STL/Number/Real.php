@@ -206,8 +206,14 @@ class Real implements NumberInterface
      * @param RoundingMode $mode
      * @return \AGmakonts\STL\Number\Real
      */
-    public function round(RoundingMode $mode)
+    public function round(RoundingMode $mode = NULL)
     {
+    	if(NULL === $mode) {
+    		
+    		$mode = RoundingMode::get(RoundingMode::HALF_EVEN);
+    		
+    	}
+    	
         return new static(round($this->getValue(), 0, $mode->getValue()));
     }
 
