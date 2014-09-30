@@ -4,7 +4,7 @@
 			"AGmakonts\\" : "src/"
 		}
 	},
-	"name" : "AGmakonts/STL",
+	"name" : "agmakonts/stl",
 	"type" : "library",
 	"description" : "Standard Type Lib",
 	"license" : "Apache-2.0",

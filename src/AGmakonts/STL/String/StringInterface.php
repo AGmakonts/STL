@@ -10,6 +10,7 @@ use AGmakonts\STL\Number\Natural;
 interface StringInterface
 {
     public function getLength();
+    public function getValue();
     public function substr($start, $length);
     public function concat(StringInterface $string);
     public function simpleFormat(StringInterface $string);

@@ -116,5 +116,22 @@ class String implements StringInterface
 	public function substr($start, $length)
 	{
 	}
+
+	public function assertIsEmpty()
+	{
+	    return $this->_isEmpty;
+	}
+
+	/* (non-PHPdoc)
+     * @see \AGmakonts\STL\String\StringInterface::getValue()
+     */
+    public function getValue ()
+    {
+        return $this->_value;
+
+    }
+
+
+
 }
 
