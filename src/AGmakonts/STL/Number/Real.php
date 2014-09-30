@@ -174,8 +174,8 @@ class Real implements NumberInterface
     }
 
     /*
-     * (non-PHPdoc)
-     * @see \AGmakonts\STL\Number\NumberInterface::multiply()
+     * 
+     * @return NumberInterface
      */
     public function multiply(NumberInterface $number)
     {

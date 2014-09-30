@@ -56,11 +56,7 @@ class Fraction implements NumberInterface
      * 
      * Creates Fraction object from string
      * representation of the fraction.
-     * This method cannot create mixed number and
-     * following construction is forbidden:
-     * <code>
-     * "2 23/45"
-     * </code>
+     * 
      * Proper usage example:
      * <code>
      * <?php
@@ -120,21 +116,11 @@ class Fraction implements NumberInterface
      *
      */
     public function assertIsGreaterThan (NumberInterface $number)
-    {}
-
-    /**
-     * (non-PHPdoc)
-     *
-     * @see \AGmakonts\STL\Number\NumberInterface::multiply()
-     *
-     */
-    public function multiply (NumberInterface $number)
     {
-    	if($number instanceof Fraction) {
-    		
-    	}
+    	return ($this->getValue() > $number->getValue());
     }
-    
+
+   
     /**
      * (non-PHPdoc)
      *
@@ -143,31 +129,58 @@ class Fraction implements NumberInterface
      */
     public function add (NumberInterface $number)
     {
-    	if($number instanceof Fraction) {
+    	return $this->_addSubtract($number, TRUE);
+
+    }
+    
+    /**
+     * (non-PHPdoc)
+     * @see \AGmakonts\STL\Number\NumberInterface::subtract()
+     */
+    public function subtract (NumberInterface $number)
+    {
+    	return $this->_addSubtract($number, FALSE);
+    }
+    
+    
+	 /**
+	 * 
+	 * @param NumberInterface $number
+	 * @param boolean $add
+	 * @return Fraction
+	 */
+	 private function _addSubtract(NumberInterface $number, $add = TRUE) {
+	 	
+		/**
+    	 * If passed number is an Integer convert it to Fraction
+    	 */
+    	if($number instanceof Integer) {
     		
-    		$newNumeratorValue = 
-    			($this->getNumerator()->getValue() * $number->getDenominator()->getValue()) -
-    			($number->getNumerator()->getValue() * $this->getDenominator()->getValue());
-    		
-    		$newDenominatorValue = $this->getDenominator()->getValue() * $number->getDenominator()->getValue();
-    		
-    		$numerator   = new Integer($newNumeratorValue);
-    		$denumarator = new Integer($newDenominatorValue);
-    		
-    		$fraction = $this->simplify(new Fraction($numerator, $denumerator));
-    		
-    	} elseif ($number instanceof Integer) {
-    		
-    		//TODO Mixed Numbers
-    		
-    	} elseif ($number instanceof Decimal) {
-    		
-    		//TODO wtite the code
+    		$number = new Fraction($number->getValue());
     		
     	}
-    	
-    	return $fraction;
-    }
+
+    	if(TRUE === $add) {
+    		$newNumeratorValue =
+    			$this->getNumerator()->multiply($number->getDenominator()).add(
+    			$number->getNumerator()->multiply($this->getDenominator()));
+    	} else {
+    		$newNumeratorValue =
+    			$this->getNumerator()->multiply($number->getDenominator()).subtract(
+    			$number->getNumerator()->multiply($this->getDenominator()));
+    	}
+
+    	$newDenominatorValue = $this->getDenominator()->getValue() * $number->getDenominator()->getValue();
+    		
+    	$numerator   = new Integer($newNumeratorValue);
+    	$denumarator = new Integer($newDenominatorValue);
+    		
+    	return $this->simplify(new Fraction($numerator, $denumarator));
+
+	 
+	 }
+
+
 
     /**
      * (non-PHPdoc)
@@ -176,7 +189,40 @@ class Fraction implements NumberInterface
      *
      */
     public function divide (NumberInterface $number)
-    {}
+    {
+    	if($number instanceof Integer) {
+    	
+    		$number = new Fraction($number->getValue());
+    	
+    	}
+    	
+    	$newNumerator = $this->getNumerator()->multiply($number->getDenominator());
+    	$newDenominator = $this->getDenominator()->multiply($number->getNumerator());
+    	
+    	return $this->simplify(new Fraction($newNumerator, $newDenominator));
+    	
+    }
+    
+    /**
+     * (non-PHPdoc)
+     *
+     * @see \AGmakonts\STL\Number\NumberInterface::multiply()
+     *
+     */
+    public function multiply (NumberInterface $number)
+    {
+    	if($number instanceof Integer) {
+    		
+    		$number = new Fraction($number->getValue());
+    		
+    	}
+    	
+    	$newNumerator = $this->getNumerator()->multiply($number->getNumerator());
+    	$newDenumerator = $this->getDenominator()->multiply($number->getDenominator());
+    	
+    	return $this->simplify(new Fraction($newNumerator, $newDenumerator));
+    }
+    
 
     /**
      * (non-PHPdoc)
@@ -185,18 +231,12 @@ class Fraction implements NumberInterface
      *
      */
     public function assertIsEqualTo (NumberInterface $number)
-    {}
+    {
+    	return ($this->getValue() === $number->getValue());
+    }
 
     
 
-    /**
-     * (non-PHPdoc)
-     *
-     * @see \AGmakonts\STL\Number\NumberInterface::subtract()
-     *
-     */
-    public function subtract (NumberInterface $number)
-    {}
 
     /**
      * (non-PHPdoc)
@@ -205,7 +245,9 @@ class Fraction implements NumberInterface
      *
      */
     public function assertIsGreaterOrEqualTo (NumberInterface $number)
-    {}
+    {
+    	return ($this->getValue() >= $number->getValue());
+    }
 
     /**
      * (non-PHPdoc)
@@ -214,7 +256,9 @@ class Fraction implements NumberInterface
      *
      */
     public function assertIsSmallerThan (NumberInterface $number)
-    {}
+    {
+    	return ($this->getValue() < $number->getValue());
+    }
 
     /**
      * (non-PHPdoc)
@@ -232,7 +276,9 @@ class Fraction implements NumberInterface
      *
      */
     public function assertIsSmallerOrEqualTo (NumberInterface $number)
-    {}
+    {
+    	return ($this->getValue() <= $number->getValue());
+    }
 
     /**
      * (non-PHPdoc)
@@ -314,7 +360,7 @@ class Fraction implements NumberInterface
 	/* (non-PHPdoc)
 	 * @see \AGmakonts\STL\Number\NumberInterface::round()
 	 */
-	public function round(\AGmakonts\STL\Number\RoundingMode $mode = NULL) {
+	public function round(RoundingMode $mode = NULL) {
 		// TODO Auto-generated method stub
 		
 	}
