@@ -38,7 +38,9 @@ class Natural extends Integer
 
 		}
 
-		parent::createFrom($number);
+		$roundValue = $number->round();
+
+		return new static($roundValue->getValue());
 
 	}
 
