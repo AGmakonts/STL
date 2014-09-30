@@ -2,6 +2,7 @@
 namespace AGmakonts\STL\Number;
 
 use AGmakonts\STL\Number\Exception\InvalidValueException;
+use AGmakonts\STL\Number\NumberInterface;
 /**
  *
  * @author adamgrabek
@@ -9,6 +10,7 @@ use AGmakonts\STL\Number\Exception\InvalidValueException;
  */
 class Integer extends Real
 {
+	
     /* (non-PHPdoc)
      * @see \AGmakonts\STL\Number\Real::__construct()
      */
@@ -24,4 +26,22 @@ class Integer extends Real
         parent::__construct($value);
 
     }
+    
+	/* (non-PHPdoc)
+	 * @see \AGmakonts\STL\Number\Real::createFrom()
+	 */
+	public static function createFrom(NumberInterface $number) 
+	{
+		$roundValue = $number->round();
+		
+		return new static($roundValue->getValue());
+		
+	}
+
+    
+    
+    
+    
 }
+
+

@@ -10,7 +10,6 @@ use AGmakonts\STL\Number\Integer;
  */
 class Decimal implements NumberInterface
 {
-
     /**
      *
      * @var Integer

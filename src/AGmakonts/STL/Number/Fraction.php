@@ -33,6 +33,7 @@ class Fraction implements NumberInterface
     function __construct (Integer $numerator, Integer $denumerator)
     {
         if(TRUE === $denumerator->assertIsZero()) {
+        	
             throw new InvalidValueException($denumerator->getValue(), ['INT (>0)']);
 
         }
@@ -45,6 +46,7 @@ class Fraction implements NumberInterface
     }
 
     /**
+     * 
      * Creates Fraction object from string
      * representation of the fraction.
      * This method cannot create mixed number and
@@ -65,8 +67,6 @@ class Fraction implements NumberInterface
     {
 
     }
-
-
 
     /**
      * Get decimal value of the fraction.

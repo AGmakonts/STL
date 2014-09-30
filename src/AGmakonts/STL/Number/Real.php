@@ -13,7 +13,7 @@ use AGmakonts\STL\Number\ComparisonOperator;
  */
 class Real implements NumberInterface
 {
-
+	
     /**
      *
      * @var float
@@ -204,10 +204,16 @@ class Real implements NumberInterface
      * Get rounded value
      *
      * @param RoundingMode $mode
-     * @return \AGmakonts\STL\Number\Real
+     * @return NumberInterface
      */
-    public function round(RoundingMode $mode)
+    public function round(RoundingMode $mode = NULL)
     {
+    	if(NULL === $mode) {
+    		
+    		$mode = RoundingMode::get(RoundingMode::HALF_EVEN);
+    		
+    	}
+    	
         return new static(round($this->getValue(), 0, $mode->getValue()));
     }
 
@@ -219,8 +225,36 @@ class Real implements NumberInterface
         return new static($number->getValue());
 
     }
-
-
+    
+    /**
+     * Check if number is positive
+     * 
+     * @return boolean
+     */
+    public function assertIsPositive()
+    {
+    	return boolval($this->_getSign());
+    }
+    
+    /**
+     * Check if number is negative
+     * 
+     * @return boolean
+     */
+    public function assertIsNegative()
+    {
+    	return (FALSE === $this->assertIsPositive());
+    }
+    
+    /**
+     * Return 0 for negative number and 1 for positive
+     * 
+     * @return integer
+     */
+    private function _getSign()
+    {
+    	return min(1, max(0, (is_nan($this->getValue()) or $this->getValue() == 0) ? 0 : $this->getValue() * INF));
+    }
 
 
 

@@ -8,9 +8,7 @@ namespace AGmakonts\STL\Number;
  */
 interface NumberInterface
 {
-    /**
-     *
-     */
+
     public function getValue();
 
     public function assertIsGreaterThan(NumberInterface $number);
@@ -36,6 +34,12 @@ interface NumberInterface
     public function root(NumberInterface $number);
 
     public function assertIsZero();
+    
+    public function round(RoundingMode $mode = NULL);
+    
+    public function assertIsPositive();
+    
+    public function assertIsNegative();
 
     static public function createFrom(NumberInterface $number);
 

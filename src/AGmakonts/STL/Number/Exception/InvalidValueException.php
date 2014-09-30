@@ -9,7 +9,6 @@ namespace AGmakonts\STL\Number\Exception;
 class InvalidValueException extends \InvalidArgumentException
 {
 
-
 	/* (non-PHPdoc)
      * @see InvalidArgumentException::__construct()
      */
