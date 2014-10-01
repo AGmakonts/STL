@@ -5,6 +5,7 @@ namespace AGmakonts\STL\String;
 use AGmakonts\STL\Number\Natural;
 use AGmakonts\STL\String\StringInterface;
 use AGmakonts\STL\String\Exception\InvalidStringValueException;
+use AGmakonts\STL\Number\Integer;
 
 /**
  *
@@ -26,7 +27,7 @@ class String implements StringInterface
 
 		$this->_value = $value;
 
-		if(NULL === $value) {
+		if(NULL === $value || TRUE === ctype_space($value)) {
 			$this->_isEmpty = TRUE;
 			$this->_value = "";
 		}
@@ -86,9 +87,31 @@ class String implements StringInterface
 	 */
 	public function truncate(Natural $length, StringInterface $elipsis = NULL) 
 	{
-		$strlen = $this->getLength()->getValue();
+		if(NULL === $elipsis) {
+			$elipsis = new String();
+		}
 		
-
+		if(TRUE === $length->assertIsGreaterOrEqualTo($length)) {
+			
+			return $this;
+			
+		}
+		
+		$finalLength = $length->subtract($elipsis->getLength());
+		
+		for ($i = $finalLength->getValue(); $i >= 0; $i--) {
+			
+			$testedCharacter = $this->getCharAtPosition(new Natural($i));
+			
+			if(TRUE === $testedCharacter->assertIsEmpty()) {
+				
+				return $this->substr(new Integer(), new Integer($i));
+				
+			}
+			
+		}		
+		
+		
 	}
 
 	/**
@@ -127,8 +150,13 @@ class String implements StringInterface
 	 * @see \AGmakonts\STL\String\StringInterface::substr()
 	 *
 	 */
-	public function substr($start, $length)
+	public function substr(Integer $start, Integer $length = NULL)
 	{
+		if(NULL !== $length) {
+			$lengthValue = $length->getValue();
+		}
+
+		return new static(substr($this->getValue(), $start->getValue(), $lengthValue));
 	}
 
 	public function assertIsEmpty()
@@ -152,8 +180,18 @@ class String implements StringInterface
 		return $this->getValue();
 		
 	}
+	
+	/* (non-PHPdoc)
+	 * @see \AGmakonts\STL\String\StringInterface::getCharAtPosition()
+	 */
+	public function getCharAtPosition(Natural $position) 
+	{
+		return new static($this->getValue()[$position->getValue()-1]);
+		
+	}
 
 
+	
 
 
 }

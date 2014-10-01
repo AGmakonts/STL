@@ -17,7 +17,7 @@ final class ComparisonOperator extends Enum
     
     /**
      * 
-     * @return array:
+     * @return array
      */
     public function getValueAsArray()
     {
