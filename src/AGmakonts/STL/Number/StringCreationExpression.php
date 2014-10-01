@@ -76,11 +76,6 @@ class StringCreationExpression
 	 */
 	private function _processExpressionData(array $data)
 	{
-		$integer     = NULL;
-		$numerator   = NULL;
-		$denumerator = NULL;
-
-
 
 		$integer     = $this->_getIntegerFromData ($data, 'integer' );
 		$numerator   = $this->_getIntegerFromData ($data, 'numerator' );
