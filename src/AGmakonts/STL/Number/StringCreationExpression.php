@@ -59,8 +59,8 @@ class StringCreationExpression
 		$data = NULL;
 
 		preg_match_all(self::PATTERN, $this->getRawExpression(), $data);
-		
-		
+
+
 		if(NULL === $data) {
 			throw new InvalidFractionStringException($expression, 'Expression cannot be procesed');
 		}
@@ -92,17 +92,17 @@ class StringCreationExpression
 
 
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param array $data
 	 * @param string $part
 	 * @return Integer|NULL
 	 */
 	private function _getIntegerFromData(array $data, $part) {
-	 	
-		if(($data[$part] != "" || $data[$part] != 0) && is_numeric($data[$part])) {
-			return new Integer((int) $data[$part]);
+
+		if(TRUE === isset($data[$part][0]) && ($data[$part][0] != "" || $data[$part][0] != 0)) {
+			return new Integer((int) $data[$part][0]);
 		} else {
 			return NULL;
 		}
@@ -120,7 +120,7 @@ class StringCreationExpression
 			);
 
 		} else {
-			
+
 			$numerator = $this->getNumerator();
 		}
 
