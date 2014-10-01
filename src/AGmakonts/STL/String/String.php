@@ -31,8 +31,6 @@ class String implements StringInterface
 			$this->_value = "";
 		}
 
-
-
 	}
 
 	/**

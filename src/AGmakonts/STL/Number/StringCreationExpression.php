@@ -119,6 +119,8 @@ class StringCreationExpression
 					$this->getInteger()->getValue()
 			);
 
+		} else {
+			$numerator = $this->getNumerator();
 		}
 
 		return new Fraction($numerator, $this->getDenumerator());
