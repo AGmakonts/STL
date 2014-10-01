@@ -69,7 +69,7 @@ class StringTest extends PHPUnit_Framework_TestCase {
 
 	    $string = new String("STRING");
 
-	    self:assertEquals('string', $string->lowercase()->getValue());
+	    self::assertEquals('string', $string->lowercase()->getValue());
 
 	}
 
