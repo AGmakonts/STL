@@ -1,6 +1,7 @@
 <?php
 use AGmakonts\STL\String\String;
 use AGmakonts\STL\Number\Natural;
+use AGmakonts\STL\Number\Integer;
 require_once 'PHPUnit/Framework/TestCase.php';
 
 /**
@@ -133,10 +134,13 @@ class StringTest extends PHPUnit_Framework_TestCase {
 	 * Tests String->substr()
 	 */
 	public function testSubstr() {
-		// TODO Auto-generated StringTest->testSubstr()
-		$this->markTestIncomplete ( "substr test not implemented" );
 		
-		$this->String->substr(/* parameters */);
+		$string = new String("qwerty");
+		
+		$substr = $string->substr(new Integer(0), new Integer(4));
+		
+		self::assertEquals('qwer', $substr->getValue(), "Actual: {$substr}");
+		
 	}
 	
 	/**
@@ -173,10 +177,15 @@ class StringTest extends PHPUnit_Framework_TestCase {
 	 * Tests String->getCharAtPosition()
 	 */
 	public function testGetCharAtPosition() {
-		// TODO Auto-generated StringTest->testGetCharAtPosition()
-		$this->markTestIncomplete ( "getCharAtPosition test not implemented" );
 		
-		$this->String->getCharAtPosition(/* parameters */);
+		$string = new String("asdfghjkl");
+		
+		$char = $string->getCharAtPosition(new Natural(3));
+		
+		self::assertEquals('d', $char->getValue(), "Actual: {$char}");
+		
+		
+		
 	}
 }
 

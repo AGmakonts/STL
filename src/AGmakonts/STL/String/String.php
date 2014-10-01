@@ -105,7 +105,7 @@ class String implements StringInterface
 			
 			if(TRUE === $testedCharacter->assertIsEmpty()) {
 				
-				return $this->substr(new Integer(), new Integer($i));
+				return $this->substr(new Integer(0), new Integer($i));
 				
 			}
 			
