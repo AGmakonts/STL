@@ -287,10 +287,12 @@ class Fraction implements NumberInterface
      */
     public static function createFrom (NumberInterface $number)
     {
-		if($number instanceof Real) {
+		if($number instanceof Integer) {
 			$fraction = new static($number);
 		} elseif ($number instanceof Fraction) {
 			$fraction = new static($number->getNumerator(), $number->getDenominator());
+		} else {
+			$fraction = new static(Integer::createFrom($number));
 		}
 		
 		
