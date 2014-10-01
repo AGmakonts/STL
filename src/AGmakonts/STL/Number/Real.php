@@ -106,8 +106,10 @@ class Real implements NumberInterface
     {
     	
     	$comparisonResult = gmp_cmp((string) $this->getValue(), (string) $number->getValue());
+
+    	$operatorAllowedResults = explode("|", $operator->getValue());
     	
-        $result = in_array($comparisonResult, $operator->getValue());
+        $result = in_array($comparisonResult, $operatorAllowedResults);
 
         return $result;
     }
