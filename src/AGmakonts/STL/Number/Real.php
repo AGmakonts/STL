@@ -108,9 +108,7 @@ class Real implements NumberInterface
     	
     	$comparisonResult = bccomp((string) $this->getValue(), (string) $number->getValue(), $scale);
 
-    	$operatorAllowedResults = explode("|", $operator->getValue());
-    	
-        $result = in_array($comparisonResult, $operatorAllowedResults);
+        $result = in_array($comparisonResult, $operator->getValueAsArray());
 
         return $result;
     }
@@ -224,7 +222,7 @@ class Real implements NumberInterface
      */
     public function assertIsNegative()
     {
-    	return (FALSE === $this->assertIsPositive());
+    	return (FALSE === boolval($this->assertIsPositive()));
     }
 
     /**

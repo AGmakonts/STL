@@ -44,6 +44,17 @@ class String implements StringInterface
 		return new static(strtoupper($this->getValue()));
 		
 	}
+	
+	/**
+	 * (non-PHPdoc)
+	 *
+	 * @see \AGmakonts\STL\String\StringInterface::lowercase()
+	 *
+	 */
+	public function lowercase()
+	{
+		return new static(strtolower($this->getValue()));
+	}
 
 	/**
 	 * (non-PHPdoc)
@@ -51,7 +62,9 @@ class String implements StringInterface
 	 * @see \AGmakonts\STL\String\StringInterface::reverse()
 	 *
 	 */
-	public function reverse() {
+	public function reverse() 
+	{
+		return new static(strrev($this->getValue()));
 	}
 
 	/**
@@ -63,14 +76,7 @@ class String implements StringInterface
 	public function simpleFormat(StringInterface $string) {
 	}
 
-	/**
-	 * (non-PHPdoc)
-	 *
-	 * @see \AGmakonts\STL\String\StringInterface::lowercase()
-	 *
-	 */
-	public function lowercase() {
-	}
+	
 
 	/**
 	 * (non-PHPdoc)
@@ -78,7 +84,11 @@ class String implements StringInterface
 	 * @see \AGmakonts\STL\String\StringInterface::truncate()
 	 *
 	 */
-	public function truncate(Natural $length, StringInterface $elipsis = NULL) {
+	public function truncate(Natural $length, StringInterface $elipsis = NULL) 
+	{
+		$strlen = $this->getLength()->getValue();
+		
+
 	}
 
 	/**
@@ -96,7 +106,10 @@ class String implements StringInterface
 	 * @see \AGmakonts\STL\String\StringInterface::getLength()
 	 *
 	 */
-	public function getLength() {
+	public function getLength() 
+	{
+		return new Natural(strlen($this->getValue()));
+		
 	}
 
 	/**

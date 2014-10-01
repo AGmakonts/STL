@@ -10,6 +10,9 @@ use AGmakonts\STL\SimpleTypeInterface;
  */
 interface StringInterface extends SimpleTypeInterface
 {
+	/**
+	 * @return Natural
+	 */
     public function getLength();
     public function substr($start, $length);
     public function concat(StringInterface $string);
