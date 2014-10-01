@@ -91,7 +91,7 @@ class String implements StringInterface
 			$elipsis = new String();
 		}
 		
-		if(TRUE === $length->assertIsGreaterOrEqualTo($length)) {
+		if(TRUE === $length->assertIsGreaterOrEqualTo($this->getLength())) {
 			
 			return $this;
 			
