@@ -104,32 +104,11 @@ class Real implements NumberInterface
      */
 	private function _compare(NumberInterface $number, ComparisonOperator $operator)
     {
-        switch ($operator->getValue()) {
+    	$scale = max(strlen((string) $this->getValue()), strlen((string) $number->getValue()));
+    	
+    	$comparisonResult = bccomp((string) $this->getValue(), (string) $number->getValue(), $scale);
 
-            case ComparisonOperator::EQUAL :
-                $result = ($this->getValue() === $number->getValue());
-                break;
-
-            case ComparisonOperator::GREATER :
-                $result = ($this->getValue() > $number->getValue());
-                break;
-
-            case ComparisonOperator::GREATER_EQUAL :
-                $result = ($this->getValue() >= $number->getValue());
-                break;
-
-            case ComparisonOperator::SMALLER :
-                $result = ($this->getValue() < $number->getValue());
-                break;
-
-            case ComparisonOperator::SMALLER_EQUAL :
-                $result = ($this->getValue() <= $number->getValue());
-                break;
-
-            default:
-                $result = FALSE;
-
-        }
+        $result = in_array($comparisonResult, $operator->getValueAsArray());
 
         return $result;
     }
@@ -243,7 +222,7 @@ class Real implements NumberInterface
      */
     public function assertIsNegative()
     {
-    	return (FALSE === $this->assertIsPositive());
+    	return (FALSE === boolval($this->assertIsPositive()));
     }
 
     /**
@@ -267,5 +246,16 @@ class Real implements NumberInterface
 
     	return new static($digits);
     }
+
+
+	/* (non-PHPdoc)
+	 * @see \AGmakonts\STL\SimpleTypeInterface::__toString()
+	 */
+	public function __toString() {
+		
+		return $this->getValue();
+		
+	}
+
 
 }

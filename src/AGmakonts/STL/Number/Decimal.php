@@ -38,11 +38,12 @@ class Decimal implements NumberInterface
 
     	if(NULL !== $precision) {
 
-    		$tempReal = Real::createFrom($denumerator);
+    		$tempReal = Natural::createFrom($denumerator);
 
     		$tempDivider = new Real(10);
 
-    		$tempReal->divide($tempDivider->power($precision));
+    		$tempReal->divide($tempDivider->power($precision))->round(RoundingMode::get(RoundingMode::HALF_DOWN));
+    		
 
     		$this->_denumerator = $tempReal;
     		$this->_precision   = $precision;
@@ -50,7 +51,7 @@ class Decimal implements NumberInterface
     	} else {
 
     		$this->_denumerator = $denumerator;
-    		$this->_precision = $denumerator->getDigitCount();
+    		$this->_precision   = Integer::createFrom($denumerator->getDigitCount());
 
     	}
 
@@ -233,6 +234,17 @@ class Decimal implements NumberInterface
     {
         return $this->_precision;
     }
+
+
+	/* (non-PHPdoc)
+	 * @see \AGmakonts\STL\SimpleTypeInterface::__toString()
+	 */
+	public function __toString() {
+		
+		return $this->getValue();
+		
+	}
+
 
 
 

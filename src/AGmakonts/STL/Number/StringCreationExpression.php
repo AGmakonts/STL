@@ -56,9 +56,14 @@ class StringCreationExpression
 
 		$this->_rawExpression = $expression;
 
-		$data = [];
+		$data = NULL;
 
 		preg_match_all(self::PATTERN, $this->getRawExpression(), $data);
+		
+		
+		if(NULL === $data) {
+			throw new InvalidFractionStringException($expression, 'Expression cannot be procesed');
+		}
 
 		$this->_processExpressionData($data);
 
@@ -71,22 +76,11 @@ class StringCreationExpression
 	 */
 	private function _processExpressionData(array $data)
 	{
-		$integer     = NULL;
-		$numerator   = NULL;
-		$denumerator = NULL;
 
+		$integer     = $this->_getIntegerFromData ($data, 'integer' );
+		$numerator   = $this->_getIntegerFromData ($data, 'numerator' );
+		$denumerator = $this->_getIntegerFromData ($data, 'denumerator' );
 
-		if(($data['integer'] != "" || $data['integer'] != 0) && is_numeric($data['integer'])) {
-		   	$integer = new Integer((int) $data['integer']);
-		}
-
-		if(($data['numerator'] != "" || $data['numerator'] != 0) && is_numeric($data['numerator'])) {
-			$numerator = new Integer((int) $data['numerator']);
-		}
-
-		if(($data['denumerator'] != "" || $data['denumerator'] != 0) && is_numeric($data['denumerator'])) {
-			$numerator = new Integer((int) $data['denumerator']);
-		}
 
 		if(NULL === $numerator || NULL === $denumerator) {
 			throw new CorruptedStringExpressionException();
@@ -98,6 +92,22 @@ class StringCreationExpression
 
 
 	}
+	
+	/**
+	 * 
+	 * @param array $data
+	 * @param string $part
+	 * @return Integer|NULL
+	 */
+	private function _getIntegerFromData(array $data, $part) {
+	 	
+		if(($data[$part] != "" || $data[$part] != 0) && is_numeric($data[$part])) {
+			return new Integer((int) $data[$part]);
+		} else {
+			return NULL;
+		}
+	}
+
 
 	public function getAsSimpleFraction()
 	{
@@ -109,6 +119,9 @@ class StringCreationExpression
 					$this->getInteger()->getValue()
 			);
 
+		} else {
+			
+			$numerator = $this->getNumerator();
 		}
 
 		return new Fraction($numerator, $this->getDenumerator());
