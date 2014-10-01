@@ -15,5 +15,3 @@ interface SimpleTypeInterface {
 	
 	public function __toString();
 }
-
-?>
