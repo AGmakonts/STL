@@ -94,7 +94,7 @@ class StringTest extends PHPUnit_Framework_TestCase {
 		
 		$string = new String("Testing truncate method");
 		
-		$truncated = $string->truncate(new Natural(10))->getValue();
+		$truncated = $string->truncate(new Natural(20))->getValue();
 		
 		self::assertEquals('Testing truncate', $truncated, "Actual: {$truncated}");
 		
