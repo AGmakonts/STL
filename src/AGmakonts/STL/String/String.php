@@ -153,10 +153,10 @@ class String implements StringInterface
 	public function substr(Integer $start, Integer $length = NULL)
 	{
 		if(NULL !== $length) {
-			$lengthValue = $length->getValue();
+			$length = $length->getValue();
 		}
 
-		return new static(substr($this->getValue(), $start->getValue(), $lengthValue));
+		return new static(substr($this->getValue(), $start->getValue(), $length));
 	}
 
 	public function assertIsEmpty()
