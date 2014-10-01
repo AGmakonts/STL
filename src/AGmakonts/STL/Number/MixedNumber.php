@@ -208,15 +208,16 @@ class MixedNumber implements NumberInterface
 	 * @see \AGmakonts\STL\Number\NumberInterface::assertIsSmallerOrEqualTo()
 	 *
 	 */
-	public function assertIsSmallerOrEqualTo(NumberInterface $number) {
+	public function assertIsSmallerOrEqualTo(NumberInterface $number)
+	{
 	}
 	/* (non-PHPdoc)
 	 * @see \AGmakonts\STL\SimpleTypeInterface::__toString()
 	 */
 	public function __toString() {
-		
+
 		return $this->getValue();
-		
+
 	}
 
 }

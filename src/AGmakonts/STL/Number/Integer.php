@@ -10,11 +10,12 @@ use AGmakonts\STL\Number\NumberInterface;
  */
 class Integer extends Real
 {
-	
+
     /* (non-PHPdoc)
      * @see \AGmakonts\STL\Number\Real::__construct()
      */
-    public function __construct($number) {
+    public function __construct($number)
+    {
 
         $value = filter_var($number, FILTER_VALIDATE_INT);
 
@@ -26,22 +27,22 @@ class Integer extends Real
         parent::__construct($value);
 
     }
-    
+
 	/* (non-PHPdoc)
 	 * @see \AGmakonts\STL\Number\Real::createFrom()
 	 */
-	public static function createFrom(NumberInterface $number) 
+	public static function createFrom(NumberInterface $number)
 	{
 		$roundValue = $number->round();
-		
+
 		return new static($roundValue->getValue());
-		
+
 	}
 
-    
-    
-    
-    
+
+
+
+
 }
 
 

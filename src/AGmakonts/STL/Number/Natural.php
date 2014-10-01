@@ -13,7 +13,8 @@ class Natural extends Integer
 	/* (non-PHPdoc)
 	 * @see \AGmakonts\STL\Number\Real::__construct()
 	 */
-	public function __construct($number) {
+	public function __construct($number)
+	{
 
 	    $value = filter_var($number, FILTER_VALIDATE_INT, ['options' => ['min_range' => 0]]);
 
@@ -30,7 +31,8 @@ class Natural extends Integer
 	/* (non-PHPdoc)
 	 * @see \AGmakonts\STL\Number\Integer::createFrom()
 	 */
-	public static function createFrom(NumberInterface $number) {
+	public static function createFrom(NumberInterface $number)
+	{
 
 		if(TRUE === $number->assertIsNegative()) {
 

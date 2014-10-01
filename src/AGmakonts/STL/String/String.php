@@ -40,7 +40,8 @@ class String implements StringInterface
 	 * @see \AGmakonts\STL\String\StringInterface::uppercase()
 	 *
 	 */
-	public function uppercase() {
+	public function uppercase()
+	{
 
 		return new static(strtoupper($this->getValue()));
 
