@@ -45,6 +45,7 @@ class Fraction implements NumberInterface
 
         }
 
+
         $this->_numerator = $numerator;
 
         $this->_denominator = $denumerator;
@@ -151,26 +152,20 @@ class Fraction implements NumberInterface
 	 */
 	 private function _addSubtract(NumberInterface $number, $add = TRUE) {
 	 	
-		/**
-    	 * If passed number is an Integer convert it to Fraction
-    	 */
-    	if($number instanceof Integer) {
-    		
-    		$number = new Fraction($number->getValue());
-    		
-    	}
+
+    	$fraction = self::createFrom($number);
 
     	if(TRUE === $add) {
     		$newNumeratorValue =
-    			$this->getNumerator()->multiply($number->getDenominator()).add(
-    			$number->getNumerator()->multiply($this->getDenominator()));
+    			$this->getNumerator()->multiply($fraction->getDenominator()).add(
+    			$fraction->getNumerator()->multiply($this->getDenominator()));
     	} else {
     		$newNumeratorValue =
-    			$this->getNumerator()->multiply($number->getDenominator()).subtract(
-    			$number->getNumerator()->multiply($this->getDenominator()));
+    			$this->getNumerator()->multiply($fraction->getDenominator()).subtract(
+    			$fraction->getNumerator()->multiply($this->getDenominator()));
     	}
 
-    	$newDenominatorValue = $this->getDenominator()->getValue() * $number->getDenominator()->getValue();
+    	$newDenominatorValue = $this->getDenominator()->getValue() * $fraction->getDenominator()->getValue();
     		
     	$numerator   = new Integer($newNumeratorValue);
     	$denumarator = new Integer($newDenominatorValue);
@@ -190,14 +185,10 @@ class Fraction implements NumberInterface
      */
     public function divide (NumberInterface $number)
     {
-    	if($number instanceof Integer) {
+    	$fraction = self::createFrom($number);
     	
-    		$number = new Fraction($number->getValue());
-    	
-    	}
-    	
-    	$newNumerator = $this->getNumerator()->multiply($number->getDenominator());
-    	$newDenominator = $this->getDenominator()->multiply($number->getNumerator());
+    	$newNumerator = $this->getNumerator()->multiply($fraction->getDenominator());
+    	$newDenominator = $this->getDenominator()->multiply($fraction->getNumerator());
     	
     	return $this->simplify(new Fraction($newNumerator, $newDenominator));
     	
@@ -211,14 +202,10 @@ class Fraction implements NumberInterface
      */
     public function multiply (NumberInterface $number)
     {
-    	if($number instanceof Integer) {
-    		
-    		$number = new Fraction($number->getValue());
-    		
-    	}
+    	$fraction = self::createFrom($number);
     	
-    	$newNumerator = $this->getNumerator()->multiply($number->getNumerator());
-    	$newDenumerator = $this->getDenominator()->multiply($number->getDenominator());
+    	$newNumerator = $this->getNumerator()->multiply($fraction->getNumerator());
+    	$newDenumerator = $this->getDenominator()->multiply($fraction->getDenominator());
     	
     	return $this->simplify(new Fraction($newNumerator, $newDenumerator));
     }
@@ -300,7 +287,14 @@ class Fraction implements NumberInterface
      */
     public static function createFrom (NumberInterface $number)
     {
-
+		if($number instanceof Real) {
+			$fraction = new static($number);
+		} elseif ($number instanceof Fraction) {
+			$fraction = new static($number->getNumerator(), $number->getDenominator());
+		}
+		
+		
+		return $fraction;
 
     }
     
