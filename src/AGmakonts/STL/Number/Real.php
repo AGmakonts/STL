@@ -104,8 +104,9 @@ class Real implements NumberInterface
      */
 	private function _compare(NumberInterface $number, ComparisonOperator $operator)
     {
+    	$scale = max(strlen((string) $this->getValue()), strlen((string) $number->getValue()));
     	
-    	$comparisonResult = bccomp((string) $this->getValue(), (string) $number->getValue());
+    	$comparisonResult = bccomp((string) $this->getValue(), (string) $number->getValue(), $scale);
 
     	$operatorAllowedResults = explode("|", $operator->getValue());
     	
