@@ -9,9 +9,9 @@ use MabeEnum\Enum;
  */
 final class ComparisonOperator extends Enum
 {
-    const EQUAL         = '=';
-    const GREATER       = '>';
-    const GREATER_EQUAL = '>=';
-    const SMALLER       = '<';
-    const SMALLER_EQUAL = '<=';
+    const EQUAL         = [0];
+    const GREATER       = [1];
+    const GREATER_EQUAL = [0,1];
+    const SMALLER       = [-1];
+    const SMALLER_EQUAL = [-1,0];
 }

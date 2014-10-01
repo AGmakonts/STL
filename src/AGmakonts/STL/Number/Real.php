@@ -104,32 +104,10 @@ class Real implements NumberInterface
      */
 	private function _compare(NumberInterface $number, ComparisonOperator $operator)
     {
-        switch ($operator->getValue()) {
-
-            case ComparisonOperator::EQUAL :
-                $result = ($this->getValue() === $number->getValue());
-                break;
-
-            case ComparisonOperator::GREATER :
-                $result = ($this->getValue() > $number->getValue());
-                break;
-
-            case ComparisonOperator::GREATER_EQUAL :
-                $result = ($this->getValue() >= $number->getValue());
-                break;
-
-            case ComparisonOperator::SMALLER :
-                $result = ($this->getValue() < $number->getValue());
-                break;
-
-            case ComparisonOperator::SMALLER_EQUAL :
-                $result = ($this->getValue() <= $number->getValue());
-                break;
-
-            default:
-                $result = FALSE;
-
-        }
+    	
+    	$comparisonResult = gmp_cmp((string) $this->getValue(), (string) $number->getValue());
+    	
+        $result = in_array($comparisonResult, $operator->getValue());
 
         return $result;
     }
