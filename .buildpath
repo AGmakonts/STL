@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <buildpath>
 	<buildpathentry kind="src" path="vendor/marc-mabe/php-enum/src"/>
+	<buildpathentry kind="src" path="vendor/phpunit/php-code-coverage/PHP"/>
+	<buildpathentry kind="src" path="vendor/phpunit/php-text-template/Text"/>
+	<buildpathentry kind="src" path="vendor/symfony/yaml"/>
+	<buildpathentry kind="src" path="src"/>
 	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
 	<buildpathentry kind="src" path="vendor/composer"/>
-	<buildpathentry kind="src" path="src"/>
+	<buildpathentry kind="src" path="vendor/phpunit/phpunit/PHPUnit"/>
+	<buildpathentry kind="src" path="vendor/phpunit/php-timer/PHP"/>
 	<buildpathentry kind="con" path="org.eclipse.dltk.USER_LIBRARY/org.eclipse.php.core.PHPNature#PHPUnit"/>
+	<buildpathentry kind="src" path="vendor/phpunit/php-token-stream/PHP"/>
+	<buildpathentry kind="src" path="vendor/phpunit/phpunit-mock-objects/PHPUnit"/>
+	<buildpathentry kind="src" path="vendor/phpunit/php-file-iterator/File"/>
 </buildpath>
