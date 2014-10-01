@@ -5,6 +5,7 @@ namespace AGmakonts\STL\String;
 use AGmakonts\STL\Number\Natural;
 use AGmakonts\STL\String\StringInterface;
 use AGmakonts\STL\String\Exception\InvalidStringValueException;
+use AGmakonts\STL\Number\Integer;
 
 /**
  *
@@ -16,7 +17,7 @@ class String implements StringInterface
 
 	private $_value;
 
-	private $_isEmpty;
+	private $_isEmpty = FALSE;
 
 	public function __construct($value = NULL)
 	{
@@ -26,7 +27,7 @@ class String implements StringInterface
 
 		$this->_value = $value;
 
-		if(NULL === $value) {
+		if(NULL === $value || TRUE === ctype_space($value)) {
 			$this->_isEmpty = TRUE;
 			$this->_value = "";
 		}
@@ -40,27 +41,9 @@ class String implements StringInterface
 	 *
 	 */
 	public function uppercase() {
-		
+
 		return new static(strtoupper($this->getValue()));
-		
-	}
 
-	/**
-	 * (non-PHPdoc)
-	 *
-	 * @see \AGmakonts\STL\String\StringInterface::reverse()
-	 *
-	 */
-	public function reverse() {
-	}
-
-	/**
-	 * (non-PHPdoc)
-	 *
-	 * @see \AGmakonts\STL\String\StringInterface::simpleFormat()
-	 *
-	 */
-	public function simpleFormat(StringInterface $string) {
 	}
 
 	/**
@@ -69,8 +52,22 @@ class String implements StringInterface
 	 * @see \AGmakonts\STL\String\StringInterface::lowercase()
 	 *
 	 */
-	public function lowercase() {
+	public function lowercase()
+	{
+		return new static(strtolower($this->getValue()));
 	}
+
+	/**
+	 * (non-PHPdoc)
+	 *
+	 * @see \AGmakonts\STL\String\StringInterface::reverse()
+	 *
+	 */
+	public function reverse()
+	{
+		return new static(strrev($this->getValue()));
+	}
+
 
 	/**
 	 * (non-PHPdoc)
@@ -78,16 +75,53 @@ class String implements StringInterface
 	 * @see \AGmakonts\STL\String\StringInterface::truncate()
 	 *
 	 */
-	public function truncate(Natural $length, StringInterface $elipsis = NULL) {
+	public function truncate(Natural $length, StringInterface $elipsis = NULL)
+	{
+		/**
+		 * Create empty elipsis for unfied length calculations
+		 */
+		if(NULL === $elipsis) {
+			$elipsis = new String();
+		}
+
+		/**
+		 * If desired length is greater than string itself do nothing
+		 */
+		if(TRUE === $length->assertIsGreaterOrEqualTo($this->getLength())) {
+			return $this;
+		}
+
+		/**
+	     * Subtract elispis length from desired length
+	     * to know where to start chopping string
+		 */
+		$finalLength = $length->subtract($elipsis->getLength());
+
+		for ($i = $finalLength->getValue(); $i >= 0; $i--) {
+
+			$testedCharacter = $this->getCharAtPosition(new Natural($i));
+
+			if(TRUE === $testedCharacter->assertIsEmpty()) {
+				return $this->substr(new Integer(0), new Integer($i-1))->concat($elipsis);
+			}
+
+			unset($testedCharacter);
+
+		}
+
+		return new String();
+
 	}
 
 	/**
 	 * (non-PHPdoc)
 	 *
-	 * @see \AGmakonts\STL\String\StringInterface::compareTo()
+	 * @see \AGmakonts\STL\String\StringInterface::assertIsEqualTo()
 	 *
 	 */
-	public function compareTo(StringInterface $string) {
+	public function assertIsEqualTo(StringInterface $string)
+	{
+        return ($this->getValue() === $string->getValue());
 	}
 
 	/**
@@ -96,7 +130,10 @@ class String implements StringInterface
 	 * @see \AGmakonts\STL\String\StringInterface::getLength()
 	 *
 	 */
-	public function getLength() {
+	public function getLength()
+	{
+		return new Natural(strlen($this->getValue()));
+
 	}
 
 	/**
@@ -105,7 +142,9 @@ class String implements StringInterface
 	 * @see \AGmakonts\STL\String\StringInterface::concat()
 	 *
 	 */
-	public function concat(StringInterface $string) {
+	public function concat(StringInterface $string)
+	{
+		return new static($this->getValue() . $string->getValue());
 	}
 
 	/**
@@ -114,8 +153,13 @@ class String implements StringInterface
 	 * @see \AGmakonts\STL\String\StringInterface::substr()
 	 *
 	 */
-	public function substr($start, $length)
+	public function substr(Integer $start, Integer $length = NULL)
 	{
+		if(NULL !== $length) {
+			$length = $length->getValue();
+		}
+
+		return new static(substr($this->getValue(), $start->getValue(), $length));
 	}
 
 	public function assertIsEmpty()
@@ -135,10 +179,23 @@ class String implements StringInterface
 	 * @see \AGmakonts\STL\SimpleTypeInterface::__toString()
 	 */
 	public function __toString() {
-		
+
 		return $this->getValue();
-		
+
 	}
+
+	/* (non-PHPdoc)
+	 * @see \AGmakonts\STL\String\StringInterface::getCharAtPosition()
+	 */
+	public function getCharAtPosition(Natural $position)
+	{
+		$one = new Natural(1);
+
+		return $this->substr($position->subtract($one), $one);
+
+	}
+
+
 
 
 
