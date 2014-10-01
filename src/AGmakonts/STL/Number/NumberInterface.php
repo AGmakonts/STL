@@ -1,18 +1,15 @@
 <?php
 namespace AGmakonts\STL\Number;
 
+use AGmakonts\STL\SimpleTypeInterface;
 /**
  *
  * @author adamgrabek
  *
  */
-interface NumberInterface
+interface NumberInterface extends SimpleTypeInterface
 {
 
-	/**
-	 * @return integer
-	 */
-    public function getValue();
 
     /**
      * 

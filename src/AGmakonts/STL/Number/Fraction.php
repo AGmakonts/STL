@@ -378,6 +378,23 @@ class Fraction implements NumberInterface
 
 		
 	}
+	/* (non-PHPdoc)
+	 * @see \AGmakonts\STL\Number\NumberInterface::createFrom()
+	 */
+	public static function createFrom(\AGmakonts\STL\Number\NumberInterface $number) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/* (non-PHPdoc)
+	 * @see \AGmakonts\STL\SimpleTypeInterface::__toString()
+	 */
+	public function __toString() {
+		
+		return $this->getValue();
+		
+	}
+
 
 
 

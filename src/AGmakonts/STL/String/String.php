@@ -42,6 +42,9 @@ class String implements StringInterface
 	 *
 	 */
 	public function uppercase() {
+		
+		return new static(strtoupper($this->getValue()));
+		
 	}
 
 	/**
@@ -130,6 +133,15 @@ class String implements StringInterface
         return $this->_value;
 
     }
+	/* (non-PHPdoc)
+	 * @see \AGmakonts\STL\SimpleTypeInterface::__toString()
+	 */
+	public function __toString() {
+		
+		return $this->getValue();
+		
+	}
+
 
 
 
