@@ -17,7 +17,7 @@ class String implements StringInterface
 
 	private $_value;
 
-	private $_isEmpty;
+	private $_isEmpty = FALSE;
 
 	public function __construct($value = NULL)
 	{
