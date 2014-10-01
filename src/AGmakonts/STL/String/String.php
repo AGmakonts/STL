@@ -87,16 +87,24 @@ class String implements StringInterface
 	 */
 	public function truncate(Natural $length, StringInterface $elipsis = NULL) 
 	{
+		/**
+		 * Create empty elipsis for unfied length calculations
+		 */
 		if(NULL === $elipsis) {
 			$elipsis = new String();
 		}
 		
+		/**
+		 * If desired length is greater than string itself do nothing
+		 */
 		if(TRUE === $length->assertIsGreaterOrEqualTo($this->getLength())) {
-			
 			return $this;
-			
 		}
 		
+		/**
+	     * Subtract elispis length from desired length
+	     * to know where to start chopping string
+		 */
 		$finalLength = $length->subtract($elipsis->getLength());
 		
 		for ($i = $finalLength->getValue(); $i >= 0; $i--) {
@@ -104,13 +112,14 @@ class String implements StringInterface
 			$testedCharacter = $this->getCharAtPosition(new Natural($i));
 			
 			if(TRUE === $testedCharacter->assertIsEmpty()) {
-				
-				return $this->substr(new Integer(0), new Integer($i-1));
-				
+				return $this->substr(new Integer(0), new Integer($i-1))->concat($elipsis);
 			}
+			
+			unset($testedCharacter);
 			
 		}		
 		
+		return new String();
 		
 	}
 
@@ -120,7 +129,9 @@ class String implements StringInterface
 	 * @see \AGmakonts\STL\String\StringInterface::compareTo()
 	 *
 	 */
-	public function compareTo(StringInterface $string) {
+	public function compareTo(StringInterface $string) 
+	{
+		
 	}
 
 	/**
@@ -141,7 +152,9 @@ class String implements StringInterface
 	 * @see \AGmakonts\STL\String\StringInterface::concat()
 	 *
 	 */
-	public function concat(StringInterface $string) {
+	public function concat(StringInterface $string) 
+	{
+		return new static($this->getValue() . $string->getValue());
 	}
 
 	/**

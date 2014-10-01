@@ -96,7 +96,10 @@ class StringTest extends PHPUnit_Framework_TestCase {
 		
 		$truncated = $string->truncate(new Natural(20))->getValue();
 		
+		$withElipsis = $string->truncate(new Natural(20), new String("..."));
+		
 		self::assertEquals('Testing truncate', $truncated, "Actual: {$truncated}");
+		self::assertEquals('Testing truncate...', $withElipsis, "Actual: {$withElipsis}");
 		
 	}
 	
