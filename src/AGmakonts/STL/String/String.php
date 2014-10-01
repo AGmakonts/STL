@@ -186,7 +186,9 @@ class String implements StringInterface
 	 */
 	public function getCharAtPosition(Natural $position) 
 	{
-		return new static($this->getValue()[$position->getValue()-1]);
+		$one = new Natural(1);
+		
+		return $this->substr($position->subtract($one), $one);
 		
 	}
 
