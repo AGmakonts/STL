@@ -105,7 +105,7 @@ class Real implements NumberInterface
 	private function _compare(NumberInterface $number, ComparisonOperator $operator)
     {
     	
-    	$comparisonResult = gmp_cmp(gmp_init($this->getValue()),gmp_init($number->getValue()));
+    	$comparisonResult = bccomp((string) $this->getValue(), (string) $number->getValue());
 
     	$operatorAllowedResults = explode("|", $operator->getValue());
     	
