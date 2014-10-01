@@ -9,64 +9,64 @@ use AGmakonts\STL\Number\Exception\InvalidMixedNumberElementsException;
 /**
  *
  * @author Adam
- *        
+ *
  */
-class MixedNumber implements NumberInterface 
+class MixedNumber implements NumberInterface
 {
 	/**
-	 * 
+	 *
 	 * @var Integer
 	 */
 	private $_integer;
-	
+
 	/**
-	 * 
+	 *
 	 * @var Fraction
 	 */
 	private $_fraction;
-	
+
 	/**
 	 */
-	function __construct(NumberInterface $number, NumberInterface $secondPart = NULL) 
+	function __construct(NumberInterface $number, NumberInterface $secondPart = NULL)
 	{
-		
+
 		if($number instanceof $secondPart) {
 			throw new InvalidMixedNumberElementsException();
 		}
-		
+
 		if (FALSE === ($number instanceof Integer) || FALSE === ($number instanceof Fraction)) {
 			throw new InvalidMixedNumberElementsException();
 		}
-		
+
 		if (FALSE === ($secondPart instanceof Integer) || FALSE === ($secondPart instanceof Fraction)) {
 			throw new InvalidMixedNumberElementsException();
 		}
-		
+
 		if($number instanceof Integer) {
 			$this->_integer = $number;
 		} elseif ($number instanceof Fraction) {
 			$this->_fraction = $number;
 		}
-		
+
 		if($secondPart instanceof Integer && NULL === $this->_integer) {
 			$this->_integer = $secondPart;
 		} elseif ($secondPart instanceof Fraction && NULL === $this->_fraction) {
 			$this->_fraction = $secondPart;
 		}
-		
+
 
 	}
-	
+
 	/**
 	 * (non-PHPdoc)
 	 *
 	 * @see \AGmakonts\STL\Number\NumberInterface::getValue()
 	 *
 	 */
-	public function getValue() 
+	public function getValue()
 	{
 	}
-	
+
 	/**
 	 * (non-PHPdoc)
 	 *
@@ -75,7 +75,7 @@ class MixedNumber implements NumberInterface
 	 */
 	public function root(NumberInterface $number) {
 	}
-	
+
 	/**
 	 * (non-PHPdoc)
 	 *
@@ -84,7 +84,7 @@ class MixedNumber implements NumberInterface
 	 */
 	public function round(RoundingMode $mode = NULL) {
 	}
-	
+
 	/**
 	 * (non-PHPdoc)
 	 *
@@ -93,7 +93,7 @@ class MixedNumber implements NumberInterface
 	 */
 	public function assertIsGreaterThan(NumberInterface $number) {
 	}
-	
+
 	/**
 	 * (non-PHPdoc)
 	 *
@@ -102,7 +102,7 @@ class MixedNumber implements NumberInterface
 	 */
 	public function multiply(NumberInterface $number) {
 	}
-	
+
 	/**
 	 * (non-PHPdoc)
 	 *
@@ -111,7 +111,7 @@ class MixedNumber implements NumberInterface
 	 */
 	public function divide(NumberInterface $number) {
 	}
-	
+
 	/**
 	 * (non-PHPdoc)
 	 *
@@ -120,7 +120,7 @@ class MixedNumber implements NumberInterface
 	 */
 	public function assertIsEqualTo(NumberInterface $number) {
 	}
-	
+
 	/**
 	 * (non-PHPdoc)
 	 *
@@ -129,7 +129,7 @@ class MixedNumber implements NumberInterface
 	 */
 	public function add(NumberInterface $number) {
 	}
-	
+
 	/**
 	 * (non-PHPdoc)
 	 *
@@ -138,7 +138,7 @@ class MixedNumber implements NumberInterface
 	 */
 	public function assertIsNegative() {
 	}
-	
+
 	/**
 	 * (non-PHPdoc)
 	 *
@@ -147,7 +147,7 @@ class MixedNumber implements NumberInterface
 	 */
 	public function subtract(NumberInterface $number) {
 	}
-	
+
 	/**
 	 * (non-PHPdoc)
 	 *
@@ -156,7 +156,7 @@ class MixedNumber implements NumberInterface
 	 */
 	public function assertIsGreaterOrEqualTo(NumberInterface $number) {
 	}
-	
+
 	/**
 	 * (non-PHPdoc)
 	 *
@@ -165,7 +165,7 @@ class MixedNumber implements NumberInterface
 	 */
 	public function createFrom(NumberInterface $number) {
 	}
-	
+
 	/**
 	 * (non-PHPdoc)
 	 *
@@ -174,7 +174,7 @@ class MixedNumber implements NumberInterface
 	 */
 	public function assertIsSmallerThan(NumberInterface $number) {
 	}
-	
+
 	/**
 	 * (non-PHPdoc)
 	 *
@@ -183,7 +183,7 @@ class MixedNumber implements NumberInterface
 	 */
 	public function power(NumberInterface $number) {
 	}
-	
+
 	/**
 	 * (non-PHPdoc)
 	 *
@@ -192,7 +192,7 @@ class MixedNumber implements NumberInterface
 	 */
 	public function assertIsPositive() {
 	}
-	
+
 	/**
 	 * (non-PHPdoc)
 	 *
@@ -201,7 +201,7 @@ class MixedNumber implements NumberInterface
 	 */
 	public function assertIsZero() {
 	}
-	
+
 	/**
 	 * (non-PHPdoc)
 	 *
@@ -210,6 +210,14 @@ class MixedNumber implements NumberInterface
 	 */
 	public function assertIsSmallerOrEqualTo(NumberInterface $number) {
 	}
+	/* (non-PHPdoc)
+	 * @see \AGmakonts\STL\SimpleTypeInterface::__toString()
+	 */
+	public function __toString() {
+		
+		return $this->getValue();
+		
+	}
+
 }
 
-?>

@@ -19,11 +19,9 @@ class InvalidValueException extends \InvalidArgumentException
         $allowedTypesJoined = implode(', ', $allowedTypes);
 
 
-        $this->message = sprintf($message, $value, $allowedTypes);
+        $this->message = sprintf($message, $value, $allowedTypesJoined);
 
     }
 
 
 }
-
-?>

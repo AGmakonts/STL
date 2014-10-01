@@ -268,4 +268,15 @@ class Real implements NumberInterface
     	return new static($digits);
     }
 
+
+	/* (non-PHPdoc)
+	 * @see \AGmakonts\STL\SimpleTypeInterface::__toString()
+	 */
+	public function __toString() {
+		
+		return $this->getValue();
+		
+	}
+
+
 }

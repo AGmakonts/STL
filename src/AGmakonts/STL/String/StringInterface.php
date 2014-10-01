@@ -2,12 +2,13 @@
 namespace AGmakonts\STL\String;
 
 use AGmakonts\STL\Number\Natural;
+use AGmakonts\STL\SimpleTypeInterface;
 /**
  *
  * @author adamgrabek
  *
  */
-interface StringInterface
+interface StringInterface extends SimpleTypeInterface
 {
     public function getLength();
     public function substr($start, $length);

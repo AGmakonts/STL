@@ -9,32 +9,30 @@ use AGmakonts\STL\String\Exception\InvalidStringValueException;
 /**
  *
  * @author Adam
- *        
+ *
  */
-class String implements StringInterface 
+class String implements StringInterface
 {
-	
+
 	private $_value;
-	
+
 	private $_isEmpty;
-	
+
 	public function __construct($value = NULL)
 	{
 		if(FALSE === is_string($value) && NULL !== $value) {
 			throw new InvalidStringValueException($value);
 		}
-		
+
 		$this->_value = $value;
-		
+
 		if(NULL === $value) {
 			$this->_isEmpty = TRUE;
 			$this->_value = "";
 		}
-		
-		
-		
+
 	}
-	
+
 	/**
 	 * (non-PHPdoc)
 	 *
@@ -42,8 +40,11 @@ class String implements StringInterface
 	 *
 	 */
 	public function uppercase() {
+		
+		return new static(strtoupper($this->getValue()));
+		
 	}
-	
+
 	/**
 	 * (non-PHPdoc)
 	 *
@@ -52,7 +53,7 @@ class String implements StringInterface
 	 */
 	public function reverse() {
 	}
-	
+
 	/**
 	 * (non-PHPdoc)
 	 *
@@ -61,7 +62,7 @@ class String implements StringInterface
 	 */
 	public function simpleFormat(StringInterface $string) {
 	}
-	
+
 	/**
 	 * (non-PHPdoc)
 	 *
@@ -70,7 +71,7 @@ class String implements StringInterface
 	 */
 	public function lowercase() {
 	}
-	
+
 	/**
 	 * (non-PHPdoc)
 	 *
@@ -79,7 +80,7 @@ class String implements StringInterface
 	 */
 	public function truncate(Natural $length, StringInterface $elipsis = NULL) {
 	}
-	
+
 	/**
 	 * (non-PHPdoc)
 	 *
@@ -88,7 +89,7 @@ class String implements StringInterface
 	 */
 	public function compareTo(StringInterface $string) {
 	}
-	
+
 	/**
 	 * (non-PHPdoc)
 	 *
@@ -97,7 +98,7 @@ class String implements StringInterface
 	 */
 	public function getLength() {
 	}
-	
+
 	/**
 	 * (non-PHPdoc)
 	 *
@@ -106,16 +107,41 @@ class String implements StringInterface
 	 */
 	public function concat(StringInterface $string) {
 	}
-	
+
 	/**
 	 * (non-PHPdoc)
 	 *
 	 * @see \AGmakonts\STL\String\StringInterface::substr()
 	 *
 	 */
-	public function substr($start, $length) 
+	public function substr($start, $length)
 	{
 	}
+
+	public function assertIsEmpty()
+	{
+	    return $this->_isEmpty;
+	}
+
+	/* (non-PHPdoc)
+     * @see \AGmakonts\STL\String\StringInterface::getValue()
+     */
+    public function getValue ()
+    {
+        return $this->_value;
+
+    }
+	/* (non-PHPdoc)
+	 * @see \AGmakonts\STL\SimpleTypeInterface::__toString()
+	 */
+	public function __toString() {
+		
+		return $this->getValue();
+		
+	}
+
+
+
+
 }
 
-?>

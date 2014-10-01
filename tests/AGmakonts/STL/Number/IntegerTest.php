@@ -45,10 +45,12 @@ class IntegerTest extends PHPUnit_Framework_TestCase
 
     /**
      * Tests Integer->__construct()
+     * @expectedException AGmakonts\STL\Number\Exception\InvalidValueException
      */
     public function test__construct ()
     {
-        self::setExpectedException(InvalidValueException::class);
+
+
 
         $int = new Integer(-2.3);
     }

@@ -25,20 +25,22 @@ class Natural extends Integer
 	    parent::__construct($value);
 
 	}
-	
-	
+
+
 	/* (non-PHPdoc)
 	 * @see \AGmakonts\STL\Number\Integer::createFrom()
 	 */
-	public function createFrom(NumberInterface $number) {
-		
+	public static function createFrom(NumberInterface $number) {
+
 		if(TRUE === $number->assertIsNegative()) {
-			
+
 			$number = new Natural(0);
-			
+
 		}
-		
-		parent::createFrom($number);
+
+		$roundValue = $number->round();
+
+		return new static($roundValue->getValue());
 
 	}
 
