@@ -93,14 +93,18 @@ class RealTest extends PHPUnit_Framework_TestCase
      */
     public function testAssertIsGreaterOrEqualTo ()
     {
+    	
+    	
         $testReal = new Real(100);
 
         $goodReal = new Real(100);
         $badReal  = new Real(100.02);
         $badReal2 = new Real(200);
+        
+        $comparisonResult = bccomp((string) $testReal->getValue(), (string) $badReal->getValue());
 
         self::assertTrue($testReal->assertIsGreaterOrEqualTo($goodReal));
-        self::assertFalse($testReal->assertIsGreaterOrEqualTo($badReal));
+        self::assertFalse($testReal->assertIsGreaterOrEqualTo($badReal), $comparisonResult);
         self::assertFalse($testReal->assertIsGreaterOrEqualTo($badReal2));
     }
 
