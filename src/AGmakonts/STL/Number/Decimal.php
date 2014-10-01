@@ -42,7 +42,8 @@ class Decimal implements NumberInterface
 
     		$tempDivider = new Real(10);
 
-    		$tempReal->divide($tempDivider->power($precision));
+    		$tempReal->divide($tempDivider->power($precision))->round(RoundingMode::get(RoundingMode::HALF_DOWN));
+    		
 
     		$this->_denumerator = $tempReal;
     		$this->_precision   = $precision;
