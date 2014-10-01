@@ -120,6 +120,7 @@ class StringCreationExpression
 			);
 
 		} else {
+			
 			$numerator = $this->getNumerator();
 		}
 
