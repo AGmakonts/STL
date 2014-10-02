@@ -10,9 +10,16 @@ namespace AGmakonts\STL\String;
 class Formatter
 {
 
+    private $_format;
+    
+    private $_tokenMap;
+    
+    private $_arguments;
     /**
      */
-    function __construct ()
+    function __construct(StringInterface $format)
     {
     }
+    
+    public function addArgument
 }

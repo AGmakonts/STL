@@ -355,6 +355,7 @@ class Fraction implements NumberInterface
     	return new Integer($result);
     	
     }
+    
 	/* (non-PHPdoc)
 	 * @see \AGmakonts\STL\Number\NumberInterface::round()
 	 */
