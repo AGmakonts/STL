@@ -4,7 +4,23 @@
 namespace AGmakonts\STL\String\Formatter;
 
 
-class Format 
+use AGmakonts\STL\String\StringInterface;
+
+class Format
 {
+    private $_elements;
+
+    public function addStatic(StringInterface $stringInterface)
+    {
+
+    }
+
+    public function addToken(AbstractToken $abstractToken)
+    {
+
+    }
+
+
+
 
 } 

@@ -1,5 +1,5 @@
 <?php
-namespace AGmakonts\STL\Exception\TypedArray;
+namespace AGmakonts\STL\Structure\Exception;
 
 /**
  *

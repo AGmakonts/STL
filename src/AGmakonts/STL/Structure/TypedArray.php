@@ -1,8 +1,8 @@
 <?php
-namespace AGmakonts\STL\TypedArray;
+namespace AGmakonts\STL\Structure;
 
 use AGmakonts\STL\SimpleTypeInterface;
-use AGmakonts\STL\Exception\TypedArray\UnknownTypeException;
+use AGmakonts\STL\Structure\Exception\UnknownTypeException;
 use AGmakonts\STL\Number\Natural;
 
 /**
