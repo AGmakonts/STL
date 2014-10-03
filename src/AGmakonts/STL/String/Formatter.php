@@ -21,5 +21,5 @@ class Formatter
     {
     }
     
-    public function addArgument
+
 }

@@ -1,4 +1,6 @@
 vendor/
+.idea
+.idea/*
 vendor/*
 composer.lock
 .settings/*
