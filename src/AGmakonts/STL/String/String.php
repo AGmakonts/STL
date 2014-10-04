@@ -100,7 +100,7 @@ class String implements StringInterface
 
 		for ($i = $finalLength->value(); $i >= 0; $i--) {
 
-			$testedCharacter = $this->getCharAtPosition(new Natural($i));
+			$testedCharacter = $this->charAtPosition(new Natural($i));
 
 			if(TRUE === $testedCharacter->assertIsEmpty()) {
 				return $this->substr(new Integer(0), new Integer($i-1))->concat($ellipsis);
