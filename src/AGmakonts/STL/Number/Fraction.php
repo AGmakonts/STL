@@ -28,27 +28,28 @@ class Fraction implements NumberInterface
     /**
      *
      * @param Integer $numerator
-     * @param Integer $denumerator
+     * @param Integer $denominator
+     *
      * @throws InvalidValueException
      */
-    function __construct (Integer $numerator, Integer $denumerator = NULL)
+    function __construct (Integer $numerator, Integer $denominator = NULL)
     {
-    	if(NULL === $denumerator) {
-    		
-    		$denumerator = new Integer(1);
+    	if(NULL === $denominator) {
+
+            $denominator = new Integer(1);
     		
     	}
     	
-        if(TRUE === $denumerator->assertIsZero()) {
+        if(TRUE === $denominator->assertIsZero()) {
         	
-            throw new InvalidValueException($denumerator->value(), ['INT (>0)']);
+            throw new InvalidValueException($denominator->value(), ['INT (>0)']);
 
         }
 
 
         $this->_numerator = $numerator;
 
-        $this->_denominator = $denumerator;
+        $this->_denominator = $denominator;
 
 
     }
@@ -84,8 +85,7 @@ class Fraction implements NumberInterface
     }
 
     /**
-     *
-     * @return the Integer
+     * @return \AGmakonts\STL\Number\Integer
      */
     public function numerator ()
     {
@@ -93,8 +93,7 @@ class Fraction implements NumberInterface
     }
 
     /**
-     *
-     * @return the Integer
+     * @return \AGmakonts\STL\Number\Integer
      */
     public function denominator ()
     {
@@ -205,9 +204,9 @@ class Fraction implements NumberInterface
     	$fraction = self::createFrom($number);
     	
     	$newNumerator = $this->numerator()->multiply($fraction->numerator());
-    	$newDenumerator = $this->denominator()->multiply($fraction->denominator());
+    	$newDenominator = $this->denominator()->multiply($fraction->denominator());
     	
-    	return $this->simplify(new Fraction($newNumerator, $newDenumerator));
+    	return $this->simplify(new Fraction($newNumerator, $newDenominator));
     }
     
 
@@ -301,7 +300,7 @@ class Fraction implements NumberInterface
     }
     
     /**
-     * Simplify (recuce) fraction to 
+     * Simplify (reduce) fraction to
      * greatest common divisor.
      * 
      * @param Fraction $fraction
@@ -312,12 +311,12 @@ class Fraction implements NumberInterface
     	$gcd = $this->_gcd($fraction);
     	
     	$numeratorValue   = $fraction->numerator()->value();
-    	$denumeratorValue = $fraction->denominator()->value();
+    	$denominatorValue = $fraction->denominator()->value();
     	
     	$newNumerator   = new Integer($numeratorValue / $gcd->value());
-    	$newDenumerator = new Integer($denumeratorValue / $gcd->value());
+    	$newDenominator = new Integer($denominatorValue / $gcd->value());
 
-    	return new static($newNumerator, $newDenumerator);
+    	return new static($newNumerator, $newDenominator);
     	
     }
     
@@ -331,25 +330,25 @@ class Fraction implements NumberInterface
     private function _gcd(Fraction $fraction)
     {
     	$numerator   = abs($fraction->numerator()->value());
-    	$denumerator = abs($fraction->denominator()->value());
+    	$denominator = abs($fraction->denominator()->value());
     	
-    	if($numerator > $denumerator) {
-    		list($denumerator, $numerator) = [$numerator, $denumerator];
+    	if($numerator > $denominator) {
+    		list($denominator, $numerator) = [$numerator, $denominator];
     	}
     	
-    	if($denumerator === 0) {
+    	if($denominator === 0) {
     		return new Integer($numerator);
     	}
     	
-    	$result = $numerator % $denumerator;
+    	$result = $numerator % $denominator;
     	
     	while ($result > 0)
     	{
-    		$numerator = $denumerator;
+    		$numerator = $denominator;
     		
-    		$denumerator = $result;
+    		$denominator = $result;
     		
-    		$result = $numerator % $denumerator;
+    		$result = $numerator % $denominator;
     	}
 
     	return new Integer($result);
@@ -380,9 +379,9 @@ class Fraction implements NumberInterface
 		
 	}
 
-	/* (non-PHPdoc)
-	 * @see \AGmakonts\STL\SimpleTypeInterface::__toString()
-	 */
+    /**
+     * @return string
+     */
 	public function __toString() {
 		
 		return $this->value();
