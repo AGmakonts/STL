@@ -23,8 +23,10 @@ class Year extends Integer
     {
         if(NULL === $number) {
             $date = new \DateTime();
-            $number = $date->format('Y');
+            $number = $date->format('m');
         }
+
+        
 
         parent::__construct($number);
     }

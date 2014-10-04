@@ -184,7 +184,7 @@ class RealTest extends PHPUnit_Framework_TestCase
         $firstReal = new Real(100);
         $secondReal = new Real(8);
 
-        self::assertEquals(12.5, $firstReal->divide($secondReal)->getValue());
+        self::assertEquals(12.5, $firstReal->divide($secondReal)->value());
     }
 
     /**
