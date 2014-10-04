@@ -31,9 +31,12 @@ class Year implements SimpleTypeInterface
      */
     public function __construct(Integer $year = NULL)
     {
+        $date = new \DateTime();
+
         if (NULL === $year) {
-            $date = new \DateTime();
             $year = new Integer($date->format('Y'));
+        } else {
+            $date->setDate($year->value(), 1, 1);
         }
 
         $this->_isLeap = boolval($date->format('L'));

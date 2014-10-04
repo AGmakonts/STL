@@ -9,9 +9,12 @@
 namespace AGmakonts\STL\DateTime;
 
 
+use AGmakonts\STL\DateTime\Exception\InvalidMonthException;
 use AGmakonts\STL\Number\Integer;
+use AGmakonts\STL\SimpleTypeInterface;
+use AGmakonts\STL\String\String;
 
-class Month
+class Month implements SimpleTypeInterface
 {
     const MIN_MONTH = 0;
     const MAX_MONTH = 12;
@@ -29,25 +32,73 @@ class Month
     const NOVEMBER  = 11;
     const DECEMBER  = 12;
 
+    /**
+     * @var \AGmakonts\STL\Number\Integer
+     */
+    private $_month;
 
     /**
-     * @param integer $number
+     * @var \AGmakonts\STL\String\String
+     */
+    private $_name;
+
+
+    /**
+     * @param \AGmakonts\STL\Number\Integer $month
+     *
      */
     public function __construct(Integer $month = NULL)
     {
+        $date = new \DateTime();
+
         if(NUll === $month) {
-            $date = new \DateTime();
-            $number = new Integer($date->format("m"));
+            $month = new Integer($date->format("m"));
+        } else {
+            $date->setDate($date->format("Y"), $month->value(), 1);
         }
 
-
-
-        if (TRUE === $month->assertIsGreaterThan(new Integer(self::MAX_MONTH))) {
-
-
+        if (TRUE === $month->assertIsGreaterThan(new Integer(self::MAX_MONTH)) &&
+            TRUE === $month->assertIsSmallerThan(new Integer(self::MIN_MONTH))) {
+            throw new InvalidMonthException($month);
         }
 
+        $this->_month = $month;
+
+        $this->_name = new String($date->format("F"));
 
     }
+
+    /**
+     * @return mixed
+     */
+    public function value()
+    {
+        return $this->month()->value();
+    }
+
+    /**
+     * @return \AGmakonts\STL\String\String
+     */
+    public function name()
+    {
+        return $this->_name;
+    }
+
+    /**
+     * @return \AGmakonts\STL\Number\Integer
+     */
+    public function month()
+    {
+        return $this->_month;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->name()->value();
+    }
+
 
 } 
