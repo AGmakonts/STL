@@ -26,7 +26,7 @@ class Year extends Integer
             $number = $date->format('m');
         }
 
-        
+        $this->_isLeap = boolval($date->format('L'));
 
         parent::__construct($number);
     }

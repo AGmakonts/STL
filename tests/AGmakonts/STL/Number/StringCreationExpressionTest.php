@@ -66,8 +66,8 @@ class StringCreationExpressionTest extends PHPUnit_Framework_TestCase
 
 
         self::assertInstanceOf(Fraction::class, $expr->getAsSimpleFraction());
-        self::assertEquals(2, $expr->getAsSimpleFraction()->numerator()->getValue());
-        self::assertEquals(5, $expr->getAsSimpleFraction()->denominator()->getValue());
+        self::assertEquals(2, $expr->getAsSimpleFraction()->numerator()->value());
+        self::assertEquals(5, $expr->getAsSimpleFraction()->denominator()->value());
     }
 
     /**
