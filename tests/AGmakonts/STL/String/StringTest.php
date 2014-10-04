@@ -58,7 +58,7 @@ class StringTest extends PHPUnit_Framework_TestCase {
 
 	    $string = new String("string");
 
-	    self::assertEquals('STRING', $string->uppercase()->getValue());
+	    self::assertEquals('STRING', $string->uppercase()->value());
 
 	}
 
@@ -69,7 +69,7 @@ class StringTest extends PHPUnit_Framework_TestCase {
 
 	    $string = new String("STRING");
 
-	    self::assertEquals('string', $string->lowercase()->getValue());
+	    self::assertEquals('string', $string->lowercase()->value());
 
 	}
 
@@ -80,7 +80,7 @@ class StringTest extends PHPUnit_Framework_TestCase {
 
 	    $string = new String('qwerty');
 
-	    self::assertEquals('ytrewq', $string->reverse()->getValue());
+	    self::assertEquals('ytrewq', $string->reverse()->value());
 
 	}
 
@@ -93,7 +93,7 @@ class StringTest extends PHPUnit_Framework_TestCase {
 
 		$string = new String("Testing truncate method");
 
-		$truncated = $string->truncate(new Natural(20))->getValue();
+		$truncated = $string->truncate(new Natural(20))->value();
 
 		$withElipsis = $string->truncate(new Natural(20), new String("..."));
 
@@ -123,7 +123,7 @@ class StringTest extends PHPUnit_Framework_TestCase {
 	    $string = new String('abc');
 	    $secondString = new String('def');
 
-	    self::assertEquals('abcdef', $string->concat($secondString)->getValue());
+	    self::assertEquals('abcdef', $string->concat($secondString)->value());
 
 	}
 
@@ -176,7 +176,7 @@ class StringTest extends PHPUnit_Framework_TestCase {
 
 		$char = $string->charAtPosition(new Natural(3));
 
-		self::assertEquals('d', $char->getValue(), "Actual: {$char}");
+		self::assertEquals('d', $char->value(), "Actual: {$char}");
 
 
 

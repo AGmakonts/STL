@@ -33,21 +33,16 @@ class Month
     /**
      * @param integer $number
      */
-    public function __construct($number = NULL)
+    public function __construct(Integer $number = NULL)
     {
         if(NUll === $number) {
             $date = new \DateTime();
-            $number = intval($date->format("m"));
+            $number = new Integer($date->format("m"));
         }
 
-        $value = filter_var($number, FILTER_VALIDATE_INT, [
-            'options' => [
-                'min_range' => self::MIN_MONTH,
-                'max_range' => self::MAX_MONTH
-            ]
-        ]);
 
-        if (FALSE === $value) {
+
+        if (TRUE) {
 
 
         }
