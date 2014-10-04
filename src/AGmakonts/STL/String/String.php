@@ -76,13 +76,13 @@ class String implements StringInterface
 	 * @see \AGmakonts\STL\String\StringInterface::truncate()
 	 *
 	 */
-	public function truncate(Natural $length, StringInterface $elipsis = NULL)
+	public function truncate(Natural $length, StringInterface $ellipsis = NULL)
 	{
 		/**
-		 * Create empty elipsis for unfied length calculations
+		 * Create empty ellipsis for unified length calculations
 		 */
-		if(NULL === $elipsis) {
-			$elipsis = new String();
+		if(NULL === $ellipsis) {
+			$ellipsis = new String();
 		}
 
 		/**
@@ -96,14 +96,14 @@ class String implements StringInterface
 	     * Subtract elispis length from desired length
 	     * to know where to start chopping string
 		 */
-		$finalLength = $length->subtract($elipsis->getLength());
+		$finalLength = $length->subtract($ellipsis->length());
 
 		for ($i = $finalLength->value(); $i >= 0; $i--) {
 
 			$testedCharacter = $this->getCharAtPosition(new Natural($i));
 
 			if(TRUE === $testedCharacter->assertIsEmpty()) {
-				return $this->substr(new Integer(0), new Integer($i-1))->concat($elipsis);
+				return $this->substr(new Integer(0), new Integer($i-1))->concat($ellipsis);
 			}
 
 			unset($testedCharacter);

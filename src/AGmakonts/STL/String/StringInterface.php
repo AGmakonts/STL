@@ -51,10 +51,11 @@ interface StringInterface extends SimpleTypeInterface
     /**
      *
      * @param Natural $length
-     * @param StringInterface $elipsis
-     * @return StringInterface
+     * @param StringInterface $ellipsis
+     *
+*@return StringInterface
      */
-    public function truncate(Natural $length, StringInterface $elipsis = NULL);
+    public function truncate(Natural $length, StringInterface $ellipsis = NULL);
 
     /**
      * @return StringInterface

@@ -33,16 +33,16 @@ class Month
     /**
      * @param integer $number
      */
-    public function __construct(Integer $number = NULL)
+    public function __construct(Integer $month = NULL)
     {
-        if(NUll === $number) {
+        if(NUll === $month) {
             $date = new \DateTime();
             $number = new Integer($date->format("m"));
         }
 
 
 
-        if (TRUE) {
+        if (TRUE === $month->assertIsGreaterThan(new Integer(self::MAX_MONTH))) {
 
 
         }
