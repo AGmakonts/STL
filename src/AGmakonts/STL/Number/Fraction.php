@@ -165,7 +165,7 @@ class Fraction implements NumberInterface
     			$fraction->numerator()->multiply($this->denominator()));
     	}
 
-    	$newDenominatorValue = $this->denominator()->getValue() * $fraction->denominator()->getValue();
+    	$newDenominatorValue = $this->denominator()->value() * $fraction->denominator()->value();
     		
     	$numerator   = new Integer($newNumeratorValue);
     	$denumarator = new Integer($newDenominatorValue);
@@ -280,7 +280,7 @@ class Fraction implements NumberInterface
     
     public function assertIsInteger()
     {
-    	return ($this->denominator()->getValue() === $this->numerator()->getValue());
+    	return ($this->denominator()->assertIsEqualTo($this->numerator()));
     }
 	/* (non-PHPdoc)
      * @see \AGmakonts\STL\Number\NumberInterface::createFrom()
@@ -311,11 +311,11 @@ class Fraction implements NumberInterface
     {
     	$gcd = $this->_gcd($fraction);
     	
-    	$numeratorValue   = $fraction->numerator()->getValue();
+    	$numeratorValue   = $fraction->numerator()->value();
     	$denumeratorValue = $fraction->denominator()->getValue();
     	
-    	$newNumerator   = new Integer($numeratorValue / $gcd->getValue());
-    	$newDenumerator = new Integer($denumeratorValue / $gcd->getValue());
+    	$newNumerator   = new Integer($numeratorValue / $gcd->value());
+    	$newDenumerator = new Integer($denumeratorValue / $gcd->value());
 
     	return new static($newNumerator, $newDenumerator);
     	
@@ -330,8 +330,8 @@ class Fraction implements NumberInterface
      */
     private function _gcd(Fraction $fraction)
     {
-    	$numerator   = abs($fraction->numerator()->getValue());
-    	$denumerator = abs($fraction->denominator()->getValue());
+    	$numerator   = abs($fraction->numerator()->value());
+    	$denumerator = abs($fraction->denominator()->value());
     	
     	if($numerator > $denumerator) {
     		list($denumerator, $numerator) = [$numerator, $denumerator];
