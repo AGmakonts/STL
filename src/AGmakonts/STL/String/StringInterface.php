@@ -14,7 +14,7 @@ interface StringInterface extends SimpleTypeInterface
 	/**
 	 * @return Natural
 	 */
-    public function getLength();
+    public function length();
 
     /**
      *

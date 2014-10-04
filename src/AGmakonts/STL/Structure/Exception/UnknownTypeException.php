@@ -11,7 +11,8 @@ class UnknownTypeException extends \InvalidArgumentException
     
 	public function __construct($desiredType) {
 		
-	    $this->message = sprintf("Type '%s' doesnt exist!", $desiredType);
+	    $this->message = sprintf("Type '%s' doesn't exist!", $desiredType);
+
 
 	}
 

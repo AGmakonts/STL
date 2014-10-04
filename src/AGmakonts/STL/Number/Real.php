@@ -40,9 +40,9 @@ class Real implements NumberInterface
 
     /*
      * (non-PHPdoc)
-     * @see \AGmakonts\STL\Number\NumberInterface::getValue()
+     * @see \AGmakonts\STL\Number\NumberInterface::value()
      */
-    public function getValue ()
+    public function value ()
     {
         return $this->_value;
     }
@@ -104,27 +104,27 @@ class Real implements NumberInterface
      */
 	private function _compare(NumberInterface $number, ComparisonOperator $operator)
     {
-    	$scale = max(strlen((string) $this->getValue()), strlen((string) $number->getValue()));
+    	$scale = max(strlen((string) $this->value()), strlen((string) $number->value()));
     	
-    	$comparisonResult = bccomp((string) $this->getValue(), (string) $number->getValue(), $scale);
+    	$comparisonResult = bccomp((string) $this->value(), (string) $number->value(), $scale);
 
-        $result = in_array($comparisonResult, $operator->getValueAsArray());
+        $result = in_array($comparisonResult, $operator->valueAsArray());
 
         return $result;
     }
 
     public function assertIsZero()
     {
-        return ($this->getValue() == 0);
+        return ($this->value() == 0);
     }
 
     /*
      * (non-PHPdoc)
      * @see \AGmakonts\STL\Number\NumberInterface::add()
      */
-    public function add (NumberInterface $number)
+    public function add(NumberInterface $number)
     {
-        return new static($this->getValue() + $number->getValue());
+        return new static($this->value() + $number->value());
     }
 
     /*
@@ -133,7 +133,7 @@ class Real implements NumberInterface
      */
     public function subtract (NumberInterface $number)
     {
-        return new static($this->getValue() - $number->getValue());
+        return new static($this->value() - $number->value());
     }
 
     /**
@@ -149,7 +149,7 @@ class Real implements NumberInterface
 
         }
 
-        return new static($this->getValue() / $number->getValue());
+        return new static($this->value() / $number->value());
     }
 
     /*
@@ -158,7 +158,7 @@ class Real implements NumberInterface
      */
     public function multiply(NumberInterface $number)
     {
-        return new static($this->getValue() * $number->getValue());
+        return new static($this->value() * $number->value());
     }
 
     /*
@@ -167,7 +167,7 @@ class Real implements NumberInterface
      */
     public function power(NumberInterface $number)
     {
-        return new static(pow($this->getValue(), $number->getValue()));
+        return new static(pow($this->value(), $number->value()));
     }
 
     /*
@@ -176,7 +176,7 @@ class Real implements NumberInterface
      */
     public function root(NumberInterface $number)
     {
-        return new static(pow($this->getValue(), 1 / $number->getValue()));
+        return new static(pow($this->value(), 1 / $number->value()));
     }
 
     /**
@@ -193,7 +193,7 @@ class Real implements NumberInterface
 
     	}
 
-        return new static(round($this->getValue(), 0, $mode->getValue()));
+        return new static(round($this->value(), 0, $mode->getValue()));
     }
 
 	/* (non-PHPdoc)
@@ -201,7 +201,7 @@ class Real implements NumberInterface
      */
     static public function createFrom(NumberInterface $number)
     {
-        return new static($number->getValue());
+        return new static($number->value());
 
     }
 
@@ -232,7 +232,7 @@ class Real implements NumberInterface
      */
     private function _getSign()
     {
-    	return min(1, max(0, (is_nan($this->getValue()) || $this->getValue() == 0) ? 0 : $this->getValue() * INF));
+    	return min(1, max(0, (is_nan($this->value()) || $this->value() == 0) ? 0 : $this->value() * INF));
     }
 
 
@@ -242,7 +242,7 @@ class Real implements NumberInterface
      */
     public function getDigitCount()
     {
-    	$digits = strlen((string) $this->getValue());
+    	$digits = strlen((string) $this->value());
 
     	return new static($digits);
     }
@@ -253,7 +253,7 @@ class Real implements NumberInterface
 	 */
 	public function __toString() {
 		
-		return $this->getValue();
+		return $this->value();
 		
 	}
 

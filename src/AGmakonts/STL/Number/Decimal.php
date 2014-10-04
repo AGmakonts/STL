@@ -22,7 +22,7 @@ class Decimal implements NumberInterface
      *
      * @var Natural
      */
-    private $_denumerator;
+    private $_denominator;
 
     /**
      *
@@ -45,12 +45,12 @@ class Decimal implements NumberInterface
     		$tempReal->divide($tempDivider->power($precision))->round(RoundingMode::get(RoundingMode::HALF_DOWN));
     		
 
-    		$this->_denumerator = $tempReal;
+    		$this->_denominator = $tempReal;
     		$this->_precision   = $precision;
 
     	} else {
 
-    		$this->_denumerator = $denumerator;
+    		$this->_denominator = $denumerator;
     		$this->_precision   = Integer::createFrom($denumerator->getDigitCount());
 
     	}
@@ -63,10 +63,10 @@ class Decimal implements NumberInterface
     /**
      * (non-PHPdoc)
      *
-     * @see \AGmakonts\STL\Number\NumberInterface::getValue()
+     * @see \AGmakonts\STL\Number\NumberInterface::value()
      *
      */
-    public function getValue ()
+    public function value ()
     {}
 
     /**
@@ -212,7 +212,7 @@ class Decimal implements NumberInterface
 	 *
 	 * @return \AGmakonts\STL\Number\Integer
 	 */
-    public function getNumerator ()
+    public function numerator ()
     {
         return $this->_numerator;
     }
@@ -221,16 +221,16 @@ class Decimal implements NumberInterface
      *
      * @return \AGmakonts\STL\Number\Natural
      */
-    public function getDenumerator ()
+    public function denominator ()
     {
-        return $this->_denumerator;
+        return $this->_denominator;
     }
 
     /**
      *
      * @return \AGmakonts\STL\Number\Integer
      */
-    public function getPrecision ()
+    public function precision ()
     {
         return $this->_precision;
     }
@@ -241,7 +241,7 @@ class Decimal implements NumberInterface
 	 */
 	public function __toString() {
 		
-		return $this->getValue();
+		return $this->value();
 		
 	}
 

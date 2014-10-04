@@ -66,8 +66,8 @@ class StringCreationExpressionTest extends PHPUnit_Framework_TestCase
 
 
         self::assertInstanceOf(Fraction::class, $expr->getAsSimpleFraction());
-        self::assertEquals(2, $expr->getAsSimpleFraction()->getNumerator()->getValue());
-        self::assertEquals(5, $expr->getAsSimpleFraction()->getDenominator()->getValue());
+        self::assertEquals(2, $expr->getAsSimpleFraction()->numerator()->getValue());
+        self::assertEquals(5, $expr->getAsSimpleFraction()->denominator()->getValue());
     }
 
     /**
@@ -83,47 +83,47 @@ class StringCreationExpressionTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tests StringCreationExpression->getNumerator()
+     * Tests StringCreationExpression->numerator()
      */
     public function testGetNumerator ()
     {
         // TODO Auto-generated StringCreationExpressionTest->testGetNumerator()
-        $this->markTestIncomplete("getNumerator test not implemented");
+        $this->markTestIncomplete("numerator test not implemented");
 
         $this->StringCreationExpression->getNumerator(/* parameters */);
     }
 
     /**
-     * Tests StringCreationExpression->getDenumerator()
+     * Tests StringCreationExpression->denominator()
      */
     public function testGetDenumerator ()
     {
         // TODO Auto-generated
         // StringCreationExpressionTest->testGetDenumerator()
-        $this->markTestIncomplete("getDenumerator test not implemented");
+        $this->markTestIncomplete("denominator test not implemented");
 
         $this->StringCreationExpression->getDenumerator(/* parameters */);
     }
 
     /**
-     * Tests StringCreationExpression->getInteger()
+     * Tests StringCreationExpression->integer()
      */
     public function testGetInteger ()
     {
         // TODO Auto-generated StringCreationExpressionTest->testGetInteger()
-        $this->markTestIncomplete("getInteger test not implemented");
+        $this->markTestIncomplete("integer test not implemented");
 
         $this->StringCreationExpression->getInteger(/* parameters */);
     }
 
     /**
-     * Tests StringCreationExpression->getRawExpression()
+     * Tests StringCreationExpression->rawExpression()
      */
     public function testGetRawExpression ()
     {
         // TODO Auto-generated
         // StringCreationExpressionTest->testGetRawExpression()
-        $this->markTestIncomplete("getRawExpression test not implemented");
+        $this->markTestIncomplete("rawExpression test not implemented");
 
         $this->StringCreationExpression->getRawExpression(/* parameters */);
     }

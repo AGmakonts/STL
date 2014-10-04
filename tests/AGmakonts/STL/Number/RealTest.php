@@ -41,14 +41,14 @@ class RealTest extends PHPUnit_Framework_TestCase
 
 
     /**
-     * Tests Real->getValue()
+     * Tests Real->value()
      */
-    public function testGetValue()
+    public function testValue()
     {
         $real = new Real(10);
 
-        self::assertEquals(10, $real->getValue());
-        self::assertNotEquals(100, $real->getValue());
+        self::assertEquals(10, $real->value());
+        self::assertNotEquals(100, $real->value());
 
 
     }
@@ -101,7 +101,7 @@ class RealTest extends PHPUnit_Framework_TestCase
         $badReal  = new Real(100.02);
         $badReal2 = new Real(200);
         
-        $comparisonResult = bccomp((string) $testReal->getValue(), (string) $badReal->getValue());
+        $comparisonResult = bccomp((string) $testReal->value(), (string) $badReal->value());
 
         self::assertTrue($testReal->assertIsGreaterOrEqualTo($goodReal));
         self::assertFalse($testReal->assertIsGreaterOrEqualTo($badReal), "result: " . print_r($comparisonResult, TRUE));
@@ -162,7 +162,7 @@ class RealTest extends PHPUnit_Framework_TestCase
         $firstReal = new Real(22.5);
         $secondReal = new Real(10);
 
-        self::assertEquals(32.5, $firstReal->add($secondReal)->getValue());
+        self::assertEquals(32.5, $firstReal->add($secondReal)->value());
     }
 
     /**
@@ -173,7 +173,7 @@ class RealTest extends PHPUnit_Framework_TestCase
         $firstReal = new Real(22.5);
         $secondReal = new Real(10);
 
-        self::assertEquals(12.5, $firstReal->subtract($secondReal)->getValue());
+        self::assertEquals(12.5, $firstReal->subtract($secondReal)->value());
     }
 
     /**
@@ -195,7 +195,7 @@ class RealTest extends PHPUnit_Framework_TestCase
         $firstReal = new Real(3);
         $secondReal = new Real(-10);
 
-        self::assertEquals(-30, $firstReal->multiply($secondReal)->getValue());
+        self::assertEquals(-30, $firstReal->multiply($secondReal)->value());
     }
 
     /**
@@ -206,7 +206,7 @@ class RealTest extends PHPUnit_Framework_TestCase
         $firstReal = new Real(10);
         $secondReal = new Real(2.2);
 
-        self::assertEquals(158.48931924611, $firstReal->power($secondReal)->getValue());
+        self::assertEquals(158.48931924611, $firstReal->power($secondReal)->value());
     }
 
     /**
@@ -217,7 +217,7 @@ class RealTest extends PHPUnit_Framework_TestCase
         $firstReal = new Real(4);
         $secondReal = new Real(2);
 
-        self::assertEquals(2, $firstReal->root($secondReal)->getValue());
+        self::assertEquals(2, $firstReal->root($secondReal)->value());
     }
 
     /**
@@ -227,7 +227,7 @@ class RealTest extends PHPUnit_Framework_TestCase
     {
         $firstReal = new Real(10.3433);
 
-        self::assertEquals(10, $firstReal->round()->getValue());
+        self::assertEquals(10, $firstReal->round()->value());
     }
 
     /**

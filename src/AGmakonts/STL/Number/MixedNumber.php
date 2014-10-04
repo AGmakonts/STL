@@ -60,10 +60,10 @@ class MixedNumber implements NumberInterface
 	/**
 	 * (non-PHPdoc)
 	 *
-	 * @see \AGmakonts\STL\Number\NumberInterface::getValue()
+	 * @see \AGmakonts\STL\Number\NumberInterface::value()
 	 *
 	 */
-	public function getValue()
+	public function value()
 	{
 	}
 
@@ -216,7 +216,7 @@ class MixedNumber implements NumberInterface
 	 */
 	public function __toString() {
 
-		return $this->getValue();
+		return $this->value();
 
 	}
 

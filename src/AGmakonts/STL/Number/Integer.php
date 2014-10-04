@@ -35,7 +35,7 @@ class Integer extends Real
 	{
 		$roundValue = $number->round();
 
-		return new static($roundValue->getValue());
+		return new static($roundValue->value());
 
 	}
 

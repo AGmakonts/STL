@@ -41,7 +41,7 @@ class Fraction implements NumberInterface
     	
         if(TRUE === $denumerator->assertIsZero()) {
         	
-            throw new InvalidValueException($denumerator->getValue(), ['INT (>0)']);
+            throw new InvalidValueException($denumerator->value(), ['INT (>0)']);
 
         }
 
@@ -78,16 +78,16 @@ class Fraction implements NumberInterface
      * Get decimal value of the fraction.
      *
      */
-    public function getValue ()
+    public function value ()
     {
-        return $this->getNumerator() / $this->getDenominator();
+        return $this->numerator() / $this->denominator();
     }
 
     /**
      *
      * @return the Integer
      */
-    public function getNumerator ()
+    public function numerator ()
     {
         return $this->_numerator;
     }
@@ -96,7 +96,7 @@ class Fraction implements NumberInterface
      *
      * @return the Integer
      */
-    public function getDenominator ()
+    public function denominator ()
     {
         return $this->_denominator;
     }
@@ -118,7 +118,7 @@ class Fraction implements NumberInterface
      */
     public function assertIsGreaterThan (NumberInterface $number)
     {
-    	return ($this->getValue() > $number->getValue());
+    	return ($this->value() > $number->value());
     }
 
    
@@ -157,15 +157,15 @@ class Fraction implements NumberInterface
 
     	if(TRUE === $add) {
     		$newNumeratorValue =
-    			$this->getNumerator()->multiply($fraction->getDenominator()).add(
-    			$fraction->getNumerator()->multiply($this->getDenominator()));
+    			$this->numerator()->multiply($fraction->denominator()).add(
+    			$fraction->numerator()->multiply($this->denominator()));
     	} else {
     		$newNumeratorValue =
-    			$this->getNumerator()->multiply($fraction->getDenominator()).subtract(
-    			$fraction->getNumerator()->multiply($this->getDenominator()));
+    			$this->numerator()->multiply($fraction->denominator()).subtract(
+    			$fraction->numerator()->multiply($this->denominator()));
     	}
 
-    	$newDenominatorValue = $this->getDenominator()->getValue() * $fraction->getDenominator()->getValue();
+    	$newDenominatorValue = $this->denominator()->getValue() * $fraction->denominator()->getValue();
     		
     	$numerator   = new Integer($newNumeratorValue);
     	$denumarator = new Integer($newDenominatorValue);
@@ -187,8 +187,8 @@ class Fraction implements NumberInterface
     {
     	$fraction = self::createFrom($number);
     	
-    	$newNumerator = $this->getNumerator()->multiply($fraction->getDenominator());
-    	$newDenominator = $this->getDenominator()->multiply($fraction->getNumerator());
+    	$newNumerator = $this->numerator()->multiply($fraction->denominator());
+    	$newDenominator = $this->denominator()->multiply($fraction->numerator());
     	
     	return $this->simplify(new Fraction($newNumerator, $newDenominator));
     	
@@ -204,8 +204,8 @@ class Fraction implements NumberInterface
     {
     	$fraction = self::createFrom($number);
     	
-    	$newNumerator = $this->getNumerator()->multiply($fraction->getNumerator());
-    	$newDenumerator = $this->getDenominator()->multiply($fraction->getDenominator());
+    	$newNumerator = $this->numerator()->multiply($fraction->numerator());
+    	$newDenumerator = $this->denominator()->multiply($fraction->denominator());
     	
     	return $this->simplify(new Fraction($newNumerator, $newDenumerator));
     }
@@ -219,7 +219,7 @@ class Fraction implements NumberInterface
      */
     public function assertIsEqualTo (NumberInterface $number)
     {
-    	return ($this->getValue() === $number->getValue());
+    	return ($this->value() === $number->value());
     }
 
     
@@ -233,7 +233,7 @@ class Fraction implements NumberInterface
      */
     public function assertIsGreaterOrEqualTo (NumberInterface $number)
     {
-    	return ($this->getValue() >= $number->getValue());
+    	return ($this->value() >= $number->value());
     }
 
     /**
@@ -244,7 +244,7 @@ class Fraction implements NumberInterface
      */
     public function assertIsSmallerThan (NumberInterface $number)
     {
-    	return ($this->getValue() < $number->getValue());
+    	return ($this->value() < $number->value());
     }
 
     /**
@@ -264,7 +264,7 @@ class Fraction implements NumberInterface
      */
     public function assertIsSmallerOrEqualTo (NumberInterface $number)
     {
-    	return ($this->getValue() <= $number->getValue());
+    	return ($this->value() <= $number->value());
     }
 
     /**
@@ -275,12 +275,12 @@ class Fraction implements NumberInterface
      */
     public function assertIsZero ()
     {
-    	return ($this->getNumerator()->assertIsZero());
+    	return ($this->numerator()->assertIsZero());
     }
     
     public function assertIsInteger()
     {
-    	return ($this->getDenominator()->getValue() === $this->getNumerator()->getValue());
+    	return ($this->denominator()->getValue() === $this->numerator()->getValue());
     }
 	/* (non-PHPdoc)
      * @see \AGmakonts\STL\Number\NumberInterface::createFrom()
@@ -290,7 +290,7 @@ class Fraction implements NumberInterface
 		if($number instanceof Integer) {
 			$fraction = new static($number);
 		} elseif ($number instanceof Fraction) {
-			$fraction = new static($number->getNumerator(), $number->getDenominator());
+			$fraction = new static($number->numerator(), $number->denominator());
 		} else {
 			$fraction = new static(Integer::createFrom($number));
 		}
@@ -311,8 +311,8 @@ class Fraction implements NumberInterface
     {
     	$gcd = $this->_gcd($fraction);
     	
-    	$numeratorValue   = $fraction->getNumerator()->getValue();
-    	$denumeratorValue = $fraction->getDenominator()->getValue();
+    	$numeratorValue   = $fraction->numerator()->getValue();
+    	$denumeratorValue = $fraction->denominator()->getValue();
     	
     	$newNumerator   = new Integer($numeratorValue / $gcd->getValue());
     	$newDenumerator = new Integer($denumeratorValue / $gcd->getValue());
@@ -323,15 +323,15 @@ class Fraction implements NumberInterface
     
     /**
      * Find greatest common divisor for 
-     * numerator and denumerator of the Fraction
+     * numerator and denominator of the Fraction
      * 
      * @param Fraction $fraction
      * @return Integer
      */
     private function _gcd(Fraction $fraction)
     {
-    	$numerator   = abs($fraction->getNumerator()->getValue());
-    	$denumerator = abs($fraction->getDenominator()->getValue());
+    	$numerator   = abs($fraction->numerator()->getValue());
+    	$denumerator = abs($fraction->denominator()->getValue());
     	
     	if($numerator > $denumerator) {
     		list($denumerator, $numerator) = [$numerator, $denumerator];
@@ -385,7 +385,7 @@ class Fraction implements NumberInterface
 	 */
 	public function __toString() {
 		
-		return $this->getValue();
+		return $this->value();
 		
 	}
 

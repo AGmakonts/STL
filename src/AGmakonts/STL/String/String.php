@@ -43,7 +43,7 @@ class String implements StringInterface
 	public function uppercase()
 	{
 
-		return new static(strtoupper($this->getValue()));
+		return new static(strtoupper($this->value()));
 
 	}
 
@@ -55,7 +55,7 @@ class String implements StringInterface
 	 */
 	public function lowercase()
 	{
-		return new static(strtolower($this->getValue()));
+		return new static(strtolower($this->value()));
 	}
 
 	/**
@@ -66,7 +66,7 @@ class String implements StringInterface
 	 */
 	public function reverse()
 	{
-		return new static(strrev($this->getValue()));
+		return new static(strrev($this->value()));
 	}
 
 
@@ -88,7 +88,7 @@ class String implements StringInterface
 		/**
 		 * If desired length is greater than string itself do nothing
 		 */
-		if(TRUE === $length->assertIsGreaterOrEqualTo($this->getLength())) {
+		if(TRUE === $length->assertIsGreaterOrEqualTo($this->length())) {
 			return $this;
 		}
 
@@ -98,7 +98,7 @@ class String implements StringInterface
 		 */
 		$finalLength = $length->subtract($elipsis->getLength());
 
-		for ($i = $finalLength->getValue(); $i >= 0; $i--) {
+		for ($i = $finalLength->value(); $i >= 0; $i--) {
 
 			$testedCharacter = $this->getCharAtPosition(new Natural($i));
 
@@ -122,18 +122,18 @@ class String implements StringInterface
 	 */
 	public function assertIsEqualTo(StringInterface $string)
 	{
-        return ($this->getValue() === $string->getValue());
+        return ($this->value() === $string->value());
 	}
 
 	/**
 	 * (non-PHPdoc)
 	 *
-	 * @see \AGmakonts\STL\String\StringInterface::getLength()
+	 * @see \AGmakonts\STL\String\StringInterface::length()
 	 *
 	 */
-	public function getLength()
+	public function length()
 	{
-		return new Natural(strlen($this->getValue()));
+		return new Natural(strlen($this->value()));
 
 	}
 
@@ -145,7 +145,7 @@ class String implements StringInterface
 	 */
 	public function concat(StringInterface $string)
 	{
-		return new static($this->getValue() . $string->getValue());
+		return new static($this->value() . $string->value());
 	}
 
 	/**
@@ -157,10 +157,10 @@ class String implements StringInterface
 	public function substr(Integer $start, Integer $length = NULL)
 	{
 		if(NULL !== $length) {
-			$length = $length->getValue();
+			$length = $length->value();
 		}
 
-		return new static(substr($this->getValue(), $start->getValue(), $length));
+		return new static(substr($this->value(), $start->value(), $length));
 	}
 
 	public function assertIsEmpty()
@@ -169,9 +169,9 @@ class String implements StringInterface
 	}
 
 	/* (non-PHPdoc)
-     * @see \AGmakonts\STL\String\StringInterface::getValue()
+     * @see \AGmakonts\STL\String\StringInterface::value()
      */
-    public function getValue ()
+    public function value ()
     {
         return $this->_value;
 
@@ -181,14 +181,14 @@ class String implements StringInterface
 	 */
 	public function __toString() {
 
-		return $this->getValue();
+		return $this->value();
 
 	}
 
 	/* (non-PHPdoc)
 	 * @see \AGmakonts\STL\String\StringInterface::getCharAtPosition()
 	 */
-	public function getCharAtPosition(Natural $position)
+	public function charAtPosition(Natural $position)
 	{
 		$one = new Natural(1);
 

@@ -59,8 +59,8 @@ class NaturalTest extends PHPUnit_Framework_TestCase
         $negativeTestNatural = Natural::createFrom($negativeInteger);
         $positiveTestNatural = Natural::createFrom($positiveInteger);
 
-        self::assertEquals(0, $negativeTestNatural->getValue());
-        self::assertEquals(99, $positiveTestNatural->getValue());
+        self::assertEquals(0, $negativeTestNatural->value());
+        self::assertEquals(99, $positiveTestNatural->value());
     }
 }
 

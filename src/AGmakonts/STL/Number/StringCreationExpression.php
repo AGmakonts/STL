@@ -13,7 +13,7 @@ use AGmakonts\STL\Number\Integer;
 class StringCreationExpression
 {
 
-	const PATTERN = "/(?'integer'\d*)\s?(?'numerator'\d+)\/(?'denumerator'\d+)/";
+	const PATTERN = "/(?'integer'\d*)\s?(?'numerator'\d+)\/(?'denominator'\d+)/";
 
 	/**
 	 *
@@ -31,7 +31,7 @@ class StringCreationExpression
 	 *
 	 * @var Integer
 	 */
-	private $_denumerator;
+	private $_denominator;
 
 	/**
 	 *
@@ -58,7 +58,7 @@ class StringCreationExpression
 
 		$data = NULL;
 
-		preg_match_all(self::PATTERN, $this->getRawExpression(), $data);
+		preg_match_all(self::PATTERN, $this->rawExpression(), $data);
 
 
 		if(NULL === $data) {
@@ -79,7 +79,7 @@ class StringCreationExpression
 
 		$integer     = $this->_getIntegerFromData ($data, 'integer' );
 		$numerator   = $this->_getIntegerFromData ($data, 'numerator' );
-		$denumerator = $this->_getIntegerFromData ($data, 'denumerator' );
+		$denumerator = $this->_getIntegerFromData ($data, 'denominator' );
 
 
 		if(NULL === $numerator || NULL === $denumerator) {
@@ -88,7 +88,7 @@ class StringCreationExpression
 
 		$this->_integer     = $integer;
 		$this->_numerator   = $numerator;
-		$this->_denumerator = $denumerator;
+		$this->_denominator = $denumerator;
 
 
 	}
@@ -111,20 +111,20 @@ class StringCreationExpression
 
 	public function getAsSimpleFraction()
 	{
-		if(NULL !== $this->getInteger()) {
+		if(NULL !== $this->integer()) {
 
 			$numerator = new Integer(
-					$this->getNumerator()->getValue() +
-					$this->getDenumerator()->getValue() *
-					$this->getInteger()->getValue()
+					$this->numerator()->getValue() +
+					$this->denominator()->getValue() *
+					$this->integer()->getValue()
 			);
 
 		} else {
 
-			$numerator = $this->getNumerator();
+			$numerator = $this->numerator();
 		}
 
-		return new Fraction($numerator, $this->getDenumerator());
+		return new Fraction($numerator, $this->denominator());
 
 	}
 
@@ -137,7 +137,7 @@ class StringCreationExpression
 	 *
 	 * @return Integer
 	 */
-	public function getNumerator() {
+	public function numerator() {
 		return $this->_numerator;
 	}
 
@@ -145,15 +145,15 @@ class StringCreationExpression
 	 *
 	 * @return Integer
 	 */
-	public function getDenumerator() {
-		return $this->_denumerator;
+	public function denominator() {
+		return $this->_denominator;
 	}
 
 	/**
 	 *
 	 * @return Integer
 	 */
-	public function getInteger() {
+	public function integer() {
 		return $this->_integer;
 	}
 
@@ -161,7 +161,7 @@ class StringCreationExpression
 	 *
 	 * @return string
 	 */
-	public function getRawExpression()
+	public function rawExpression()
 	{
 		return $this->_rawExpression;
 	}

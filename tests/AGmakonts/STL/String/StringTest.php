@@ -105,13 +105,13 @@ class StringTest extends PHPUnit_Framework_TestCase {
 
 
 	/**
-	 * Tests String->getLength()
+	 * Tests String->length()
 	 */
-	public function testGetLength() {
+	public function testLength() {
 
         $string = new String("abc");
 
-        self::assertEquals(3, $string->getLength()->getValue());
+        self::assertEquals(3, $string->length()->value());
 
 	}
 
@@ -136,7 +136,7 @@ class StringTest extends PHPUnit_Framework_TestCase {
 
 		$substr = $string->substr(new Integer(0), new Integer(4));
 
-		self::assertEquals('qwer', $substr->getValue(), "Actual: {$substr}");
+		self::assertEquals('qwer', $substr->value(), "Actual: {$substr}");
 
 	}
 
@@ -155,13 +155,13 @@ class StringTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * Tests String->getValue()
+	 * Tests String->value()
 	 */
-	public function testGetValue() {
+	public function testValue() {
 
 	    $string = new String('abc');
 
-	    self::assertEquals('abc', $string->getValue());
+	    self::assertEquals('abc', $string->value());
 
 	}
 
@@ -170,11 +170,11 @@ class StringTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * Tests String->getCharAtPosition()
 	 */
-	public function testGetCharAtPosition() {
+	public function testCharAtPosition() {
 
 		$string = new String("asdfghjkl");
 
-		$char = $string->getCharAtPosition(new Natural(3));
+		$char = $string->charAtPosition(new Natural(3));
 
 		self::assertEquals('d', $char->getValue(), "Actual: {$char}");
 

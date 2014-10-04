@@ -11,7 +11,7 @@ interface SimpleTypeInterface {
 	/**
 	 * @return mixed
 	 */
-	public function getValue();
+	public function value();
 
 	/**
 	 * @return mixed

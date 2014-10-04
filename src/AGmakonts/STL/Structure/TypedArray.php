@@ -42,7 +42,7 @@ class TypedArray implements SimpleTypeInterface,
         $this->_size = $size;
     }
     
-    public function getSize()
+    public function size()
     {
         return $this->_size;
     }
@@ -50,10 +50,10 @@ class TypedArray implements SimpleTypeInterface,
     /**
      * (non-PHPdoc)
      *
-     * @see \AGmakonts\STL\SimpleTypeInterface::getValue()
+     * @see \AGmakonts\STL\SimpleTypeInterface::value()
      *
      */
-    public function getValue ()
+    public function value ()
     {}
 
     /**
@@ -89,7 +89,7 @@ class TypedArray implements SimpleTypeInterface,
     {
         $offset = new Natural($offset);
         
-        if(FALSE === $this->getSize()->assertIsSmallerOrEqualTo($offset)) {
+        if(FALSE === $this->size()->assertIsSmallerOrEqualTo($offset)) {
             
         }
         

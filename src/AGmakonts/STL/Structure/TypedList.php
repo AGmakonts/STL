@@ -75,9 +75,9 @@ class TypedList implements SimpleTypeInterface,
     /**
      * @return mixed
      */
-    public function getValue()
+    public function value()
     {
-        // TODO: Implement getValue() method.
+        // TODO: Implement value() method.
     }
 
     /**

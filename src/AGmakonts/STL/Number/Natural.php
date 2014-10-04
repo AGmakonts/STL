@@ -42,7 +42,7 @@ class Natural extends Integer
 
 		$roundValue = $number->round();
 
-		return new static($roundValue->getValue());
+		return new static($roundValue->value());
 
 	}
 
