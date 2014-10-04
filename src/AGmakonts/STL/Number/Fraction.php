@@ -312,7 +312,7 @@ class Fraction implements NumberInterface
     	$gcd = $this->_gcd($fraction);
     	
     	$numeratorValue   = $fraction->numerator()->value();
-    	$denumeratorValue = $fraction->denominator()->getValue();
+    	$denumeratorValue = $fraction->denominator()->value();
     	
     	$newNumerator   = new Integer($numeratorValue / $gcd->value());
     	$newDenumerator = new Integer($denumeratorValue / $gcd->value());
