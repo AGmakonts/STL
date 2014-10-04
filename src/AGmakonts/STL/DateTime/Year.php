@@ -10,25 +10,51 @@ namespace AGmakonts\STL\DateTime;
 
 
 use AGmakonts\STL\Number\Integer;
+use AGmakonts\STL\SimpleTypeInterface;
 
-class Year extends Integer
+class Year implements SimpleTypeInterface
 {
+    /**
+     * @var \AGmakonts\STL\Number\Integer
+     */
+    private $_year;
+
+    /**
+     * @var bool
+     */
     private $_isLeap;
 
 
     /**
-     * @param integer $number
+     * @param \AGmakonts\STL\Number\Integer $year
+     *
      */
-    public function __construct($number = NULL)
+    public function __construct(Integer $year = NULL)
     {
-        if(NULL === $number) {
+        if (NULL === $year) {
             $date = new \DateTime();
-            $number = $date->format('m');
+            $year = new Integer($date->format('Y'));
         }
 
         $this->_isLeap = boolval($date->format('L'));
+        $this->_year = $year;
 
-        parent::__construct($number);
+    }
+
+    /**
+     * @return \AGmakonts\STL\Number\Integer
+     */
+    public function value()
+    {
+        return $this->_year;
+    }
+
+    /**
+     * @return integer
+     */
+    public function __toString()
+    {
+        return $this->value()->value();
     }
 
 

@@ -66,7 +66,7 @@ interface StringInterface extends SimpleTypeInterface
      * @param Natural $position
      * @return StringInterface
      */
-    public function getCharAtPosition(Natural $position);
+    public function charAtPosition(Natural $position);
 
 
 }

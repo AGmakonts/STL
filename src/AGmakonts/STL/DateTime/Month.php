@@ -11,10 +11,47 @@ namespace AGmakonts\STL\DateTime;
 
 use AGmakonts\STL\Number\Integer;
 
-class Month extends Integer
+class Month
 {
+    const MIN_MONTH = 0;
+    const MAX_MONTH = 12;
+
+    const JANUARY   = 1;
+    const FEBRUARY  = 2;
+    const MARCH     = 3;
+    const APRIL     = 4;
+    const MAY       = 5;
+    const JUNE      = 6;
+    const JULY      = 7;
+    const AUGUST    = 8;
+    const SEPTEMBER = 9;
+    const OCTOBER   = 10;
+    const NOVEMBER  = 11;
+    const DECEMBER  = 12;
+
+
+    /**
+     * @param integer $number
+     */
     public function __construct($number = NULL)
     {
+        if(NUll === $number) {
+            $date = new \DateTime();
+            $number = intval($date->format("m"));
+        }
+
+        $value = filter_var($number, FILTER_VALIDATE_INT, [
+            'options' => [
+                'min_range' => self::MIN_MONTH,
+                'max_range' => self::MAX_MONTH
+            ]
+        ]);
+
+        if (FALSE === $value) {
+
+
+        }
+
 
     }
 
