@@ -47,9 +47,24 @@ class TypedArray implements SimpleTypeInterface,
         $this->_size = $size;
     }
 
+    /**
+     * @return \AGmakonts\STL\String\String
+     */
     public function type()
     {
         return $this->_type;
+    }
+
+    /**
+     * @param $type
+     *
+     * @return bool
+     */
+    public function assertIsTypeOf($type)
+    {
+        $type = new String($type);
+
+        return ($type->assertIsEqualTo($this->type()));
     }
 
     
