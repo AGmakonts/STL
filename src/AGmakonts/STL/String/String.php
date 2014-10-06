@@ -21,9 +21,13 @@ class String implements StringInterface
 
 	public function __construct($value = NULL)
 	{
-		if(FALSE === is_string($value) && NULL !== $value) {
+		if(FALSE === is_string($value) && FALSE === ($value instanceof StringInterface) && NULL !== $value) {
 			throw new InvalidStringValueException($value);
 		}
+
+        if($value instanceof StringInterface) {
+            $value = $value->value();
+        }
 
 		$this->_value = $value;
 

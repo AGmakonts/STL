@@ -167,9 +167,9 @@ class Fraction implements NumberInterface
     	$newDenominatorValue = $this->denominator()->value() * $fraction->denominator()->value();
     		
     	$numerator   = new Integer($newNumeratorValue);
-    	$denumarator = new Integer($newDenominatorValue);
+    	$denominator = new Integer($newDenominatorValue);
     		
-    	return $this->simplify(new Fraction($numerator, $denumarator));
+    	return $this->simplify(new Fraction($numerator, $denominator));
 
 	 
 	 }

@@ -2,6 +2,7 @@
 namespace AGmakonts\STL\Structure;
 
 use AGmakonts\STL\SimpleTypeInterface;
+use AGmakonts\STL\String\String;
 use AGmakonts\STL\Structure\Exception\UnknownTypeException;
 use AGmakonts\STL\Number\Natural;
 
@@ -31,16 +32,26 @@ class TypedArray implements SimpleTypeInterface,
      * @var Natural
      */
     private $_size;
-    
+
+    /**
+     * @param $type
+     * @param \AGmakonts\STL\Number\Natural $size
+     */
     public function __construct($type, Natural $size)
     {
         if(FALSE === class_exists($type)) {
             throw new UnknownTypeException($type);
         }
         
-        $this->_type = $type;
+        $this->_type = new String($type);
         $this->_size = $size;
     }
+
+    public function type()
+    {
+        return $this->_type;
+    }
+
     
     public function size()
     {
