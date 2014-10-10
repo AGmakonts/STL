@@ -35,8 +35,9 @@ class TypedArray implements SimpleTypeInterface,
     private $_size;
 
     /**
-     * @param $type
+     * @param                               $type
      * @param \AGmakonts\STL\Number\Natural $size
+     * @param                               $elements
      */
     public function __construct($type, Natural $size, $elements)
     {

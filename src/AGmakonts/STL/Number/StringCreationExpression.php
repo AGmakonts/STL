@@ -114,9 +114,9 @@ class StringCreationExpression
 		if(NULL !== $this->integer()) {
 
 			$numerator = new Integer(
-					$this->numerator()->getValue() +
-					$this->denominator()->getValue() *
-					$this->integer()->getValue()
+					$this->numerator()->value() +
+					$this->denominator()->value() *
+					$this->integer()->value()
 			);
 
 		} else {

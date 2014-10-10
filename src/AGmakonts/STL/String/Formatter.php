@@ -19,6 +19,7 @@ class Formatter
      */
     function __construct(StringInterface $format)
     {
+        $this->_format = $format;
     }
     
 
