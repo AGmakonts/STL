@@ -4,7 +4,11 @@
 	<testsuites>
 		<testsuite name="Number">
 			<directory>tests/AGmakonts/STL/Number</directory>
-			<directory>tests/AGmakonts/STL/String</directory>
+
 		</testsuite>
+        <testsuite name="String">
+            <directory>tests/AGmakonts/STL/String</directory>
+        </testsuite>
+
 	</testsuites>
 </phpunit>

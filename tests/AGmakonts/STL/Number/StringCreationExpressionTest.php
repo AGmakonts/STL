@@ -12,45 +12,26 @@ class StringCreationExpressionTest extends PHPUnit_Framework_TestCase
 
 
 
-    /**
-     * Prepares the environment before running a test.
-     */
-    protected function setUp ()
-    {
-        parent::setUp();
 
-        // TODO Auto-generated StringCreationExpressionTest::setUp()
-
-
-    }
-
-    /**
-     * Cleans up the environment after running a test.
-     */
-    protected function tearDown ()
-    {
-        // TODO Auto-generated StringCreationExpressionTest::tearDown()
-
-
-        parent::tearDown();
-    }
 
     /**
      * Constructs the test case.
      */
     public function __construct ()
     {
-        // TODO Auto-generated constructor
+
     }
 
     /**
      * Tests StringCreationExpression->__construct()
+     *
      */
     public function test__construct ()
     {
+        self::setExpectedException(InvalidFractionStringException::class);
         $expr = new StringCreationExpression('2 2/6');
 
-        self::setExpectedException(CorruptedStringExpressionException::class);
+
 
         $error = new StringCreationExpression('d3s');
     }
@@ -87,22 +68,23 @@ class StringCreationExpressionTest extends PHPUnit_Framework_TestCase
      */
     public function testGetNumerator ()
     {
-        // TODO Auto-generated StringCreationExpressionTest->testGetNumerator()
-        $this->markTestIncomplete("numerator test not implemented");
+        $sce = new StringCreationExpression("3/8");
 
-        $this->StringCreationExpression->getNumerator(/* parameters */);
+        $numerator = $sce->numerator();
+
+        self::assertEquals(3,$numerator->value());
     }
 
     /**
      * Tests StringCreationExpression->denominator()
      */
-    public function testGetDenumerator ()
+    public function testGetDenominator ()
     {
-        // TODO Auto-generated
-        // StringCreationExpressionTest->testGetDenumerator()
-        $this->markTestIncomplete("denominator test not implemented");
+        $sce = new StringCreationExpression("3/8");
 
-        $this->StringCreationExpression->getDenumerator(/* parameters */);
+        $denominator = $sce->denominator();
+
+        self::assertEquals(8,$denominator->value());
     }
 
     /**
@@ -127,5 +109,7 @@ class StringCreationExpressionTest extends PHPUnit_Framework_TestCase
 
         $this->StringCreationExpression->getRawExpression(/* parameters */);
     }
+
+
 }
 

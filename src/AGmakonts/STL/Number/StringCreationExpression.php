@@ -62,10 +62,17 @@ class StringCreationExpression
 
 
 		if(NULL === $data) {
-			throw new InvalidFractionStringException($expression, 'Expression cannot be procesed');
+			throw new InvalidFractionStringException($expression, 'Expression cannot be processed');
 		}
 
-		$this->_processExpressionData($data);
+        try {
+
+            $this->_processExpressionData($data);
+        } catch (CorruptedStringExpressionException $ex) {
+
+            throw new InvalidFractionStringException($expression, $ex->getMessage());
+        }
+
 
 	}
 
@@ -79,16 +86,16 @@ class StringCreationExpression
 
 		$integer     = $this->_getIntegerFromData ($data, 'integer' );
 		$numerator   = $this->_getIntegerFromData ($data, 'numerator' );
-		$denumerator = $this->_getIntegerFromData ($data, 'denominator' );
+		$denominator = $this->_getIntegerFromData ($data, 'denominator' );
 
 
-		if(NULL === $numerator || NULL === $denumerator) {
+		if(NULL === $numerator || NULL === $denominator) {
 			throw new CorruptedStringExpressionException();
 		}
 
 		$this->_integer     = $integer;
 		$this->_numerator   = $numerator;
-		$this->_denominator = $denumerator;
+		$this->_denominator = $denominator;
 
 
 	}
