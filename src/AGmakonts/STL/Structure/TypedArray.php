@@ -24,7 +24,7 @@ class TypedArray implements SimpleTypeInterface,
     
     /**
      * 
-     * @var string
+     * @var String
      */
     private $_type;
     
