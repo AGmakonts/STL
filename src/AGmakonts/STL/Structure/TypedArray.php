@@ -3,6 +3,7 @@ namespace AGmakonts\STL\Structure;
 
 use AGmakonts\STL\SimpleTypeInterface;
 use AGmakonts\STL\String\String;
+use AGmakonts\STL\Structure\Exception\InvalidElementException;
 use AGmakonts\STL\Structure\Exception\UnknownTypeException;
 use AGmakonts\STL\Number\Natural;
 
@@ -37,14 +38,48 @@ class TypedArray implements SimpleTypeInterface,
      * @param $type
      * @param \AGmakonts\STL\Number\Natural $size
      */
-    public function __construct($type, Natural $size)
+    public function __construct($type, Natural $size, $elements)
     {
         if(FALSE === class_exists($type)) {
             throw new UnknownTypeException($type);
         }
+
+        if(FALSE === is_array($elements) || FALSE === ($elements instanceof \Traversable)) {
+
+            $elements = [$elements];
+        }
+
+        $this->_addElementsFromIterator($elements);
         
         $this->_type = new String($type);
         $this->_size = $size;
+
+
+    }
+
+    private function _addElementsFromIterator($elements)
+    {
+        $temp = [];
+
+        foreach($elements as $element) {
+            $temp[] = $this->_validateElement($element);
+        }
+
+        $this->_elements = \SplFixedArray::fromArray($temp);
+        unset($temp);
+    }
+
+    private function _validateElement($element)
+    {
+        if(FALSE === is_object($element) ||
+           get_class($element) !== $this->type()) {
+
+            throw new InvalidElementException($element, $this->type());
+        }
+
+        return $element;
+
+
     }
 
     /**
