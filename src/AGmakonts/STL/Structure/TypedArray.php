@@ -6,6 +6,7 @@ use AGmakonts\STL\String\String;
 use AGmakonts\STL\Structure\Exception\InvalidElementException;
 use AGmakonts\STL\Structure\Exception\UnknownTypeException;
 use AGmakonts\STL\Number\Natural;
+use JsonSchema\Constraints\Type;
 
 /**
  *
@@ -88,6 +89,20 @@ class TypedArray implements SimpleTypeInterface,
     public function expandBy(Natural $size)
     {
         $this->_elements->setSize($this->_elements->getSize() + $size->value());
+    }
+
+    public function merge(TypedArray $array)
+    {
+        if(FALSE === $this->assertIsCompatibleWith($array)) {
+
+        }
+
+
+    }
+
+    public function assertIsCompatibleWith(TypedArray $array)
+    {
+
     }
 
     /**
