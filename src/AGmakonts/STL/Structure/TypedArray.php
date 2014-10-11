@@ -63,14 +63,14 @@ class TypedArray implements SimpleTypeInterface,
         $temp = [];
 
         foreach($elements as $element) {
-            $temp[] = $this->_validateElement($element);
+            $temp[] = $this->_validatedElement($element);
         }
 
         $this->_elements = \SplFixedArray::fromArray($temp);
         unset($temp);
     }
 
-    private function _validateElement($element)
+    private function _validatedElement($element)
     {
         if(FALSE === is_object($element) ||
            get_class($element) !== $this->type()) {
@@ -80,7 +80,14 @@ class TypedArray implements SimpleTypeInterface,
 
         return $element;
 
+    }
 
+    /**
+     * @param \AGmakonts\STL\Number\Natural $size
+     */
+    public function expandBy(Natural $size)
+    {
+        $this->_elements->setSize($this->_elements->getSize() + $size->value());
     }
 
     /**
@@ -116,7 +123,9 @@ class TypedArray implements SimpleTypeInterface,
      *
      */
     public function value ()
-    {}
+    {
+
+    }
 
     /**
      * (non-PHPdoc)
@@ -125,7 +134,9 @@ class TypedArray implements SimpleTypeInterface,
      *
      */
     public function __toString ()
-    {}
+    {
+
+    }
 	/* (non-PHPdoc)
      * @see ArrayAccess::offsetExists()
      */
