@@ -100,9 +100,16 @@ class TypedArray implements SimpleTypeInterface,
 
     }
 
+    /**
+     * Test if passed array holds the same type of objects.
+     *
+     * @param \AGmakonts\STL\Structure\TypedArray $array
+     *
+     * @return bool
+     */
     public function assertIsCompatibleWith(TypedArray $array)
     {
-
+        return ($array->type()->assertIsEqualTo($this->type()));
     }
 
     /**
