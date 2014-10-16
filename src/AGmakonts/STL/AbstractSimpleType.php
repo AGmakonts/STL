@@ -24,6 +24,8 @@ abstract class AbstractSimpleType implements SimpleTypeInterface
 
     /**
      * @param $value
+     *
+     * @return mixed
      */
     final static protected function getInstanceForValue($value)
     {
@@ -58,6 +60,37 @@ abstract class AbstractSimpleType implements SimpleTypeInterface
         }
 
         return TRUE;
+    }
+
+    /**
+     * @param \AGmakonts\STL\AbstractSimpleType $object
+     *
+     * @return string
+     */
+    final protected function extractValue(AbstractSimpleType $object)
+    {
+        $properties = get_object_vars($this);
+
+        $valueParts = [];
+
+        for($index = 0; $index < count($properties); $index++) {
+
+            $valueParts[] = $this->extractSingleValuePart($properties[$index]);
+        }
+
+        return implode(':', $valueParts);
+
+    }
+
+    /**
+     * @param $property
+     *
+     * @return string
+     */
+    final protected function extractSingleValuePart($property)
+    {
+        return $property instanceof AbstractSimpleType ? $this->getInstanceForValue($property) : strval($property);
+
     }
 
     abstract static protected function create();
