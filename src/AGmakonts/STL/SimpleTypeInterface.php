@@ -7,7 +7,8 @@ namespace AGmakonts\STL;
  * @author Adam
  *
  */
-interface SimpleTypeInterface {
+interface SimpleTypeInterface
+{
     /**
      * @return mixed
      */

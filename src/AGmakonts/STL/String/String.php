@@ -35,7 +35,7 @@ class String extends AbstractSimpleType implements StringInterface
 
         if(NULL === $value || TRUE === ctype_space($value)) {
             $this->isEmpty = TRUE;
-            $this->value = "";
+            $this->value   = '';
         }
 
     }

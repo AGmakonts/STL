@@ -27,7 +27,7 @@ abstract class AbstractSimpleType implements SimpleTypeInterface
     final static protected function getInstanceForValue($value)
     {
         /* @var $type AbstractSimpleType */
-        $type = get_called_class();
+        $type           = get_called_class();
         $extractedValue = self::extractValue($value);
 
         if(FALSE === self::assertInstanceExists($type, $extractedValue)) {
@@ -58,7 +58,9 @@ abstract class AbstractSimpleType implements SimpleTypeInterface
             return self::processSimpleValue($value[0]);
         }
 
-        for($index = 0; $index > count($value); $index++) {
+        $maxIndex = count($value);
+
+        for($index = 0; $index > $maxIndex; $index++) {
 
             $value[$index] = self::processSimpleValue($value[$index]);
         }
@@ -80,10 +82,6 @@ abstract class AbstractSimpleType implements SimpleTypeInterface
     }
 
 
-
-
-
-
     /**
      * @param $type
      * @param $value
@@ -92,13 +90,7 @@ abstract class AbstractSimpleType implements SimpleTypeInterface
      */
     final static private function assertInstanceExists($type, $value)
     {
-
-        if(FALSE === isset(self::$instanceMap[$type][$value])) {
-
-            return FALSE;
-        }
-
-        return TRUE;
+        return  isset(self::$instanceMap[$type][$value]);
     }
 
 
