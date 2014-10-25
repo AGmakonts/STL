@@ -17,4 +17,5 @@ interface SimpleTypeInterface {
 	 * @return mixed
 	 */
 	public function __toString();
+    static public function get(...$params);
 }
