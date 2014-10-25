@@ -66,7 +66,7 @@ class String extends AbstractSimpleType implements StringInterface
     public function uppercase()
     {
 
-        return new static(strtoupper($this->value()));
+        return static::get(strtoupper($this->value()));
 
     }
 
@@ -78,7 +78,7 @@ class String extends AbstractSimpleType implements StringInterface
      */
     public function lowercase()
     {
-        return new static(strtolower($this->value()));
+        return static::get(strtolower($this->value()));
     }
 
     /**
@@ -89,7 +89,7 @@ class String extends AbstractSimpleType implements StringInterface
      */
     public function reverse()
     {
-        return new static(strrev($this->value()));
+        return static::get(strrev($this->value()));
     }
 
 
@@ -105,7 +105,7 @@ class String extends AbstractSimpleType implements StringInterface
          * Create empty ellipsis for unified length calculations
          */
         if(NULL === $ellipsis) {
-            $ellipsis = new String();
+            $ellipsis = static::get();
         }
 
         /**
@@ -133,7 +133,7 @@ class String extends AbstractSimpleType implements StringInterface
 
         }
 
-        return new String();
+        return static::get();
 
     }
 
@@ -168,7 +168,7 @@ class String extends AbstractSimpleType implements StringInterface
      */
     public function concat(StringInterface $string)
     {
-        return new static($this->value() . $string->value());
+        return static::get$this->value() . $string->value());
     }
 
     /**
@@ -183,7 +183,7 @@ class String extends AbstractSimpleType implements StringInterface
             $length = $length->value();
         }
 
-        return new static(substr($this->value(), $start->value(), $length));
+        return static::get(substr($this->value(), $start->value(), $length));
     }
 
     public function assertIsEmpty()
