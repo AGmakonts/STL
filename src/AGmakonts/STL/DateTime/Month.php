@@ -35,12 +35,12 @@ class Month implements SimpleTypeInterface
     /**
      * @var \AGmakonts\STL\Number\Integer
      */
-    private $_month;
+    private $month;
 
     /**
      * @var \AGmakonts\STL\String\String
      */
-    private $_name;
+    private $name;
 
 
     /**

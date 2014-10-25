@@ -15,9 +15,9 @@ use AGmakonts\STL\Number\Integer;
 class String extends AbstractSimpleType implements StringInterface
 {
 
-    private $_value;
+    private $value;
 
-    private $_isEmpty = FALSE;
+    private $isEmpty = FALSE;
 
     protected function __construct(array $value)
     {

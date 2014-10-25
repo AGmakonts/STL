@@ -9,7 +9,7 @@ use AGmakonts\STL\SimpleTypeInterface;
 class TypedList implements SimpleTypeInterface,
                            \Iterator
 {
-    private $_elements;
+    private $elements;
 
     /**
      * (PHP 5 &gt;= 5.0.0)<br/>

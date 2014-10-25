@@ -19,25 +19,25 @@ class StringCreationExpression
      *
      * @var string
      */
-    private $_rawExpression;
+    private $rawExpression;
 
     /**
      *
      * @var Integer
      */
-    private $_numerator;
+    private $numerator;
 
     /**
      *
      * @var Integer
      */
-    private $_denominator;
+    private $denominator;
 
     /**
      *
      * @var Integer
      */
-    private $_integer;
+    private $integer;
 
     /**
      *

@@ -18,7 +18,7 @@ class Real implements NumberInterface
      *
      * @var float
      */
-    private $_value;
+    private $value;
 
     /**
      * Create instance of Real Number.

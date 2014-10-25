@@ -7,9 +7,9 @@ use AGmakonts\STL\SimpleTypeInterface;
 
 class Date implements SimpleTypeInterface
 {
-    private $_year;
-    private $_month;
-    private $_day;
+    private $year;
+    private $month;
+    private $day;
 
     /**
      * @return mixed

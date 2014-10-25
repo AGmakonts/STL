@@ -17,12 +17,12 @@ class Year implements SimpleTypeInterface
     /**
      * @var \AGmakonts\STL\Number\Integer
      */
-    private $_year;
+    private $year;
 
     /**
      * @var bool
      */
-    private $_isLeap;
+    private $isLeap;
 
 
     /**

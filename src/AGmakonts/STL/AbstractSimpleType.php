@@ -12,7 +12,7 @@ namespace AGmakonts\STL;
 abstract class AbstractSimpleType implements SimpleTypeInterface
 {
 
-    private static $_instanceMap = [];
+    private static $instanceMap = [];
 
     /**
      * @param array $value
@@ -36,10 +36,10 @@ abstract class AbstractSimpleType implements SimpleTypeInterface
                 $value = [$value];
             }
 
-            self::$_instanceMap[$type][$extractedValue] = new $type($value);
+            self::$instanceMap[$type][$extractedValue] = new $type($value);
         }
 
-        return self::$_instanceMap[$type][$extractedValue];
+        return self::$instanceMap[$type][$extractedValue];
 
     }
 
@@ -93,7 +93,7 @@ abstract class AbstractSimpleType implements SimpleTypeInterface
     final static private function assertInstanceExists($type, $value)
     {
 
-        if(FALSE === isset(self::$_instanceMap[$type][$value])) {
+        if(FALSE === isset(self::$instanceMap[$type][$value])) {
 
             return FALSE;
         }

@@ -16,19 +16,19 @@ class Decimal implements NumberInterface
      *
      * @var Integer
      */
-    private $_numerator;
+    private $numerator;
 
     /**
      *
      * @var Natural
      */
-    private $_denominator;
+    private $denominator;
 
     /**
      *
      * @var Integer
      */
-    private $_precision;
+    private $precision;
 
     /**
      */

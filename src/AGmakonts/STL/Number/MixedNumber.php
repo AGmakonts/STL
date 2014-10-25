@@ -17,13 +17,13 @@ class MixedNumber implements NumberInterface
      *
      * @var Integer
      */
-    private $_integer;
+    private $integer;
 
     /**
      *
      * @var Fraction
      */
-    private $_fraction;
+    private $fraction;
 
     /**
      */

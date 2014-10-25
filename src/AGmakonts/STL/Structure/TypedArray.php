@@ -21,19 +21,19 @@ class TypedArray implements SimpleTypeInterface,
      * 
      * @var \SplFixedArray
      */
-    private $_elements;
+    private $elements;
     
     /**
      * 
      * @var String
      */
-    private $_type;
+    private $type;
     
     /**
      * 
      * @var Natural
      */
-    private $_size;
+    private $size;
 
     /**
      * @param                               $type

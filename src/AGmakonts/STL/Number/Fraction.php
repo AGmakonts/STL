@@ -17,13 +17,13 @@ class Fraction implements NumberInterface
      *
      * @var Integer
      */
-    private $_numerator;
+    private $numerator;
 
     /**
      *
      * @var Integer
      */
-    private $_denominator;
+    private $denominator;
 
     /**
      *
