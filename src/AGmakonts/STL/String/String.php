@@ -40,8 +40,9 @@ class String extends AbstractSimpleType implements StringInterface
 
 	}
 
-    static public function get(...$params)
+    static public function get()
     {
+        $params = func_get_args();
 
         if(1 !== count($params)) {
             throw new \InvalidArgumentException('String value can be composed of only one element');

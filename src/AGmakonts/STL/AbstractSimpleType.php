@@ -49,8 +49,10 @@ abstract class AbstractSimpleType implements SimpleTypeInterface
      * @param $value
      * @return string
      */
-    static public function extractValue(...$value)
+    static public function extractValue()
     {
+
+        $value = func_get_args();
 
         if(1 === count($value)) {
             return self::processSimpleValue($value[0]);
