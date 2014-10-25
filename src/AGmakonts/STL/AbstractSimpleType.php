@@ -15,44 +15,70 @@ abstract class AbstractSimpleType implements SimpleTypeInterface
     private static $_instanceMap = [];
 
     /**
-     *
+     * @param array $value
      */
-    abstract protected function __construct();
+    abstract protected function __construct(array $value);
 
     /**
      * @param $value
      *
      * @return mixed
      */
-    final static protected function getInstanceForValue(...$value)
+    final static protected function getInstanceForValue($value)
     {
         /* @var $type AbstractSimpleType */
         $type = get_called_class();
+        $extractedValue = self::extractValue($value);
 
+        if(FALSE === self::assertInstanceExists($type, $extractedValue)) {
 
-
-        if(FALSE === self::assertInstanceExists($type, $value)) {
-            self::$_instanceMap[$type][$value] = new $type($value);
-        }
-
-        return self::$_instanceMap[$type][$value];
-
-    }
-
-    static private function extractValue(...$value)
-    {
-        foreach($value as $valuePart) {
-
-            if($valuePart instanceof AbstractSimpleType) {
-
+            if(FALSE === is_array($value)) {
+                $value = [$value];
             }
+
+            self::$_instanceMap[$type][$extractedValue] = new $type($value);
         }
+
+        return self::$_instanceMap[$type][$extractedValue];
+
     }
 
-    static public function get(...$params)
+    abstract public function extractedValue();
+
+    /**
+     * @param $value
+     * @return string
+     */
+    static public function extractValue(...$value)
     {
-        return self::getInstanceForValue($params);
+
+        if(1 === count($value)) {
+            return self::processSimpleValue($value[0]);
+        }
+
+        for($index = 0; $index > count($value); $index++) {
+
+            $value[$index] = self::processSimpleValue($value[$index]);
+        }
+
+        return implode(':', $value);
     }
+
+    /**
+     * @param $value
+     * @return string
+     */
+    static private function processSimpleValue($value)
+    {
+        if($value instanceof AbstractSimpleType) {
+            return $value->extractedValue();
+        }
+
+        return sha1($value);
+    }
+
+
+
 
 
 
@@ -65,8 +91,7 @@ abstract class AbstractSimpleType implements SimpleTypeInterface
     final static private function assertInstanceExists($type, $value)
     {
 
-
-        if(FALSE === array_key_exists(self::$_instanceMap[$type], $value)) {
+        if(FALSE === isset(self::$_instanceMap[$type][$value])) {
 
             return FALSE;
         }

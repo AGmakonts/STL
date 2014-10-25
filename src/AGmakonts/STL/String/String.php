@@ -19,8 +19,10 @@ class String extends AbstractSimpleType implements StringInterface
 
 	private $_isEmpty = FALSE;
 
-	protected function __construct($value = NULL)
+	protected function __construct(array $value)
 	{
+        $value = $value[0];
+
 		if(FALSE === is_string($value) && FALSE === ($value instanceof StringInterface) && NULL !== $value) {
 			throw new InvalidStringValueException($value);
 		}
@@ -38,6 +40,20 @@ class String extends AbstractSimpleType implements StringInterface
 
 	}
 
+    static public function get(...$params)
+    {
+
+        if(1 !== count($params)) {
+            throw new \InvalidArgumentException('String value can be composed of only one element');
+        }
+
+        return self::getInstanceForValue($params[0]);
+    }
+
+    public function extractedValue()
+    {
+        return parent::extractValue($this->value());
+    }
 
 
     /**
