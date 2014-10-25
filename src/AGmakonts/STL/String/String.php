@@ -168,7 +168,7 @@ class String extends AbstractSimpleType implements StringInterface
      */
     public function concat(StringInterface $string)
     {
-        return static::get$this->value() . $string->value());
+        return static::get($this->value() . $string->value());
     }
 
     /**
