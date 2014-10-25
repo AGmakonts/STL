@@ -26,7 +26,7 @@ class Real implements NumberInterface
      * @param float $number
      * @throws InvalidValueException
      */
-    public function _construct ($number)
+    public function __construct ($number)
     {
         $value = filter_var($number, FILTER_VALIDATE_FLOAT);
 

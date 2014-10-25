@@ -9,7 +9,7 @@ namespace AGmakonts\STL\String\Exception;
  */
 class InvalidStringValueException extends \InvalidArgumentException
 {
-	public function _construct($value)
+	public function __construct($value)
 	{
 		$message = "Value '%s' is not valid string";
 

@@ -11,9 +11,9 @@ use AGmakonts\STL\Number\NumberInterface;
 class Natural extends Integer
 {
     /* (non-PHPdoc)
-     * @see \AGmakonts\STL\Number\Real::__construct()
+     * @see \AGmakonts\STL\Number\Real::___construct()
      */
-    public function _construct($number)
+    public function __construct($number)
     {
 
         $value = filter_var($number, FILTER_VALIDATE_INT, ['options' => ['min_range' => 0]]);
@@ -23,7 +23,7 @@ class Natural extends Integer
             throw new InvalidValueException($number, ['INT (>= 0)']);
         }
 
-        parent::__construct($value);
+        parent::___construct($value);
 
     }
 

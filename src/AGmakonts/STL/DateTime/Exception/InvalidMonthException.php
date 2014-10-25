@@ -13,7 +13,7 @@ use Exception;
 
 class InvalidMonthException extends \InvalidArgumentException
 {
-    public function _construct($month)
+    public function __construct($month)
     {
         $this->message = sprintf("Number '%s' is not valid month", $month);
     }

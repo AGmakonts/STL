@@ -12,9 +12,9 @@ class Integer extends Real
 {
 
     /* (non-PHPdoc)
-     * @see \AGmakonts\STL\Number\Real::__construct()
+     * @see \AGmakonts\STL\Number\Real::___construct()
      */
-    public function _construct($number)
+    public function __construct($number)
     {
 
         $value = filter_var($number, FILTER_VALIDATE_INT);
@@ -24,7 +24,7 @@ class Integer extends Real
             throw new InvalidValueException($number, ['INT']);
         }
 
-        parent::__construct($value);
+        parent::___construct($value);
 
     }
 

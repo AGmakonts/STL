@@ -32,7 +32,7 @@ class Fraction implements NumberInterface
      *
      * @throws InvalidValueException
      */
-    function _construct (Integer $numerator, Integer $denominator = NULL)
+    function __construct (Integer $numerator, Integer $denominator = NULL)
     {
         if(NULL === $denominator) {
 

@@ -17,7 +17,7 @@ abstract class AbstractSimpleType implements SimpleTypeInterface
     /**
      * @param array $value
      */
-    abstract protected function _construct(array $value);
+    abstract protected function __construct(array $value);
 
     /**
      * @param $value

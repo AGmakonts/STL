@@ -39,7 +39,7 @@ class TypedArray implements SimpleTypeInterface,
      * @param \AGmakonts\STL\Number\Natural $size
      * @param                               $elements
      */
-    public function _construct($type, Natural $size, $elements)
+    public function __construct($type, Natural $size, $elements)
     {
         if(FALSE === class_exists($type)) {
             throw new UnknownTypeException($type);
@@ -52,7 +52,7 @@ class TypedArray implements SimpleTypeInterface,
 
         $this->addElementsFromIterator($elements);
         
-        $this->type = new String($type);
+        $this->type = String::get($type);
         $this->size = $size;
 
 
@@ -132,7 +132,7 @@ class TypedArray implements SimpleTypeInterface,
      */
     public function assertIsTypeOf($type)
     {
-        $type = new String($type);
+        $type = String::get($type);
 
         return ($type->assertIsEqualTo($this->type()));
     }

@@ -32,7 +32,7 @@ class Decimal implements NumberInterface
 
     /**
      */
-    function _construct (Integer $numerator, Natural $denumerator, Integer $precision = NULL)
+    function __construct (Integer $numerator, Natural $denumerator, Integer $precision = NULL)
     {
         $this->numerator = $numerator;
 

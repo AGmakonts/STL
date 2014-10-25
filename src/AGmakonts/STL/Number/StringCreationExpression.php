@@ -44,7 +44,7 @@ class StringCreationExpression
      * @param string $expression
      * @throws InvalidFractionStringException
      */
-    public function _construct($expression)
+    public function __construct($expression)
     {
         if(FALSE === is_string($expression) &&
            TRUE  === ctype_space($expression) &&

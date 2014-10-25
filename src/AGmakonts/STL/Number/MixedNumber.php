@@ -27,7 +27,7 @@ class MixedNumber implements NumberInterface
 
     /**
      */
-    function _construct(NumberInterface $number, NumberInterface $secondPart = NULL)
+    function __construct(NumberInterface $number, NumberInterface $secondPart = NULL)
     {
 
         if($number instanceof $secondPart) {

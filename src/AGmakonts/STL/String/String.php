@@ -19,7 +19,7 @@ class String extends AbstractSimpleType implements StringInterface
 
     private $isEmpty = FALSE;
 
-    protected function _construct(array $value)
+    protected function __construct(array $value)
     {
         $value = $value[0];
 

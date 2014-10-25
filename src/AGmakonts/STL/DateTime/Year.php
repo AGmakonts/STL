@@ -29,7 +29,7 @@ class Year implements SimpleTypeInterface
      * @param \AGmakonts\STL\Number\Integer $year
      *
      */
-    public function _construct(Integer $year = NULL)
+    public function __construct(Integer $year = NULL)
     {
         $date = new \DateTime();
 

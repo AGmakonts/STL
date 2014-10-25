@@ -47,7 +47,7 @@ class Month implements SimpleTypeInterface
      * @param \AGmakonts\STL\Number\Integer $month
      *
      */
-    public function _construct(Integer $month = NULL)
+    public function __construct(Integer $month = NULL)
     {
         $date = new \DateTime();
 
@@ -64,7 +64,7 @@ class Month implements SimpleTypeInterface
 
         $this->month = $month;
 
-        $this->name = new String($date->format("F"));
+        $this->name = String::get($date->format("F"));
 
     }
 

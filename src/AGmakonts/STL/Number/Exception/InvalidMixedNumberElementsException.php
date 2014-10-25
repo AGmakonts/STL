@@ -9,7 +9,7 @@ namespace AGmakonts\STL\Number\Exception;
  */
 class InvalidMixedNumberElementsException extends \InvalidArgumentException
 {
-	public function _construct()
+	public function __construct()
 	{
 		$this->message = "Cannot create Mixed Number with given arguments. Both arguments cannot be of the same type";
 	}
