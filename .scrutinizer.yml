@@ -10,6 +10,6 @@ checks:
 build:
     environment:
         php:
-            version: 5.5.12
+            version: 5.6
 
     
