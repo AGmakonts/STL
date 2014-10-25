@@ -75,7 +75,7 @@ class Real implements NumberInterface
 
     }
 
-	/*
+    /*
      * (non-PHPdoc)
      * @see \AGmakonts\STL\Number\NumberInterface::isSmallerThan()
      */
@@ -102,11 +102,11 @@ class Real implements NumberInterface
      * @param ComparisonOperator $operator
      * @return boolean
      */
-	private function _compare(NumberInterface $number, ComparisonOperator $operator)
+    private function _compare(NumberInterface $number, ComparisonOperator $operator)
     {
-    	$scale = max(strlen((string) $this->value()), strlen((string) $number->value()));
-    	
-    	$comparisonResult = bccomp((string) $this->value(), (string) $number->value(), $scale);
+        $scale = max(strlen((string) $this->value()), strlen((string) $number->value()));
+
+        $comparisonResult = bccomp((string) $this->value(), (string) $number->value(), $scale);
 
         $result = in_array($comparisonResult, $operator->valueAsArray());
 
@@ -187,16 +187,16 @@ class Real implements NumberInterface
      */
     public function round(RoundingMode $mode = NULL)
     {
-    	if(NULL === $mode) {
+        if(NULL === $mode) {
 
-    		$mode = RoundingMode::get(RoundingMode::HALF_EVEN);
+            $mode = RoundingMode::get(RoundingMode::HALF_EVEN);
 
-    	}
+        }
 
         return new static(round($this->value(), 0, $mode->getValue()));
     }
 
-	/* (non-PHPdoc)
+    /* (non-PHPdoc)
      * @see \AGmakonts\STL\Number\NumberInterface::createFrom()
      */
     static public function createFrom(NumberInterface $number)
@@ -212,7 +212,7 @@ class Real implements NumberInterface
      */
     public function assertIsPositive()
     {
-    	return boolval($this->_getSign());
+        return boolval($this->_getSign());
     }
 
     /**
@@ -222,7 +222,7 @@ class Real implements NumberInterface
      */
     public function assertIsNegative()
     {
-    	return (FALSE === boolval($this->assertIsPositive()));
+        return (FALSE === boolval($this->assertIsPositive()));
     }
 
     /**
@@ -232,7 +232,7 @@ class Real implements NumberInterface
      */
     private function _getSign()
     {
-    	return min(1, max(0, (is_nan($this->value()) || $this->value() == 0) ? 0 : $this->value() * INF));
+        return min(1, max(0, (is_nan($this->value()) || $this->value() == 0) ? 0 : $this->value() * INF));
     }
 
 
@@ -242,20 +242,20 @@ class Real implements NumberInterface
      */
     public function getDigitCount()
     {
-    	$digits = strlen((string) $this->value());
+        $digits = strlen((string) $this->value());
 
-    	return new static($digits);
+        return new static($digits);
     }
 
 
-	/* (non-PHPdoc)
-	 * @see \AGmakonts\STL\SimpleTypeInterface::__toString()
-	 */
-	public function __toString() {
-		
-		return $this->value();
-		
-	}
+    /* (non-PHPdoc)
+     * @see \AGmakonts\STL\SimpleTypeInterface::__toString()
+     */
+    public function __toString() {
+
+        return $this->value();
+
+    }
 
 
 }

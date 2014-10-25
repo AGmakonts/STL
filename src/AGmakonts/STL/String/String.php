@@ -15,30 +15,30 @@ use AGmakonts\STL\Number\Integer;
 class String extends AbstractSimpleType implements StringInterface
 {
 
-	private $_value;
+    private $_value;
 
-	private $_isEmpty = FALSE;
+    private $_isEmpty = FALSE;
 
-	protected function __construct(array $value)
-	{
+    protected function __construct(array $value)
+    {
         $value = $value[0];
 
-		if(FALSE === is_string($value) && FALSE === ($value instanceof StringInterface) && NULL !== $value) {
-			throw new InvalidStringValueException($value);
-		}
+        if(FALSE === is_string($value) && FALSE === ($value instanceof StringInterface) && NULL !== $value) {
+            throw new InvalidStringValueException($value);
+        }
 
         if($value instanceof StringInterface) {
             $value = $value->value();
         }
 
-		$this->_value = $value;
+        $this->_value = $value;
 
-		if(NULL === $value || TRUE === ctype_space($value)) {
-			$this->_isEmpty = TRUE;
-			$this->_value = "";
-		}
+        if(NULL === $value || TRUE === ctype_space($value)) {
+            $this->_isEmpty = TRUE;
+            $this->_value = "";
+        }
 
-	}
+    }
 
     static public function get()
     {
@@ -58,140 +58,140 @@ class String extends AbstractSimpleType implements StringInterface
 
 
     /**
-	 * (non-PHPdoc)
-	 *
-	 * @see \AGmakonts\STL\String\StringInterface::uppercase()
-	 *
-	 */
-	public function uppercase()
-	{
+     * (non-PHPdoc)
+     *
+     * @see \AGmakonts\STL\String\StringInterface::uppercase()
+     *
+     */
+    public function uppercase()
+    {
 
-		return new static(strtoupper($this->value()));
+        return new static(strtoupper($this->value()));
 
-	}
+    }
 
-	/**
-	 * (non-PHPdoc)
-	 *
-	 * @see \AGmakonts\STL\String\StringInterface::lowercase()
-	 *
-	 */
-	public function lowercase()
-	{
-		return new static(strtolower($this->value()));
-	}
+    /**
+     * (non-PHPdoc)
+     *
+     * @see \AGmakonts\STL\String\StringInterface::lowercase()
+     *
+     */
+    public function lowercase()
+    {
+        return new static(strtolower($this->value()));
+    }
 
-	/**
-	 * (non-PHPdoc)
-	 *
-	 * @see \AGmakonts\STL\String\StringInterface::reverse()
-	 *
-	 */
-	public function reverse()
-	{
-		return new static(strrev($this->value()));
-	}
+    /**
+     * (non-PHPdoc)
+     *
+     * @see \AGmakonts\STL\String\StringInterface::reverse()
+     *
+     */
+    public function reverse()
+    {
+        return new static(strrev($this->value()));
+    }
 
 
-	/**
-	 * (non-PHPdoc)
-	 *
-	 * @see \AGmakonts\STL\String\StringInterface::truncate()
-	 *
-	 */
-	public function truncate(Natural $length, StringInterface $ellipsis = NULL)
-	{
-		/**
-		 * Create empty ellipsis for unified length calculations
-		 */
-		if(NULL === $ellipsis) {
-			$ellipsis = new String();
-		}
+    /**
+     * (non-PHPdoc)
+     *
+     * @see \AGmakonts\STL\String\StringInterface::truncate()
+     *
+     */
+    public function truncate(Natural $length, StringInterface $ellipsis = NULL)
+    {
+        /**
+         * Create empty ellipsis for unified length calculations
+         */
+        if(NULL === $ellipsis) {
+            $ellipsis = new String();
+        }
 
-		/**
-		 * If desired length is greater than string itself do nothing
-		 */
-		if(TRUE === $length->assertIsGreaterOrEqualTo($this->length())) {
-			return $this;
-		}
+        /**
+         * If desired length is greater than string itself do nothing
+         */
+        if(TRUE === $length->assertIsGreaterOrEqualTo($this->length())) {
+            return $this;
+        }
 
-		/**
-	     * Subtract elispis length from desired length
-	     * to know where to start chopping string
-		 */
-		$finalLength = $length->subtract($ellipsis->length());
+        /**
+         * Subtract elispis length from desired length
+         * to know where to start chopping string
+         */
+        $finalLength = $length->subtract($ellipsis->length());
 
-		for ($i = $finalLength->value(); $i >= 0; $i--) {
+        for ($i = $finalLength->value(); $i >= 0; $i--) {
 
-			$testedCharacter = $this->charAtPosition(new Natural($i));
+            $testedCharacter = $this->charAtPosition(new Natural($i));
 
-			if(TRUE === $testedCharacter->assertIsEmpty()) {
-				return $this->substr(new Integer(0), new Integer($i-1))->concat($ellipsis);
-			}
+            if(TRUE === $testedCharacter->assertIsEmpty()) {
+                return $this->substr(new Integer(0), new Integer($i-1))->concat($ellipsis);
+            }
 
-			unset($testedCharacter);
+            unset($testedCharacter);
 
-		}
+        }
 
-		return new String();
+        return new String();
 
-	}
+    }
 
-	/**
-	 * (non-PHPdoc)
-	 *
-	 * @see \AGmakonts\STL\String\StringInterface::assertIsEqualTo()
-	 *
-	 */
-	public function assertIsEqualTo(StringInterface $string)
-	{
+    /**
+     * (non-PHPdoc)
+     *
+     * @see \AGmakonts\STL\String\StringInterface::assertIsEqualTo()
+     *
+     */
+    public function assertIsEqualTo(StringInterface $string)
+    {
         return ($this->value() === $string->value());
-	}
+    }
 
-	/**
-	 * (non-PHPdoc)
-	 *
-	 * @see \AGmakonts\STL\String\StringInterface::length()
-	 *
-	 */
-	public function length()
-	{
-		return new Natural(strlen($this->value()));
+    /**
+     * (non-PHPdoc)
+     *
+     * @see \AGmakonts\STL\String\StringInterface::length()
+     *
+     */
+    public function length()
+    {
+        return new Natural(strlen($this->value()));
 
-	}
+    }
 
-	/**
-	 * (non-PHPdoc)
-	 *
-	 * @see \AGmakonts\STL\String\StringInterface::concat()
-	 *
-	 */
-	public function concat(StringInterface $string)
-	{
-		return new static($this->value() . $string->value());
-	}
+    /**
+     * (non-PHPdoc)
+     *
+     * @see \AGmakonts\STL\String\StringInterface::concat()
+     *
+     */
+    public function concat(StringInterface $string)
+    {
+        return new static($this->value() . $string->value());
+    }
 
-	/**
-	 * (non-PHPdoc)
-	 *
-	 * @see \AGmakonts\STL\String\StringInterface::substr()
-	 *
-	 */
-	public function substr(Integer $start, Integer $length = NULL)
-	{
-		if(NULL !== $length) {
-			$length = $length->value();
-		}
+    /**
+     * (non-PHPdoc)
+     *
+     * @see \AGmakonts\STL\String\StringInterface::substr()
+     *
+     */
+    public function substr(Integer $start, Integer $length = NULL)
+    {
+        if(NULL !== $length) {
+            $length = $length->value();
+        }
 
-		return new static(substr($this->value(), $start->value(), $length));
-	}
+        return new static(substr($this->value(), $start->value(), $length));
+    }
 
-	public function assertIsEmpty()
-	{
-	    return $this->_isEmpty;
-	}
+    public function assertIsEmpty()
+    {
+        return $this->_isEmpty;
+    }
 
-	/* (non-PHPdoc)
+    /* (non-PHPdoc)
      * @see \AGmakonts\STL\String\StringInterface::value()
      */
     public function value ()
@@ -199,25 +199,25 @@ class String extends AbstractSimpleType implements StringInterface
         return $this->_value;
 
     }
-	/* (non-PHPdoc)
-	 * @see \AGmakonts\STL\SimpleTypeInterface::__toString()
-	 */
-	public function __toString() {
+    /* (non-PHPdoc)
+     * @see \AGmakonts\STL\SimpleTypeInterface::__toString()
+     */
+    public function __toString() {
 
-		return $this->value();
+        return $this->value();
 
-	}
+    }
 
-	/* (non-PHPdoc)
-	 * @see \AGmakonts\STL\String\StringInterface::getCharAtPosition()
-	 */
-	public function charAtPosition(Natural $position)
-	{
-		$one = new Natural(1);
+    /* (non-PHPdoc)
+     * @see \AGmakonts\STL\String\StringInterface::getCharAtPosition()
+     */
+    public function charAtPosition(Natural $position)
+    {
+        $one = new Natural(1);
 
-		return $this->substr($position->subtract($one), $one);
+        return $this->substr($position->subtract($one), $one);
 
-	}
+    }
 
 
 

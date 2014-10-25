@@ -21,6 +21,6 @@ final class ComparisonOperator extends Enum
      */
     public function valueAsArray()
     {
-    	return explode("|", $this->getValue());
+        return explode("|", $this->getValue());
     }
 }

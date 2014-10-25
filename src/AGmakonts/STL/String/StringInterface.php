@@ -11,9 +11,9 @@ use AGmakonts\STL\Number\Integer;
  */
 interface StringInterface extends SimpleTypeInterface
 {
-	/**
-	 * @return Natural
-	 */
+    /**
+     * @return Natural
+     */
     public function length();
 
     /**

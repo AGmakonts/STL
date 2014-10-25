@@ -34,26 +34,26 @@ class Decimal implements NumberInterface
      */
     function __construct (Integer $numerator, Natural $denumerator, Integer $precision = NULL)
     {
-    	$this->_numerator = $numerator;
+        $this->_numerator = $numerator;
 
-    	if(NULL !== $precision) {
+        if(NULL !== $precision) {
 
-    		$tempReal = Natural::createFrom($denumerator);
+            $tempReal = Natural::createFrom($denumerator);
 
-    		$tempDivider = new Real(10);
+            $tempDivider = new Real(10);
 
-    		$tempReal->divide($tempDivider->power($precision))->round(RoundingMode::get(RoundingMode::HALF_DOWN));
-    		
+            $tempReal->divide($tempDivider->power($precision))->round(RoundingMode::get(RoundingMode::HALF_DOWN));
 
-    		$this->_denominator = $tempReal;
-    		$this->_precision   = $precision;
 
-    	} else {
+            $this->_denominator = $tempReal;
+            $this->_precision   = $precision;
 
-    		$this->_denominator = $denumerator;
-    		$this->_precision   = Integer::createFrom($denumerator->getDigitCount());
+        } else {
 
-    	}
+            $this->_denominator = $denumerator;
+            $this->_precision   = Integer::createFrom($denumerator->getDigitCount());
+
+        }
 
 
     }
@@ -176,7 +176,7 @@ class Decimal implements NumberInterface
      */
     public function assertIsZero ()
     {}
-	/* (non-PHPdoc)
+    /* (non-PHPdoc)
      * @see \AGmakonts\STL\Number\NumberInterface::createFrom()
      */
     public static function createFrom (NumberInterface $number)
@@ -184,34 +184,34 @@ class Decimal implements NumberInterface
 
 
     }
-	/* (non-PHPdoc)
-	 * @see \AGmakonts\STL\Number\NumberInterface::round()
-	 */
-	public function round(RoundingMode $mode = NULL) {
+    /* (non-PHPdoc)
+     * @see \AGmakonts\STL\Number\NumberInterface::round()
+     */
+    public function round(RoundingMode $mode = NULL) {
 
 
-	}
+    }
 
-	/* (non-PHPdoc)
-	 * @see \AGmakonts\STL\Number\NumberInterface::assertIsPositive()
-	 */
-	public function assertIsPositive() {
-
-
-	}
-
-	/* (non-PHPdoc)
-	 * @see \AGmakonts\STL\Number\NumberInterface::assertIsNegative()
-	 */
-	public function assertIsNegative() {
+    /* (non-PHPdoc)
+     * @see \AGmakonts\STL\Number\NumberInterface::assertIsPositive()
+     */
+    public function assertIsPositive() {
 
 
-	}
+    }
 
-	/**
-	 *
-	 * @return \AGmakonts\STL\Number\Integer
-	 */
+    /* (non-PHPdoc)
+     * @see \AGmakonts\STL\Number\NumberInterface::assertIsNegative()
+     */
+    public function assertIsNegative() {
+
+
+    }
+
+    /**
+     *
+     * @return \AGmakonts\STL\Number\Integer
+     */
     public function numerator ()
     {
         return $this->_numerator;
@@ -236,14 +236,14 @@ class Decimal implements NumberInterface
     }
 
 
-	/* (non-PHPdoc)
-	 * @see \AGmakonts\STL\SimpleTypeInterface::__toString()
-	 */
-	public function __toString() {
-		
-		return $this->value();
-		
-	}
+    /* (non-PHPdoc)
+     * @see \AGmakonts\STL\SimpleTypeInterface::__toString()
+     */
+    public function __toString() {
+
+        return $this->value();
+
+    }
 
 
 

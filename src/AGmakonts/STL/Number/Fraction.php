@@ -34,14 +34,14 @@ class Fraction implements NumberInterface
      */
     function __construct (Integer $numerator, Integer $denominator = NULL)
     {
-    	if(NULL === $denominator) {
+        if(NULL === $denominator) {
 
             $denominator = new Integer(1);
-    		
-    	}
-    	
+
+        }
+
         if(TRUE === $denominator->assertIsZero()) {
-        	
+
             throw new InvalidValueException($denominator->value(), ['INT (>0)']);
 
         }
@@ -71,8 +71,8 @@ class Fraction implements NumberInterface
      */
     static public function createFromString(StringExpression $stringExpression)
     {
-		return $stringExpression->getAsSimpleFraction();	
-		
+        return $stringExpression->getAsSimpleFraction();
+
     }
 
     /**
@@ -117,7 +117,7 @@ class Fraction implements NumberInterface
      */
     public function assertIsGreaterThan (NumberInterface $number)
     {
-    	return ($this->value() > $number->value());
+        return ($this->value() > $number->value());
     }
 
    
@@ -129,7 +129,7 @@ class Fraction implements NumberInterface
      */
     public function add (NumberInterface $number)
     {
-    	return $this->_addSubtract($number, TRUE);
+        return $this->_addSubtract($number, TRUE);
 
     }
     
@@ -139,40 +139,40 @@ class Fraction implements NumberInterface
      */
     public function subtract (NumberInterface $number)
     {
-    	return $this->_addSubtract($number, FALSE);
+        return $this->_addSubtract($number, FALSE);
     }
     
     
-	 /**
-	 * 
-	 * @param NumberInterface $number
-	 * @param boolean $add
-	 * @return Fraction
-	 */
-	 private function _addSubtract(NumberInterface $number, $add = TRUE) {
-	 	
+     /**
+     *
+     * @param NumberInterface $number
+     * @param boolean $add
+     * @return Fraction
+     */
+     private function _addSubtract(NumberInterface $number, $add = TRUE) {
 
-    	$fraction = self::createFrom($number);
 
-    	if(TRUE === $add) {
-    		$newNumeratorValue =
-    			$this->numerator()->multiply($fraction->denominator()).add(
-    			$fraction->numerator()->multiply($this->denominator()));
-    	} else {
-    		$newNumeratorValue =
-    			$this->numerator()->multiply($fraction->denominator()).subtract(
-    			$fraction->numerator()->multiply($this->denominator()));
-    	}
+        $fraction = self::createFrom($number);
 
-    	$newDenominatorValue = $this->denominator()->value() * $fraction->denominator()->value();
-    		
-    	$numerator   = new Integer($newNumeratorValue);
-    	$denominator = new Integer($newDenominatorValue);
-    		
-    	return $this->simplify(new Fraction($numerator, $denominator));
+        if(TRUE === $add) {
+            $newNumeratorValue =
+                $this->numerator()->multiply($fraction->denominator()).add(
+                $fraction->numerator()->multiply($this->denominator()));
+        } else {
+            $newNumeratorValue =
+                $this->numerator()->multiply($fraction->denominator()).subtract(
+                $fraction->numerator()->multiply($this->denominator()));
+        }
 
-	 
-	 }
+        $newDenominatorValue = $this->denominator()->value() * $fraction->denominator()->value();
+
+        $numerator   = new Integer($newNumeratorValue);
+        $denominator = new Integer($newDenominatorValue);
+
+        return $this->simplify(new Fraction($numerator, $denominator));
+
+
+     }
 
 
 
@@ -184,13 +184,13 @@ class Fraction implements NumberInterface
      */
     public function divide (NumberInterface $number)
     {
-    	$fraction = self::createFrom($number);
-    	
-    	$newNumerator = $this->numerator()->multiply($fraction->denominator());
-    	$newDenominator = $this->denominator()->multiply($fraction->numerator());
-    	
-    	return $this->simplify(new Fraction($newNumerator, $newDenominator));
-    	
+        $fraction = self::createFrom($number);
+
+        $newNumerator = $this->numerator()->multiply($fraction->denominator());
+        $newDenominator = $this->denominator()->multiply($fraction->numerator());
+
+        return $this->simplify(new Fraction($newNumerator, $newDenominator));
+
     }
     
     /**
@@ -201,12 +201,12 @@ class Fraction implements NumberInterface
      */
     public function multiply (NumberInterface $number)
     {
-    	$fraction = self::createFrom($number);
-    	
-    	$newNumerator = $this->numerator()->multiply($fraction->numerator());
-    	$newDenominator = $this->denominator()->multiply($fraction->denominator());
-    	
-    	return $this->simplify(new Fraction($newNumerator, $newDenominator));
+        $fraction = self::createFrom($number);
+
+        $newNumerator = $this->numerator()->multiply($fraction->numerator());
+        $newDenominator = $this->denominator()->multiply($fraction->denominator());
+
+        return $this->simplify(new Fraction($newNumerator, $newDenominator));
     }
     
 
@@ -218,7 +218,7 @@ class Fraction implements NumberInterface
      */
     public function assertIsEqualTo (NumberInterface $number)
     {
-    	return ($this->value() === $number->value());
+        return ($this->value() === $number->value());
     }
 
     
@@ -232,7 +232,7 @@ class Fraction implements NumberInterface
      */
     public function assertIsGreaterOrEqualTo (NumberInterface $number)
     {
-    	return ($this->value() >= $number->value());
+        return ($this->value() >= $number->value());
     }
 
     /**
@@ -243,7 +243,7 @@ class Fraction implements NumberInterface
      */
     public function assertIsSmallerThan (NumberInterface $number)
     {
-    	return ($this->value() < $number->value());
+        return ($this->value() < $number->value());
     }
 
     /**
@@ -263,7 +263,7 @@ class Fraction implements NumberInterface
      */
     public function assertIsSmallerOrEqualTo (NumberInterface $number)
     {
-    	return ($this->value() <= $number->value());
+        return ($this->value() <= $number->value());
     }
 
     /**
@@ -274,28 +274,28 @@ class Fraction implements NumberInterface
      */
     public function assertIsZero ()
     {
-    	return ($this->numerator()->assertIsZero());
+        return ($this->numerator()->assertIsZero());
     }
     
     public function assertIsInteger()
     {
-    	return ($this->denominator()->assertIsEqualTo($this->numerator()));
+        return ($this->denominator()->assertIsEqualTo($this->numerator()));
     }
-	/* (non-PHPdoc)
+    /* (non-PHPdoc)
      * @see \AGmakonts\STL\Number\NumberInterface::createFrom()
      */
     public static function createFrom (NumberInterface $number)
     {
-		if($number instanceof Integer) {
-			$fraction = new static($number);
-		} elseif ($number instanceof Fraction) {
-			$fraction = new static($number->numerator(), $number->denominator());
-		} else {
-			$fraction = new static(Integer::createFrom($number));
-		}
-		
-		
-		return $fraction;
+        if($number instanceof Integer) {
+            $fraction = new static($number);
+        } elseif ($number instanceof Fraction) {
+            $fraction = new static($number->numerator(), $number->denominator());
+        } else {
+            $fraction = new static(Integer::createFrom($number));
+        }
+
+
+        return $fraction;
 
     }
     
@@ -308,16 +308,16 @@ class Fraction implements NumberInterface
      */
     public function simplify(Fraction $fraction)
     {
-    	$gcd = $this->_gcd($fraction);
-    	
-    	$numeratorValue   = $fraction->numerator()->value();
-    	$denominatorValue = $fraction->denominator()->value();
-    	
-    	$newNumerator   = new Integer($numeratorValue / $gcd->value());
-    	$newDenominator = new Integer($denominatorValue / $gcd->value());
+        $gcd = $this->_gcd($fraction);
 
-    	return new static($newNumerator, $newDenominator);
-    	
+        $numeratorValue   = $fraction->numerator()->value();
+        $denominatorValue = $fraction->denominator()->value();
+
+        $newNumerator   = new Integer($numeratorValue / $gcd->value());
+        $newDenominator = new Integer($denominatorValue / $gcd->value());
+
+        return new static($newNumerator, $newDenominator);
+
     }
     
     /**
@@ -329,64 +329,64 @@ class Fraction implements NumberInterface
      */
     private function _gcd(Fraction $fraction)
     {
-    	$numerator   = abs($fraction->numerator()->value());
-    	$denominator = abs($fraction->denominator()->value());
-    	
-    	if($numerator > $denominator) {
-    		list($denominator, $numerator) = [$numerator, $denominator];
-    	}
-    	
-    	if($denominator === 0) {
-    		return new Integer($numerator);
-    	}
-    	
-    	$result = $numerator % $denominator;
-    	
-    	while ($result > 0)
-    	{
-    		$numerator = $denominator;
-    		
-    		$denominator = $result;
-    		
-    		$result = $numerator % $denominator;
-    	}
+        $numerator   = abs($fraction->numerator()->value());
+        $denominator = abs($fraction->denominator()->value());
 
-    	return new Integer($result);
-    	
+        if($numerator > $denominator) {
+            list($denominator, $numerator) = [$numerator, $denominator];
+        }
+
+        if($denominator === 0) {
+            return new Integer($numerator);
+        }
+
+        $result = $numerator % $denominator;
+
+        while ($result > 0)
+        {
+            $numerator = $denominator;
+
+            $denominator = $result;
+
+            $result = $numerator % $denominator;
+        }
+
+        return new Integer($result);
+
     }
     
-	/* (non-PHPdoc)
-	 * @see \AGmakonts\STL\Number\NumberInterface::round()
-	 */
-	public function round(RoundingMode $mode = NULL) {
+    /* (non-PHPdoc)
+     * @see \AGmakonts\STL\Number\NumberInterface::round()
+     */
+    public function round(RoundingMode $mode = NULL) {
 
-		
-	}
 
-	/* (non-PHPdoc)
-	 * @see \AGmakonts\STL\Number\NumberInterface::assertIsPositive()
-	 */
-	public function assertIsPositive() {
+    }
 
-		
-	}
+    /* (non-PHPdoc)
+     * @see \AGmakonts\STL\Number\NumberInterface::assertIsPositive()
+     */
+    public function assertIsPositive() {
 
-	/* (non-PHPdoc)
-	 * @see \AGmakonts\STL\Number\NumberInterface::assertIsNegative()
-	 */
-	public function assertIsNegative() {
 
-		
-	}
+    }
+
+    /* (non-PHPdoc)
+     * @see \AGmakonts\STL\Number\NumberInterface::assertIsNegative()
+     */
+    public function assertIsNegative() {
+
+
+    }
 
     /**
      * @return string
      */
-	public function __toString() {
-		
-		return $this->value();
-		
-	}
+    public function __toString() {
+
+        return $this->value();
+
+    }
 
 
 

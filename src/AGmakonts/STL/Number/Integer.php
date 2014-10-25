@@ -28,16 +28,16 @@ class Integer extends Real
 
     }
 
-	/* (non-PHPdoc)
-	 * @see \AGmakonts\STL\Number\Real::createFrom()
-	 */
-	public static function createFrom(NumberInterface $number)
-	{
-		$roundValue = $number->round();
+    /* (non-PHPdoc)
+     * @see \AGmakonts\STL\Number\Real::createFrom()
+     */
+    public static function createFrom(NumberInterface $number)
+    {
+        $roundValue = $number->round();
 
-		return new static($roundValue->value());
+        return new static($roundValue->value());
 
-	}
+    }
 
 
 

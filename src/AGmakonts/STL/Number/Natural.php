@@ -10,41 +10,41 @@ use AGmakonts\STL\Number\NumberInterface;
  */
 class Natural extends Integer
 {
-	/* (non-PHPdoc)
-	 * @see \AGmakonts\STL\Number\Real::__construct()
-	 */
-	public function __construct($number)
-	{
+    /* (non-PHPdoc)
+     * @see \AGmakonts\STL\Number\Real::__construct()
+     */
+    public function __construct($number)
+    {
 
-	    $value = filter_var($number, FILTER_VALIDATE_INT, ['options' => ['min_range' => 0]]);
+        $value = filter_var($number, FILTER_VALIDATE_INT, ['options' => ['min_range' => 0]]);
 
-	    if (FALSE === $value) {
+        if (FALSE === $value) {
 
-	        throw new InvalidValueException($number, ['INT (>= 0)']);
-	    }
+            throw new InvalidValueException($number, ['INT (>= 0)']);
+        }
 
-	    parent::__construct($value);
+        parent::__construct($value);
 
-	}
+    }
 
 
-	/* (non-PHPdoc)
-	 * @see \AGmakonts\STL\Number\Integer::createFrom()
-	 */
-	public static function createFrom(NumberInterface $number)
-	{
+    /* (non-PHPdoc)
+     * @see \AGmakonts\STL\Number\Integer::createFrom()
+     */
+    public static function createFrom(NumberInterface $number)
+    {
 
-		if(TRUE === $number->assertIsNegative()) {
+        if(TRUE === $number->assertIsNegative()) {
 
-			$number = new Natural(0);
+            $number = new Natural(0);
 
-		}
+        }
 
-		$roundValue = $number->round();
+        $roundValue = $number->round();
 
-		return new static($roundValue->value());
+        return new static($roundValue->value());
 
-	}
+    }
 
 
 }
