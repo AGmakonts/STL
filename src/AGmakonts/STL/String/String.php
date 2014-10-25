@@ -2,8 +2,8 @@
 
 namespace AGmakonts\STL\String;
 
+use AGmakonts\STL\AbstractSimpleType;
 use AGmakonts\STL\Number\Natural;
-use AGmakonts\STL\String\StringInterface;
 use AGmakonts\STL\String\Exception\InvalidStringValueException;
 use AGmakonts\STL\Number\Integer;
 
@@ -12,15 +12,17 @@ use AGmakonts\STL\Number\Integer;
  * @author Adam
  *
  */
-class String implements StringInterface
+class String extends AbstractSimpleType implements StringInterface
 {
 
 	private $_value;
 
 	private $_isEmpty = FALSE;
 
-	public function __construct($value = NULL)
+	protected function __construct(array $value)
 	{
+        $value = $value[0];
+
 		if(FALSE === is_string($value) && FALSE === ($value instanceof StringInterface) && NULL !== $value) {
 			throw new InvalidStringValueException($value);
 		}
@@ -38,7 +40,23 @@ class String implements StringInterface
 
 	}
 
-	/**
+    static public function get(...$params)
+    {
+
+        if(1 !== count($params)) {
+            throw new \InvalidArgumentException('String value can be composed of only one element');
+        }
+
+        return self::getInstanceForValue($params[0]);
+    }
+
+    public function extractedValue()
+    {
+        return parent::extractValue($this->value());
+    }
+
+
+    /**
 	 * (non-PHPdoc)
 	 *
 	 * @see \AGmakonts\STL\String\StringInterface::uppercase()
