@@ -12,7 +12,7 @@ class Integer extends Real
 {
 
     /* (non-PHPdoc)
-     * @see \AGmakonts\STL\Number\Real::___construct()
+     * @see \AGmakonts\STL\Number\Real::__construct()
      */
     public function __construct($number)
     {
@@ -24,7 +24,7 @@ class Integer extends Real
             throw new InvalidValueException($number, ['INT']);
         }
 
-        parent::___construct($value);
+        parent::__construct($value);
 
     }
 

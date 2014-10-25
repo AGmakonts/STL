@@ -11,7 +11,7 @@ use AGmakonts\STL\Number\NumberInterface;
 class Natural extends Integer
 {
     /* (non-PHPdoc)
-     * @see \AGmakonts\STL\Number\Real::___construct()
+     * @see \AGmakonts\STL\Number\Real::__construct()
      */
     public function __construct($number)
     {
@@ -23,7 +23,7 @@ class Natural extends Integer
             throw new InvalidValueException($number, ['INT (>= 0)']);
         }
 
-        parent::___construct($value);
+        parent::__construct($value);
 
     }
 

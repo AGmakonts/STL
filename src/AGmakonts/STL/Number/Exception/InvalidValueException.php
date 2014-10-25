@@ -10,7 +10,7 @@ class InvalidValueException extends \InvalidArgumentException
 {
 
 	/* (non-PHPdoc)
-     * @see InvalidArgumentException::___construct()
+     * @see InvalidArgumentException::__construct()
      */
     public function __construct ($value, array $allowedTypes)
     {
