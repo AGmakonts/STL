@@ -29,7 +29,7 @@ class Year implements SimpleTypeInterface
      * @param \AGmakonts\STL\Number\Integer $year
      *
      */
-    public function __construct(Integer $year = NULL)
+    public function _construct(Integer $year = NULL)
     {
         $date = new \DateTime();
 
@@ -39,23 +39,29 @@ class Year implements SimpleTypeInterface
             $date->setDate($year->value(), 1, 1);
         }
 
-        $this->_isLeap = boolval($date->format('L'));
-        $this->_year = $year;
+        $this->isLeap = boolval($date->format('L'));
+        $this->year = $year;
 
     }
+
+    static public function get()
+    {
+        // TODO: Implement get() method.
+    }
+
 
     /**
      * @return \AGmakonts\STL\Number\Integer
      */
     public function value()
     {
-        return $this->_year;
+        return $this->year;
     }
 
     /**
      * @return integer
      */
-    public function __toString()
+    public function _toString()
     {
         return $this->value()->value();
     }

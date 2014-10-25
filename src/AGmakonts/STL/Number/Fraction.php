@@ -32,7 +32,7 @@ class Fraction implements NumberInterface
      *
      * @throws InvalidValueException
      */
-    function __construct (Integer $numerator, Integer $denominator = NULL)
+    function _construct (Integer $numerator, Integer $denominator = NULL)
     {
         if(NULL === $denominator) {
 
@@ -47,12 +47,18 @@ class Fraction implements NumberInterface
         }
 
 
-        $this->_numerator = $numerator;
+        $this->numerator = $numerator;
 
-        $this->_denominator = $denominator;
+        $this->denominator = $denominator;
 
 
     }
+
+    static public function get()
+    {
+        // TODO: Implement get() method.
+    }
+
 
     /**
      * 
@@ -89,7 +95,7 @@ class Fraction implements NumberInterface
      */
     public function numerator ()
     {
-        return $this->_numerator;
+        return $this->numerator;
     }
 
     /**
@@ -97,7 +103,7 @@ class Fraction implements NumberInterface
      */
     public function denominator ()
     {
-        return $this->_denominator;
+        return $this->denominator;
     }
 
     /**
@@ -129,7 +135,7 @@ class Fraction implements NumberInterface
      */
     public function add (NumberInterface $number)
     {
-        return $this->_addSubtract($number, TRUE);
+        return $this->addSubtract($number, TRUE);
 
     }
     
@@ -139,7 +145,7 @@ class Fraction implements NumberInterface
      */
     public function subtract (NumberInterface $number)
     {
-        return $this->_addSubtract($number, FALSE);
+        return $this->addSubtract($number, FALSE);
     }
     
     
@@ -149,7 +155,7 @@ class Fraction implements NumberInterface
      * @param boolean $add
      * @return Fraction
      */
-     private function _addSubtract(NumberInterface $number, $add = TRUE) {
+     private function addSubtract(NumberInterface $number, $add = TRUE) {
 
 
         $fraction = self::createFrom($number);
@@ -308,7 +314,7 @@ class Fraction implements NumberInterface
      */
     public function simplify(Fraction $fraction)
     {
-        $gcd = $this->_gcd($fraction);
+        $gcd = $this->gcd($fraction);
 
         $numeratorValue   = $fraction->numerator()->value();
         $denominatorValue = $fraction->denominator()->value();
@@ -327,7 +333,7 @@ class Fraction implements NumberInterface
      * @param Fraction $fraction
      * @return Integer
      */
-    private function _gcd(Fraction $fraction)
+    private function gcd(Fraction $fraction)
     {
         $numerator   = abs($fraction->numerator()->value());
         $denominator = abs($fraction->denominator()->value());
@@ -382,7 +388,7 @@ class Fraction implements NumberInterface
     /**
      * @return string
      */
-    public function __toString() {
+    public function _toString() {
 
         return $this->value();
 

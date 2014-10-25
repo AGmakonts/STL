@@ -14,7 +14,7 @@ class Integer extends Real
     /* (non-PHPdoc)
      * @see \AGmakonts\STL\Number\Real::__construct()
      */
-    public function __construct($number)
+    public function _construct($number)
     {
 
         $value = filter_var($number, FILTER_VALIDATE_INT);

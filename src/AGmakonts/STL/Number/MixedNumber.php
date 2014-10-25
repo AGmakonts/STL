@@ -27,7 +27,7 @@ class MixedNumber implements NumberInterface
 
     /**
      */
-    function __construct(NumberInterface $number, NumberInterface $secondPart = NULL)
+    function _construct(NumberInterface $number, NumberInterface $secondPart = NULL)
     {
 
         if($number instanceof $secondPart) {
@@ -43,19 +43,25 @@ class MixedNumber implements NumberInterface
         }
 
         if($number instanceof Integer) {
-            $this->_integer = $number;
+            $this->integer = $number;
         } elseif ($number instanceof Fraction) {
-            $this->_fraction = $number;
+            $this->fraction = $number;
         }
 
-        if($secondPart instanceof Integer && NULL === $this->_integer) {
-            $this->_integer = $secondPart;
-        } elseif ($secondPart instanceof Fraction && NULL === $this->_fraction) {
-            $this->_fraction = $secondPart;
+        if($secondPart instanceof Integer && NULL === $this->integer) {
+            $this->integer = $secondPart;
+        } elseif ($secondPart instanceof Fraction && NULL === $this->fraction) {
+            $this->fraction = $secondPart;
         }
 
 
     }
+
+    static public function get()
+    {
+        // TODO: Implement get() method.
+    }
+
 
     /**
      * (non-PHPdoc)
@@ -163,7 +169,7 @@ class MixedNumber implements NumberInterface
      * @see \AGmakonts\STL\Number\NumberInterface::createFrom()
      *
      */
-    public function createFrom(NumberInterface $number) {
+    public static function  createFrom(NumberInterface $number) {
     }
 
     /**
@@ -214,7 +220,7 @@ class MixedNumber implements NumberInterface
     /* (non-PHPdoc)
      * @see \AGmakonts\STL\SimpleTypeInterface::__toString()
      */
-    public function __toString() {
+    public function _toString() {
 
         return $this->value();
 

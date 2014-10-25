@@ -13,7 +13,7 @@ use AGmakonts\STL\String\String;
 
 class InvalidElementException extends \InvalidArgumentException
 {
-    function __construct($element, String $desired)
+    function _construct($element, String $desired)
     {
         $this->message = sprintf("Element of type '%s' is invalid, only elements of '%s' are accepted", get_class($element), $desired->value());
     }

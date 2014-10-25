@@ -44,7 +44,7 @@ class StringCreationExpression
      * @param string $expression
      * @throws InvalidFractionStringException
      */
-    public function __construct($expression)
+    public function _construct($expression)
     {
         if(FALSE === is_string($expression) &&
            TRUE  === ctype_space($expression) &&
@@ -54,7 +54,7 @@ class StringCreationExpression
 
         }
 
-        $this->_rawExpression = $expression;
+        $this->rawExpression = $expression;
 
         $data = NULL;
 
@@ -67,7 +67,7 @@ class StringCreationExpression
 
         try {
 
-            $this->_processExpressionData($data);
+            $this->processExpressionData($data);
         } catch (CorruptedStringExpressionException $ex) {
 
             throw new InvalidFractionStringException($expression, $ex->getMessage());
@@ -81,21 +81,21 @@ class StringCreationExpression
      * @param array $data
      * @throws CorruptedStringExpressionException
      */
-    private function _processExpressionData(array $data)
+    private function processExpressionData(array $data)
     {
 
-        $integer     = $this->_getIntegerFromData ($data, 'integer' );
-        $numerator   = $this->_getIntegerFromData ($data, 'numerator' );
-        $denominator = $this->_getIntegerFromData ($data, 'denominator' );
+        $integer     = $this->getIntegerFromData ($data, 'integer' );
+        $numerator   = $this->getIntegerFromData ($data, 'numerator' );
+        $denominator = $this->getIntegerFromData ($data, 'denominator' );
 
 
         if(NULL === $numerator || NULL === $denominator) {
             throw new CorruptedStringExpressionException();
         }
 
-        $this->_integer     = $integer;
-        $this->_numerator   = $numerator;
-        $this->_denominator = $denominator;
+        $this->integer     = $integer;
+        $this->numerator   = $numerator;
+        $this->denominator = $denominator;
 
 
     }
@@ -106,7 +106,7 @@ class StringCreationExpression
      * @param string $part
      * @return Integer|NULL
      */
-    private function _getIntegerFromData(array $data, $part) {
+    private function getIntegerFromData(array $data, $part) {
 
         if(TRUE === isset($data[$part][0]) && ($data[$part][0] != "" || $data[$part][0] != 0)) {
             return new Integer((int) $data[$part][0]);
@@ -145,7 +145,7 @@ class StringCreationExpression
      * @return Integer
      */
     public function numerator() {
-        return $this->_numerator;
+        return $this->numerator;
     }
 
     /**
@@ -153,7 +153,7 @@ class StringCreationExpression
      * @return Integer
      */
     public function denominator() {
-        return $this->_denominator;
+        return $this->denominator;
     }
 
     /**
@@ -161,7 +161,7 @@ class StringCreationExpression
      * @return Integer
      */
     public function integer() {
-        return $this->_integer;
+        return $this->integer;
     }
 
     /**
@@ -170,7 +170,7 @@ class StringCreationExpression
      */
     public function rawExpression()
     {
-        return $this->_rawExpression;
+        return $this->rawExpression;
     }
 
 }

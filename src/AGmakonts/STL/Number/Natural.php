@@ -13,7 +13,7 @@ class Natural extends Integer
     /* (non-PHPdoc)
      * @see \AGmakonts\STL\Number\Real::__construct()
      */
-    public function __construct($number)
+    public function _construct($number)
     {
 
         $value = filter_var($number, FILTER_VALIDATE_INT, ['options' => ['min_range' => 0]]);
@@ -26,6 +26,8 @@ class Natural extends Integer
         parent::__construct($value);
 
     }
+
+
 
 
     /* (non-PHPdoc)

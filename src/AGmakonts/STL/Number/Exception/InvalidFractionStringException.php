@@ -10,7 +10,7 @@ namespace AGmakonts\STL\Number\Exception;
 class InvalidFractionStringException extends \InvalidArgumentException {
 
 
-	public function __construct($expression, $description)
+	public function _construct($expression, $description)
 	{
 		$message = "Expression '%s' cannpt be converted to valid Fraction. Reason: %s.";
 

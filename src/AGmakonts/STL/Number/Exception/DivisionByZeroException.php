@@ -8,7 +8,7 @@ namespace AGmakonts\STL\Number\Exception;
  */
 class DivisionByZeroException extends \BadMethodCallException
 {
-	public function __construct()
+	public function _construct()
 	{
 
 	    $this->message = "Division by zero is forbidden - universe could collapse";

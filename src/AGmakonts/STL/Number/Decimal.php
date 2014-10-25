@@ -32,9 +32,9 @@ class Decimal implements NumberInterface
 
     /**
      */
-    function __construct (Integer $numerator, Natural $denumerator, Integer $precision = NULL)
+    function _construct (Integer $numerator, Natural $denumerator, Integer $precision = NULL)
     {
-        $this->_numerator = $numerator;
+        $this->numerator = $numerator;
 
         if(NULL !== $precision) {
 
@@ -45,18 +45,24 @@ class Decimal implements NumberInterface
             $tempReal->divide($tempDivider->power($precision))->round(RoundingMode::get(RoundingMode::HALF_DOWN));
 
 
-            $this->_denominator = $tempReal;
-            $this->_precision   = $precision;
+            $this->denominator = $tempReal;
+            $this->precision   = $precision;
 
         } else {
 
-            $this->_denominator = $denumerator;
-            $this->_precision   = Integer::createFrom($denumerator->getDigitCount());
+            $this->denominator = $denumerator;
+            $this->precision   = Integer::createFrom($denumerator->getDigitCount());
 
         }
 
 
     }
+
+    static public function get()
+    {
+        // TODO: Implement get() method.
+    }
+
 
 
 
@@ -214,7 +220,7 @@ class Decimal implements NumberInterface
      */
     public function numerator ()
     {
-        return $this->_numerator;
+        return $this->numerator;
     }
 
     /**
@@ -223,7 +229,7 @@ class Decimal implements NumberInterface
      */
     public function denominator ()
     {
-        return $this->_denominator;
+        return $this->denominator;
     }
 
     /**
@@ -232,14 +238,14 @@ class Decimal implements NumberInterface
      */
     public function precision ()
     {
-        return $this->_precision;
+        return $this->precision;
     }
 
 
     /* (non-PHPdoc)
      * @see \AGmakonts\STL\SimpleTypeInterface::__toString()
      */
-    public function __toString() {
+    public function _toString() {
 
         return $this->value();
 

@@ -19,7 +19,7 @@ class String extends AbstractSimpleType implements StringInterface
 
     private $isEmpty = FALSE;
 
-    protected function __construct(array $value)
+    protected function _construct(array $value)
     {
         $value = $value[0];
 
@@ -31,11 +31,11 @@ class String extends AbstractSimpleType implements StringInterface
             $value = $value->value();
         }
 
-        $this->_value = $value;
+        $this->value = $value;
 
         if(NULL === $value || TRUE === ctype_space($value)) {
-            $this->_isEmpty = TRUE;
-            $this->_value = "";
+            $this->isEmpty = TRUE;
+            $this->value = "";
         }
 
     }
@@ -188,7 +188,7 @@ class String extends AbstractSimpleType implements StringInterface
 
     public function assertIsEmpty()
     {
-        return $this->_isEmpty;
+        return $this->isEmpty;
     }
 
     /* (non-PHPdoc)
@@ -196,13 +196,13 @@ class String extends AbstractSimpleType implements StringInterface
      */
     public function value ()
     {
-        return $this->_value;
+        return $this->value;
 
     }
     /* (non-PHPdoc)
      * @see \AGmakonts\STL\SimpleTypeInterface::__toString()
      */
-    public function __toString() {
+    public function _toString() {
 
         return $this->value();
 

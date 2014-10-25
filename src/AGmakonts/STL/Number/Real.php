@@ -26,7 +26,7 @@ class Real implements NumberInterface
      * @param float $number
      * @throws InvalidValueException
      */
-    public function __construct ($number)
+    public function _construct ($number)
     {
         $value = filter_var($number, FILTER_VALIDATE_FLOAT);
 
@@ -35,8 +35,14 @@ class Real implements NumberInterface
             throw new InvalidValueException($number, ['FLOAT']);
         }
 
-        $this->_value = (float) $value;
+        $this->value = (float) $value;
     }
+
+    static public function get()
+    {
+        // TODO: Implement get() method.
+    }
+
 
     /*
      * (non-PHPdoc)
@@ -44,7 +50,7 @@ class Real implements NumberInterface
      */
     public function value ()
     {
-        return $this->_value;
+        return $this->value;
     }
 
     /*
@@ -53,7 +59,7 @@ class Real implements NumberInterface
      */
     public function assertIsEqualTo (NumberInterface $number)
     {
-        return $this->_compare($number, ComparisonOperator::get(ComparisonOperator::EQUAL));
+        return $this->compare($number, ComparisonOperator::get(ComparisonOperator::EQUAL));
     }
 
     /*
@@ -62,7 +68,7 @@ class Real implements NumberInterface
      */
     public function assertIsGreaterThan (NumberInterface $number)
     {
-        return $this->_compare($number, ComparisonOperator::get(ComparisonOperator::GREATER));
+        return $this->compare($number, ComparisonOperator::get(ComparisonOperator::GREATER));
     }
 
 
@@ -71,7 +77,7 @@ class Real implements NumberInterface
      */
     public function assertIsGreaterOrEqualTo (NumberInterface $number)
     {
-        return $this->_compare($number, ComparisonOperator::get(ComparisonOperator::GREATER_EQUAL));
+        return $this->compare($number, ComparisonOperator::get(ComparisonOperator::GREATER_EQUAL));
 
     }
 
@@ -81,7 +87,7 @@ class Real implements NumberInterface
      */
     public function assertIsSmallerThan (NumberInterface $number)
     {
-        return $this->_compare($number, ComparisonOperator::get(ComparisonOperator::SMALLER));
+        return $this->compare($number, ComparisonOperator::get(ComparisonOperator::SMALLER));
     }
 
 
@@ -91,7 +97,7 @@ class Real implements NumberInterface
      */
     public function assertIsSmallerOrEqualTo (NumberInterface $number)
     {
-        return $this->_compare($number, ComparisonOperator::get(ComparisonOperator::SMALLER_EQUAL));
+        return $this->compare($number, ComparisonOperator::get(ComparisonOperator::SMALLER_EQUAL));
 
     }
 
@@ -102,7 +108,7 @@ class Real implements NumberInterface
      * @param ComparisonOperator $operator
      * @return boolean
      */
-    private function _compare(NumberInterface $number, ComparisonOperator $operator)
+    private function compare(NumberInterface $number, ComparisonOperator $operator)
     {
         $scale = max(strlen((string) $this->value()), strlen((string) $number->value()));
 
@@ -212,7 +218,7 @@ class Real implements NumberInterface
      */
     public function assertIsPositive()
     {
-        return boolval($this->_getSign());
+        return boolval($this->getSign());
     }
 
     /**
@@ -230,7 +236,7 @@ class Real implements NumberInterface
      *
      * @return integer
      */
-    private function _getSign()
+    private function getSign()
     {
         return min(1, max(0, (is_nan($this->value()) || $this->value() == 0) ? 0 : $this->value() * INF));
     }
@@ -251,7 +257,7 @@ class Real implements NumberInterface
     /* (non-PHPdoc)
      * @see \AGmakonts\STL\SimpleTypeInterface::__toString()
      */
-    public function __toString() {
+    public function _toString() {
 
         return $this->value();
 

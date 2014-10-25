@@ -9,7 +9,7 @@ namespace AGmakonts\STL\Number\Exception;
  */
 class CorruptedStringExpressionException extends \BadMethodCallException
 {
-	public function __construct()
+	public function _construct()
 	{
 		$this->message = 'String expression is corrupted';
 	}

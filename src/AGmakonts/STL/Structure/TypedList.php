@@ -11,6 +11,12 @@ class TypedList implements SimpleTypeInterface,
 {
     private $elements;
 
+    static public function get()
+    {
+        // TODO: Implement get() method.
+    }
+
+
     /**
      * (PHP 5 &gt;= 5.0.0)<br/>
      * Return the current element
@@ -83,7 +89,7 @@ class TypedList implements SimpleTypeInterface,
     /**
      * @return mixed
      */
-    public function __toString()
+    public function _toString()
     {
         // TODO: Implement __toString() method.
     }

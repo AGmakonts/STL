@@ -47,7 +47,7 @@ class Month implements SimpleTypeInterface
      * @param \AGmakonts\STL\Number\Integer $month
      *
      */
-    public function __construct(Integer $month = NULL)
+    public function _construct(Integer $month = NULL)
     {
         $date = new \DateTime();
 
@@ -62,11 +62,17 @@ class Month implements SimpleTypeInterface
             throw new InvalidMonthException($month);
         }
 
-        $this->_month = $month;
+        $this->month = $month;
 
-        $this->_name = new String($date->format("F"));
+        $this->name = new String($date->format("F"));
 
     }
+
+    static public function get()
+    {
+        // TODO: Implement get() method.
+    }
+
 
     /**
      * @return mixed
@@ -81,7 +87,7 @@ class Month implements SimpleTypeInterface
      */
     public function name()
     {
-        return $this->_name;
+        return $this->name;
     }
 
     /**
@@ -89,13 +95,13 @@ class Month implements SimpleTypeInterface
      */
     public function month()
     {
-        return $this->_month;
+        return $this->month;
     }
 
     /**
      * @return string
      */
-    public function __toString()
+    public function _toString()
     {
         return $this->name()->value();
     }

@@ -6,7 +6,6 @@ use AGmakonts\STL\String\String;
 use AGmakonts\STL\Structure\Exception\InvalidElementException;
 use AGmakonts\STL\Structure\Exception\UnknownTypeException;
 use AGmakonts\STL\Number\Natural;
-use JsonSchema\Constraints\Type;
 
 /**
  *
@@ -40,7 +39,7 @@ class TypedArray implements SimpleTypeInterface,
      * @param \AGmakonts\STL\Number\Natural $size
      * @param                               $elements
      */
-    public function __construct($type, Natural $size, $elements)
+    public function _construct($type, Natural $size, $elements)
     {
         if(FALSE === class_exists($type)) {
             throw new UnknownTypeException($type);
@@ -51,27 +50,33 @@ class TypedArray implements SimpleTypeInterface,
             $elements = [$elements];
         }
 
-        $this->_addElementsFromIterator($elements);
+        $this->addElementsFromIterator($elements);
         
-        $this->_type = new String($type);
-        $this->_size = $size;
+        $this->type = new String($type);
+        $this->size = $size;
 
 
     }
 
-    private function _addElementsFromIterator($elements)
+    static public function get()
+    {
+        // TODO: Implement get() method.
+    }
+
+
+    private function addElementsFromIterator($elements)
     {
         $temp = [];
 
         foreach($elements as $element) {
-            $temp[] = $this->_validatedElement($element);
+            $temp[] = $this->validatedElement($element);
         }
 
-        $this->_elements = \SplFixedArray::fromArray($temp);
+        $this->elements = \SplFixedArray::fromArray($temp);
         unset($temp);
     }
 
-    private function _validatedElement($element)
+    private function validatedElement($element)
     {
         if(FALSE === is_object($element) ||
            get_class($element) !== $this->type()) {
@@ -88,7 +93,7 @@ class TypedArray implements SimpleTypeInterface,
      */
     public function expandBy(Natural $size)
     {
-        $this->_elements->setSize($this->_elements->getSize() + $size->value());
+        $this->elements->setSize($this->elements->getSize() + $size->value());
     }
 
     public function merge(TypedArray $array)
@@ -117,7 +122,7 @@ class TypedArray implements SimpleTypeInterface,
      */
     public function type()
     {
-        return $this->_type;
+        return $this->type;
     }
 
     /**
@@ -135,7 +140,7 @@ class TypedArray implements SimpleTypeInterface,
     
     public function size()
     {
-        return $this->_size;
+        return $this->size;
     }
 
     /**
@@ -155,7 +160,7 @@ class TypedArray implements SimpleTypeInterface,
      * @see \AGmakonts\STL\SimpleTypeInterface::__toString()
      *
      */
-    public function __toString ()
+    public function _toString ()
     {
 
     }

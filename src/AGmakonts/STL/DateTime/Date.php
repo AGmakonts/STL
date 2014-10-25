@@ -11,12 +11,18 @@ class Date implements SimpleTypeInterface
     private $month;
     private $day;
 
+    static public function get()
+    {
+        // TODO: Implement get() method.
+    }
+
+
     /**
      * @return mixed
      */
     public function day()
     {
-        return $this->_day;
+        return $this->day;
     }
 
     /**
@@ -24,7 +30,7 @@ class Date implements SimpleTypeInterface
      */
     public function month()
     {
-        return $this->_month;
+        return $this->month;
     }
 
     /**
@@ -32,7 +38,7 @@ class Date implements SimpleTypeInterface
      */
     public function year()
     {
-        return $this->_year;
+        return $this->year;
     }
 
 
@@ -47,7 +53,7 @@ class Date implements SimpleTypeInterface
     /**
      * @return mixed
      */
-    public function __toString()
+    public function _toString()
     {
         // TODO: Implement __toString() method.
     }

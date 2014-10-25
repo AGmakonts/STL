@@ -12,7 +12,7 @@ class InvalidValueException extends \InvalidArgumentException
 	/* (non-PHPdoc)
      * @see InvalidArgumentException::__construct()
      */
-    public function __construct ($value, array $allowedTypes)
+    public function _construct ($value, array $allowedTypes)
     {
         $message = "Value '%s' has invalid type. Allowed types are: %s";
 
