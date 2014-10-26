@@ -3,9 +3,9 @@
 namespace AGmakonts\STL\String;
 
 use AGmakonts\STL\AbstractSimpleType;
+use AGmakonts\STL\Number\Integer;
 use AGmakonts\STL\Number\Natural;
 use AGmakonts\STL\String\Exception\InvalidStringValueException;
-use AGmakonts\STL\Number\Integer;
 
 /**
  *
@@ -23,19 +23,19 @@ class String extends AbstractSimpleType implements StringInterface
     {
         $value = $value[0];
 
-        if(FALSE === is_string($value) && FALSE === ($value instanceof StringInterface) && NULL !== $value) {
+        if (FALSE === is_string($value) && FALSE === ($value instanceof StringInterface) && NULL !== $value) {
             throw new InvalidStringValueException($value);
         }
 
-        if($value instanceof StringInterface) {
+        if ($value instanceof StringInterface) {
             $value = $value->value();
         }
 
         $this->value = $value;
 
-        if(NULL === $value || TRUE === ctype_space($value)) {
+        if (NULL === $value || TRUE === ctype_space($value)) {
             $this->isEmpty = TRUE;
-            $this->value   = '';
+            $this->value = '';
         }
 
     }
@@ -44,7 +44,7 @@ class String extends AbstractSimpleType implements StringInterface
     {
         $params = func_get_args();
 
-        if(1 !== count($params)) {
+        if (1 !== count($params)) {
             throw new \InvalidArgumentException('String value can be composed of only one element');
         }
 
@@ -94,8 +94,8 @@ class String extends AbstractSimpleType implements StringInterface
 
 
     /**
-     * @param Natural         $length
-     * @param StringInterface $ellipsis
+     * @param Natural              $length
+     * @param null|StringInterface $ellipsis
      * @return StringInterface
      */
     public function truncate(Natural $length, StringInterface $ellipsis = NULL)
@@ -103,14 +103,14 @@ class String extends AbstractSimpleType implements StringInterface
         /**
          * Create empty ellipsis for unified length calculations
          */
-        if(NULL === $ellipsis) {
-            $ellipsis = String::get();
+        if (NULL === $ellipsis) {
+            $ellipsis = self::get();
         }
 
         /**
          * If desired length is greater than string itself do nothing
          */
-        if(TRUE === $length->assertIsGreaterOrEqualTo($this->length())) {
+        if (TRUE === $length->assertIsGreaterOrEqualTo($this->length())) {
             return $this;
         }
 
@@ -124,8 +124,9 @@ class String extends AbstractSimpleType implements StringInterface
 
             $testedCharacter = $this->charAtPosition(new Natural($i));
 
-            if(TRUE === $testedCharacter->assertIsEmpty()) {
-                return $this->substr(new Integer(0), new Integer($i-1))->concat($ellipsis);
+            if (TRUE === $testedCharacter->assertIsEmpty()) {
+                return $this->substr(new Integer(0), new Integer($i - 1))
+                            ->concat($ellipsis);
             }
 
             unset($testedCharacter);
@@ -178,7 +179,7 @@ class String extends AbstractSimpleType implements StringInterface
      */
     public function substr(Integer $start, Integer $length = NULL)
     {
-        if(NULL !== $length) {
+        if (NULL !== $length) {
             $length = $length->value();
         }
 
@@ -193,15 +194,17 @@ class String extends AbstractSimpleType implements StringInterface
     /* (non-PHPdoc)
      * @see \AGmakonts\STL\String\StringInterface::value()
      */
-    public function value ()
+    public function value()
     {
         return $this->value;
 
     }
+
     /* (non-PHPdoc)
      * @see \AGmakonts\STL\SimpleTypeInterface::__toString()
      */
-    public function _toString() {
+    public function _toString()
+    {
 
         return $this->value();
 
@@ -217,10 +220,6 @@ class String extends AbstractSimpleType implements StringInterface
         return $this->substr($position->subtract($one), $one);
 
     }
-
-
-
-
 
 
 }
