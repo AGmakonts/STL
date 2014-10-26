@@ -9,12 +9,12 @@ namespace AGmakonts\STL\Structure\Exception;
 class UnknownTypeException extends \InvalidArgumentException
 {
     
-	public function __construct($desiredType) {
-		
-	    $this->message = sprintf("Type '%s' doesn't exist!", $desiredType);
+    public function __construct($desiredType) {
+
+        $this->message = sprintf("Type '%s' doesn't exist!", $desiredType);
 
 
-	}
+    }
 
 }
 

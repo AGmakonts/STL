@@ -9,7 +9,7 @@ namespace AGmakonts\STL\Number\Exception;
 class InvalidValueException extends \InvalidArgumentException
 {
 
-	/* (non-PHPdoc)
+    /* (non-PHPdoc)
      * @see InvalidArgumentException::__construct()
      */
     public function __construct ($value, array $allowedTypes)

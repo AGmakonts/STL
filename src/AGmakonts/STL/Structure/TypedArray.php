@@ -164,7 +164,7 @@ class TypedArray implements SimpleTypeInterface,
     {
 
     }
-	/* (non-PHPdoc)
+    /* (non-PHPdoc)
      * @see ArrayAccess::offsetExists()
      */
     public function offsetExists ($offset)
@@ -173,7 +173,7 @@ class TypedArray implements SimpleTypeInterface,
         
     }
 
-	/* (non-PHPdoc)
+    /* (non-PHPdoc)
      * @see ArrayAccess::offsetGet()
      */
     public function offsetGet ($offset)
@@ -182,7 +182,7 @@ class TypedArray implements SimpleTypeInterface,
         
     }
 
-	/* (non-PHPdoc)
+    /* (non-PHPdoc)
      * @see ArrayAccess::offsetSet()
      */
     public function offsetSet ($offset, $value)
@@ -195,7 +195,7 @@ class TypedArray implements SimpleTypeInterface,
         
     }
 
-	/* (non-PHPdoc)
+    /* (non-PHPdoc)
      * @see ArrayAccess::offsetUnset()
      */
     public function offsetUnset ($offset)
@@ -203,7 +203,7 @@ class TypedArray implements SimpleTypeInterface,
         // TODO Auto-generated method stub
         
     }
-	/* (non-PHPdoc)
+    /* (non-PHPdoc)
      * @see Iterator::current()
      */
     public function current ()
@@ -212,7 +212,7 @@ class TypedArray implements SimpleTypeInterface,
         
     }
 
-	/* (non-PHPdoc)
+    /* (non-PHPdoc)
      * @see Iterator::key()
      */
     public function key ()
@@ -221,7 +221,7 @@ class TypedArray implements SimpleTypeInterface,
         
     }
 
-	/* (non-PHPdoc)
+    /* (non-PHPdoc)
      * @see Iterator::next()
      */
     public function next ()
@@ -230,7 +230,7 @@ class TypedArray implements SimpleTypeInterface,
         
     }
 
-	/* (non-PHPdoc)
+    /* (non-PHPdoc)
      * @see Iterator::rewind()
      */
     public function rewind ()
@@ -239,7 +239,7 @@ class TypedArray implements SimpleTypeInterface,
         
     }
 
-	/* (non-PHPdoc)
+    /* (non-PHPdoc)
      * @see Iterator::valid()
      */
     public function valid ()
