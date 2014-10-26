@@ -15,8 +15,12 @@ interface SimpleTypeInterface
     public function value();
 
     /**
-     * @return mixed
+     * @return string
      */
     public function _toString();
+
+    /**
+     * @return SimpleTypeInterface
+     */
     static public function get();
 }
