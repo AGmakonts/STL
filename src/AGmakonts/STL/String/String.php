@@ -94,10 +94,9 @@ class String extends AbstractSimpleType implements StringInterface
 
 
     /**
-     * (non-PHPdoc)
-     *
-     * @see \AGmakonts\STL\String\StringInterface::truncate()
-     *
+     * @param Natural         $length
+     * @param StringInterface $ellipsis
+     * @return StringInterface
      */
     public function truncate(Natural $length, StringInterface $ellipsis = NULL)
     {
@@ -105,7 +104,7 @@ class String extends AbstractSimpleType implements StringInterface
          * Create empty ellipsis for unified length calculations
          */
         if(NULL === $ellipsis) {
-            $ellipsis = static::get();
+            $ellipsis = String::get();
         }
 
         /**

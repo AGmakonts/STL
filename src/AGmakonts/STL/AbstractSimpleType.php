@@ -12,6 +12,18 @@ namespace AGmakonts\STL;
 abstract class AbstractSimpleType implements SimpleTypeInterface
 {
 
+    /**
+     * @var array Container for all instances of Simple Types.
+     *            Instances are stored in a two-dimensional
+     *            array with following structure:
+     *            [
+     *                  [TYPE CLASS NAME] => [
+     *                                              VALUE => INSTANCE
+     *                                       ]
+     *            ]
+     *
+     *
+     */
     private static $instanceMap = [];
 
     /**
@@ -36,6 +48,7 @@ abstract class AbstractSimpleType implements SimpleTypeInterface
                 $value = [$value];
             }
 
+            /** @var string $type */
             self::$instanceMap[$type][$extractedValue] = new $type($value);
         }
 
@@ -46,7 +59,6 @@ abstract class AbstractSimpleType implements SimpleTypeInterface
     abstract public function extractedValue();
 
     /**
-     * @param $value
      * @return string
      */
     static public function extractValue()
