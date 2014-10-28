@@ -38,7 +38,7 @@ abstract class AbstractValueObject implements ValueObjectInterface
      */
     final static protected function getInstanceForValue($value)
     {
-        /* @var $type AbstractSimpleType */
+        /* @var $type AbstractValueObject */
         $type           = get_called_class();
         $extractedValue = self::extractValue($value);
 
@@ -89,7 +89,7 @@ abstract class AbstractValueObject implements ValueObjectInterface
      */
     static private function processSimpleValue($value)
     {
-        if($value instanceof AbstractSimpleType) {
+        if($value instanceof AbstractValueObject) {
             return $value->extractedValue();
         }
 
