@@ -35,7 +35,7 @@ class String extends AbstractSimpleType implements StringInterface
 
         if (NULL === $value || TRUE === ctype_space($value)) {
             $this->isEmpty = TRUE;
-            $this->value = '';
+            $this->value   = '';
         }
 
     }
@@ -238,7 +238,4 @@ class String extends AbstractSimpleType implements StringInterface
         return $this->substr($position->subtract($one), $one);
 
     }
-
-
 }
-
