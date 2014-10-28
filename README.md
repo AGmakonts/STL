@@ -10,6 +10,15 @@ a set of classes that will serve as a object oriented implementation of basic da
 common tasks. One of the main features of STL is that all objects have one instance per value `String::get('Test') === String::get('Test')`. Thanks to that approach
 it is easy to store objects in for example `SPLObjectStorage` or similar containers that depend od object hash.
 
+All objects are immutable - this is required because instances are shared.
+
+Quick start
+-----------
+
+    //Create or get instance
+    $string = String::get('String value');
+    
+
 
 Roadmap
 -------
