@@ -40,13 +40,22 @@ class String extends AbstractSimpleType implements StringInterface
 
     }
 
+    /**
+     * @return \AGmakonts\STL\String\StringInterface
+     */
     static public function get()
     {
         $params = func_get_args();
 
-        if (1 !== count($params)) {
+        $paramsCount = count($params);
+
+        if (1 < $paramsCount) {
             throw new \InvalidArgumentException('String value can be composed of only one element');
+        } elseif (0 === $paramsCount) {
+            $params[0] = "";
         }
+
+
 
         return self::getInstanceForValue($params[0]);
     }
@@ -166,9 +175,13 @@ class String extends AbstractSimpleType implements StringInterface
      * @see \AGmakonts\STL\String\StringInterface::concat()
      *
      */
-    public function concat(StringInterface $string)
+    public function concat(StringInterface $string, StringInterface $glue = NULL)
     {
-        return static::get($this->value() . $string->value());
+        if(NULL === $glue) {
+            $glue = self::get();
+        }
+
+        return self::get($this->value() . $glue->value() . $string->value());
     }
 
     /**
@@ -183,7 +196,7 @@ class String extends AbstractSimpleType implements StringInterface
             $length = $length->value();
         }
 
-        return static::get(substr($this->value(), $start->value(), $length));
+        return self::get(substr($this->value(), $start->value(), $length));
     }
 
     public function assertIsEmpty()
