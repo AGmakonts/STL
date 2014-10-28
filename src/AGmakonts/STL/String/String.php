@@ -67,7 +67,7 @@ class String extends AbstractSimpleType implements StringInterface
 
 
     /**
-     * @return String
+     * @return \AGmakonts\STL\String\String
      */
     public function uppercase()
     {
@@ -77,7 +77,7 @@ class String extends AbstractSimpleType implements StringInterface
     }
 
     /**
-     * @return String
+     * @return \AGmakonts\STL\String\String
      */
     public function lowercase()
     {
@@ -85,7 +85,7 @@ class String extends AbstractSimpleType implements StringInterface
     }
 
     /**
-     * @return String
+     * @return \AGmakonts\STL\String\String
      */
     public function reverse()
     {
@@ -96,7 +96,7 @@ class String extends AbstractSimpleType implements StringInterface
     /**
      * @param Natural              $length
      * @param null|StringInterface $ellipsis
-     * @return String
+     * @return \AGmakonts\STL\String\String
      */
     public function truncate(Natural $length, StringInterface $ellipsis = NULL)
     {
