@@ -81,6 +81,8 @@ abstract class AbstractValueObject implements ValueObjectInterface
         }
 
         return implode(':', $value);
+
+
     }
 
     /**
@@ -93,7 +95,7 @@ abstract class AbstractValueObject implements ValueObjectInterface
             return $value->extractedValue();
         }
 
-        return sha1($value);
+        return sha1(strval($value));
     }
 
 

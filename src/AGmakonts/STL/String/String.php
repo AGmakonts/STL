@@ -38,26 +38,16 @@ class String extends AbstractValueObject implements StringInterface
             $this->value   = '';
         }
 
+
     }
 
     /**
+     * @param string $string
      * @return \AGmakonts\STL\String\String
      */
-    static public function get()
+    static public function get($string)
     {
-        $params = func_get_args();
-
-        $paramsCount = count($params);
-
-        if (1 < $paramsCount) {
-            throw new \InvalidArgumentException('String value can be composed of only one element');
-        } elseif (0 === $paramsCount) {
-            $params[0] = '';
-        }
-
-
-
-        return self::getInstanceForValue($params[0]);
+        return self::getInstanceForValue($string);
     }
 
     public function extractedValue()

@@ -19,8 +19,4 @@ interface ValueObjectInterface
      */
     public function _toString();
 
-    /**
-     * @return ValueObjectInterface
-     */
-    static public function get();
 }

@@ -5,3 +5,4 @@ STL
 master: [![Build Status](https://travis-ci.org/AGmakonts/STL.svg?branch=master)](https://travis-ci.org/AGmakonts/STL) development: [![Build Status](https://travis-ci.org/AGmakonts/STL.svg?branch=development)](https://travis-ci.org/AGmakonts/STL)
 
 Simple Type Lib for PHP
+

@@ -74,5 +74,11 @@ interface StringInterface extends ValueObjectInterface
 
     public function converted();
 
+    /**
+     * @param $string
+     * @return StringInterface
+     */
+    static public function get($string);
+
 
 }
