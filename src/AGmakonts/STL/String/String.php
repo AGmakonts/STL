@@ -67,7 +67,7 @@ class String extends AbstractSimpleType implements StringInterface
 
 
     /**
-     * @return StringInterface
+     * @return String
      */
     public function uppercase()
     {
@@ -77,10 +77,7 @@ class String extends AbstractSimpleType implements StringInterface
     }
 
     /**
-     * (non-PHPdoc)
-     *
-     * @see \AGmakonts\STL\String\StringInterface::lowercase()
-     *
+     * @return String
      */
     public function lowercase()
     {
@@ -88,10 +85,7 @@ class String extends AbstractSimpleType implements StringInterface
     }
 
     /**
-     * (non-PHPdoc)
-     *
-     * @see \AGmakonts\STL\String\StringInterface::reverse()
-     *
+     * @return String
      */
     public function reverse()
     {
@@ -102,7 +96,7 @@ class String extends AbstractSimpleType implements StringInterface
     /**
      * @param Natural              $length
      * @param null|StringInterface $ellipsis
-     * @return StringInterface
+     * @return String
      */
     public function truncate(Natural $length, StringInterface $ellipsis = NULL)
     {
@@ -177,7 +171,7 @@ class String extends AbstractSimpleType implements StringInterface
      * @param StringInterface $string
      * @param null|StringInterface $glue
      *
-     * @return \AGmakonts\STL\String\StringInterface
+     * @return \AGmakonts\STL\String\String
      */
     public function concat(StringInterface $string, StringInterface $glue = NULL)
     {
@@ -196,7 +190,7 @@ class String extends AbstractSimpleType implements StringInterface
      * @param \AGmakonts\STL\Number\Integer $start
      * @param null|\AGmakonts\STL\Number\Integer $length
      *
-     * @return \AGmakonts\STL\String\StringInterface
+     * @return \AGmakonts\STL\String\String
      */
     public function substr(Integer $start, Integer $length = NULL)
     {
