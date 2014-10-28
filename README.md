@@ -12,6 +12,7 @@ it is easy to store objects in for example `SPLObjectStorage` or similar contain
 
 All objects are immutable - this is required because instances are shared.
 
+
 Quick start
 -----------
 
