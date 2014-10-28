@@ -9,7 +9,7 @@
 namespace AGmakonts\STL;
 
 
-abstract class AbstractSimpleType implements SimpleTypeInterface
+abstract class AbstractValueObject implements ValueObjectInterface
 {
 
     /**

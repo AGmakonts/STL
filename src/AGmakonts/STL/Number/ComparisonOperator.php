@@ -14,7 +14,8 @@ final class ComparisonOperator extends Enum
     const GREATER_EQUAL = "1|0";
     const SMALLER       = "-1";
     const SMALLER_EQUAL = "-1|0";
-    
+
+
     /**
      * 
      * @return array

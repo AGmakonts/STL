@@ -7,7 +7,7 @@ namespace AGmakonts\STL;
  * @author Adam
  *
  */
-interface SimpleTypeInterface
+interface ValueObjectInterface
 {
     /**
      * @return mixed
@@ -20,7 +20,7 @@ interface SimpleTypeInterface
     public function _toString();
 
     /**
-     * @return SimpleTypeInterface
+     * @return ValueObjectInterface
      */
     static public function get();
 }

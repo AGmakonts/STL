@@ -2,7 +2,7 @@
 
 namespace AGmakonts\STL\String;
 
-use AGmakonts\STL\AbstractSimpleType;
+use AGmakonts\STL\AbstractValueObject;
 use AGmakonts\STL\Number\Integer;
 use AGmakonts\STL\Number\Natural;
 use AGmakonts\STL\String\Exception\InvalidStringValueException;
@@ -12,7 +12,7 @@ use AGmakonts\STL\String\Exception\InvalidStringValueException;
  * @author Adam
  *
  */
-class String extends AbstractSimpleType implements StringInterface
+class String extends AbstractValueObject implements StringInterface
 {
 
     private $value;
@@ -209,8 +209,8 @@ class String extends AbstractSimpleType implements StringInterface
         return $this->isEmpty;
     }
 
-    /* (non-PHPdoc)
-     * @see \AGmakonts\STL\String\StringInterface::value()
+    /**
+     * @return string
      */
     public function value()
     {
@@ -218,8 +218,8 @@ class String extends AbstractSimpleType implements StringInterface
 
     }
 
-    /* (non-PHPdoc)
-     * @see \AGmakonts\STL\SimpleTypeInterface::__toString()
+    /**
+     * @return string
      */
     public function _toString()
     {
@@ -228,8 +228,10 @@ class String extends AbstractSimpleType implements StringInterface
 
     }
 
-    /* (non-PHPdoc)
-     * @see \AGmakonts\STL\String\StringInterface::getCharAtPosition()
+    /**
+     * @param Natural $position
+     *
+     * @return String
      */
     public function charAtPosition(Natural $position)
     {

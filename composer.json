@@ -10,7 +10,8 @@
     "license": "Apache-2.0",
     "require": {
         "php": ">=5.5",
-        "marc-mabe/php-enum": "1.2.0"
+        "marc-mabe/php-enum": "1.2.0",
+        "rhumsaa/uuid": "2.5"
     },
     "authors": [
         {

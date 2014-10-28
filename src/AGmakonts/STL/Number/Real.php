@@ -255,7 +255,7 @@ class Real implements NumberInterface
 
 
     /* (non-PHPdoc)
-     * @see \AGmakonts\STL\SimpleTypeInterface::__toString()
+     * @see \AGmakonts\STL\ValueObjectInterface::__toString()
      */
     public function _toString() {
 

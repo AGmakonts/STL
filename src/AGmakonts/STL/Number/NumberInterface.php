@@ -1,13 +1,13 @@
 <?php
 namespace AGmakonts\STL\Number;
 
-use AGmakonts\STL\SimpleTypeInterface;
+use AGmakonts\STL\ValueObjectInterface;
 /**
  *
  * @author adamgrabek
  *
  */
-interface NumberInterface extends SimpleTypeInterface
+interface NumberInterface extends ValueObjectInterface
 {
 
 

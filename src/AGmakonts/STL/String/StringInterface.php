@@ -2,14 +2,14 @@
 namespace AGmakonts\STL\String;
 
 use AGmakonts\STL\Number\Natural;
-use AGmakonts\STL\SimpleTypeInterface;
+use AGmakonts\STL\ValueObjectInterface;
 use AGmakonts\STL\Number\Integer;
 /**
  *
  * @author adamgrabek
  *
  */
-interface StringInterface extends SimpleTypeInterface
+interface StringInterface extends ValueObjectInterface
 {
     /**
      * @return Natural
@@ -18,8 +18,8 @@ interface StringInterface extends SimpleTypeInterface
 
     /**
      *
-     * @param Integer $start
-     * @param Integer $length
+     * @param \AGmakonts\STL\Number\Integer $start
+     * @param null|\AGmakonts\STL\Number\Integer $length
      *
      * @return StringInterface
      */
@@ -51,7 +51,7 @@ interface StringInterface extends SimpleTypeInterface
 
     /**
      *
-     * @param Natural $length
+     * @param \AGmakonts\STL\Number\Natural $length
      * @param StringInterface $ellipsis
      *
      * @return StringInterface
@@ -65,10 +65,14 @@ interface StringInterface extends SimpleTypeInterface
 
     /**
      *
-     * @param Natural $position
+     * @param \AGmakonts\STL\Number\Natural $position
      * @return StringInterface
      */
     public function charAtPosition(Natural $position);
+
+    public function padded(Integer $length, Padding $mode = NULL, StringInterface $fill);
+
+    public function converted();
 
 
 }
