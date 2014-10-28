@@ -172,7 +172,7 @@ class String extends AbstractSimpleType implements StringInterface
      * @see \AGmakonts\STL\String\StringInterface::concat()
      *
      * @param StringInterface $string
-     * @param StringInterface $glue
+     * @param null|StringInterface $glue
      *
      * @return \AGmakonts\STL\String\StringInterface
      */
@@ -191,7 +191,7 @@ class String extends AbstractSimpleType implements StringInterface
      * @see \AGmakonts\STL\String\StringInterface::substr()
      *
      * @param \AGmakonts\STL\Number\Integer $start
-     * @param \AGmakonts\STL\Number\Integer $length
+     * @param null|\AGmakonts\STL\Number\Integer $length
      *
      * @return \AGmakonts\STL\String\StringInterface
      */
