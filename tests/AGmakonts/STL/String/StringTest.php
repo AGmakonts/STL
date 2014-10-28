@@ -12,7 +12,9 @@ class StringTest extends PHPUnit_Framework_TestCase
 {
 
 
-
+    /**
+     * @covers ::get
+     */
     public function testGet()
     {
         $stringTest = \AGmakonts\STL\String\String::get("Testing string");
@@ -30,6 +32,9 @@ class StringTest extends PHPUnit_Framework_TestCase
 
     }
 
+    /**
+     * @covers ::uppercase
+     */
     public function testUppercase()
     {
         $string = \AGmakonts\STL\String\String::get("uppercase");
@@ -39,6 +44,9 @@ class StringTest extends PHPUnit_Framework_TestCase
         self::assertEquals('UPPERCASE', $uppercase->value());
     }
 
+    /**
+     * @covers ::lowercase
+     */
     public function testLowercase()
     {
         $string = \AGmakonts\STL\String\String::get("loWerCaSE");
@@ -48,6 +56,9 @@ class StringTest extends PHPUnit_Framework_TestCase
         self::assertEquals('lowercase', $lowercase->value());
     }
 
+    /**
+     * @covers ::reverse
+     */
     public function testReverse()
     {
         $string = \AGmakonts\STL\String\String::get("qwerty");
@@ -109,5 +120,81 @@ class StringTest extends PHPUnit_Framework_TestCase
 
         self::assertEquals(20, $string->length()->value());
     }
+
+    /**
+     * @covers ::concat
+     */
+    public function testConcatWithoutGlue()
+    {
+        $firstString = \AGmakonts\STL\String\String::get("First part");
+        $secondString = \AGmakonts\STL\String\String::get("second part");
+
+        self::assertEquals('First partsecond part', $firstString->concat($secondString)->value());
+    }
+
+    /**
+     * @covers ::concat
+     */
+    public function testConcatWithGlue()
+    {
+        $firstString = \AGmakonts\STL\String\String::get("First part");
+        $secondString = \AGmakonts\STL\String\String::get("second part");
+
+        $glue = \AGmakonts\STL\String\String::get(' - ');
+
+        self::assertEquals('First part - second part', $firstString->concat($secondString, $glue)->value());
+    }
+
+    /**
+     * @covers ::substr
+     */
+    public function testSubstr()
+    {
+        $string = \AGmakonts\STL\String\String::get('123456');
+
+        self::assertEquals('1234', $string->substr(new \AGmakonts\STL\Number\Integer(0), new \AGmakonts\STL\Number\Integer(4))->value());
+    }
+
+    /**
+     * @covers ::charAtPosition
+     */
+    public function testCharAtPosition()
+    {
+        $string = \AGmakonts\STL\String\String::get('asd');
+
+        self::assertEquals('s', $string->charAtPosition(new \AGmakonts\STL\Number\Natural(2))->value());
+    }
+
+    /**
+     * @covers ::value
+     */
+    public function testValue()
+    {
+        $string = \AGmakonts\STL\String\String::get('Alpha');
+
+        self::assertEquals('Alpha', $string->value());
+    }
+
+    /**
+     * @covers ::isEmpty
+     */
+    public function testAssertIsEmptyForNotEmpty()
+    {
+        $string = \AGmakonts\STL\String\String::get('Not empty');
+
+        self::assertFalse($string->isEmpty());
+    }
+
+    /**
+     * @covers ::isEmpty
+     */
+    public function testAssertIsEmptyForEmpty()
+    {
+        $string = \AGmakonts\STL\String\String::get('');
+
+        self::assertFalse($string->isEmpty());
+    }
+
+
 
 }

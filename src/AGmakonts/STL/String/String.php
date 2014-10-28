@@ -41,7 +41,7 @@ class String extends AbstractSimpleType implements StringInterface
     }
 
     /**
-     * @return \AGmakonts\STL\String\StringInterface
+     * @return \AGmakonts\STL\String\String
      */
     static public function get()
     {
@@ -130,7 +130,7 @@ class String extends AbstractSimpleType implements StringInterface
 
             $testedCharacter = $this->charAtPosition(new Natural($i));
 
-            if (TRUE === $testedCharacter->assertIsEmpty()) {
+            if (TRUE === $testedCharacter->isEmpty()) {
                 return $this->substr(new Integer(0), new Integer($i - 1))
                             ->concat($ellipsis);
             }
@@ -144,12 +144,15 @@ class String extends AbstractSimpleType implements StringInterface
     }
 
     /**
-     * (non-PHPdoc)
+     *
      *
      * @see \AGmakonts\STL\String\StringInterface::assertIsEqualTo()
      *
+     * @param StringInterface $string
+     *
+     * @return bool
      */
-    public function assertIsEqualTo(StringInterface $string)
+    public function equalTo(StringInterface $string)
     {
         return ($this->value() === $string->value());
     }
@@ -207,7 +210,7 @@ class String extends AbstractSimpleType implements StringInterface
     /**
      * @return bool
      */
-    public function assertIsEmpty()
+    public function isEmpty()
     {
         return $this->isEmpty;
     }

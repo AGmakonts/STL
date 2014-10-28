@@ -37,7 +37,7 @@ interface StringInterface extends SimpleTypeInterface
      * @param StringInterface $string
      * @return boolean
      */
-    public function assertIsEqualTo(StringInterface $string);
+    public function equalTo(StringInterface $string);
 
     /**
      * @return StringInterface
