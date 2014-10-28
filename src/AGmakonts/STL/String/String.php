@@ -240,4 +240,16 @@ class String extends AbstractValueObject implements StringInterface
         return $this->substr($position->subtract($one), $one);
 
     }
+
+    public function padded(Integer $length, Padding $mode = NULL, StringInterface $fill)
+    {
+        // TODO: Implement padded() method.
+    }
+
+    public function converted()
+    {
+        // TODO: Implement converted() method.
+    }
+
+
 }
