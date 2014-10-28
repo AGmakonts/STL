@@ -2,13 +2,10 @@
 <phpunit bootstrap="tests/bootstrap.php"
 		 colors="true" >
 	<testsuites>
-		<testsuite name="Number">
-			<directory>tests/AGmakonts/STL/Number</directory>
+		<testsuite name="STL">
+			<directory>tests/AGmakonts/STL</directory>
 
 		</testsuite>
-        <testsuite name="String">
-            <directory>tests/AGmakonts/STL/String</directory>
-        </testsuite>
 
 	</testsuites>
 </phpunit>

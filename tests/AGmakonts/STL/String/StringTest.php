@@ -5,7 +5,9 @@
  * Date: 2014-10-25
  * Time: 00:58
  */
-
+/**
+ * @coversDefaultClass \AGmakonts\STL\String\String
+ */
 class StringTest extends PHPUnit_Framework_TestCase
 {
 
@@ -54,7 +56,7 @@ class StringTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \AGmakonts\STL\String\String::truncate
+     * @covers ::truncate
      */
     public function testTruncateWithoutEllipsis()
     {
@@ -66,7 +68,7 @@ class StringTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \AGmakonts\STL\String\String::truncate
+     * @covers ::truncate
      */
     public function testTruncateWithEllipsis()
     {
@@ -78,7 +80,7 @@ class StringTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \AGmakonts\STL\String\String::truncate
+     * @covers ::truncate
      */
     public function testTruncateShortString()
     {
@@ -90,7 +92,7 @@ class StringTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \AGmakonts\STL\String\String::truncate
+     * @covers ::truncate
      */
     public function testTruncateShortStringWithEllipsis()
     {
@@ -109,4 +111,3 @@ class StringTest extends PHPUnit_Framework_TestCase
     }
 
 }
- 

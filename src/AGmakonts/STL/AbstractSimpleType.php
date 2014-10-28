@@ -56,6 +56,9 @@ abstract class AbstractSimpleType implements SimpleTypeInterface
 
     }
 
+    /**
+     * @return string
+     */
     abstract public function extractedValue();
 
     /**
@@ -96,7 +99,7 @@ abstract class AbstractSimpleType implements SimpleTypeInterface
 
     /**
      * @param $type
-     * @param $value
+     * @param string $value
      *
      * @return boolean
      */

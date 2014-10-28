@@ -52,7 +52,7 @@ class String extends AbstractSimpleType implements StringInterface
         if (1 < $paramsCount) {
             throw new \InvalidArgumentException('String value can be composed of only one element');
         } elseif (0 === $paramsCount) {
-            $params[0] = "";
+            $params[0] = '';
         }
 
 
@@ -67,10 +67,7 @@ class String extends AbstractSimpleType implements StringInterface
 
 
     /**
-     * (non-PHPdoc)
-     *
-     * @see \AGmakonts\STL\String\StringInterface::uppercase()
-     *
+     * @return StringInterface
      */
     public function uppercase()
     {
@@ -170,10 +167,14 @@ class String extends AbstractSimpleType implements StringInterface
     }
 
     /**
-     * (non-PHPdoc)
+     *
      *
      * @see \AGmakonts\STL\String\StringInterface::concat()
      *
+     * @param StringInterface $string
+     * @param StringInterface $glue
+     *
+     * @return \AGmakonts\STL\String\StringInterface
      */
     public function concat(StringInterface $string, StringInterface $glue = NULL)
     {
@@ -185,10 +186,14 @@ class String extends AbstractSimpleType implements StringInterface
     }
 
     /**
-     * (non-PHPdoc)
+     *
      *
      * @see \AGmakonts\STL\String\StringInterface::substr()
      *
+     * @param \AGmakonts\STL\Number\Integer $start
+     * @param \AGmakonts\STL\Number\Integer $length
+     *
+     * @return \AGmakonts\STL\String\StringInterface
      */
     public function substr(Integer $start, Integer $length = NULL)
     {
@@ -199,6 +204,9 @@ class String extends AbstractSimpleType implements StringInterface
         return self::get(substr($this->value(), $start->value(), $length));
     }
 
+    /**
+     * @return bool
+     */
     public function assertIsEmpty()
     {
         return $this->isEmpty;

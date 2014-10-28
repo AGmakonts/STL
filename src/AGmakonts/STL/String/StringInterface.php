@@ -20,6 +20,7 @@ interface StringInterface extends SimpleTypeInterface
      *
      * @param Integer $start
      * @param Integer $length
+     *
      * @return StringInterface
      */
     public function substr(Integer $start, Integer $length = NULL);
@@ -53,7 +54,7 @@ interface StringInterface extends SimpleTypeInterface
      * @param Natural $length
      * @param StringInterface $ellipsis
      *
-*@return StringInterface
+     * @return StringInterface
      */
     public function truncate(Natural $length, StringInterface $ellipsis = NULL);
 
