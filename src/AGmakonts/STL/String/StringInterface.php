@@ -1,7 +1,6 @@
 <?php
 namespace AGmakonts\STL\String;
 
-use AGmakonts\STL\Number\Natural;
 use AGmakonts\STL\ValueObjectInterface;
 use AGmakonts\STL\Number\Integer;
 /**
