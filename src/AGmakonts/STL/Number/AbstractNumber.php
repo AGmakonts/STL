@@ -10,7 +10,6 @@ namespace AGmakonts\STL\Number;
 
 
 use AGmakonts\STL\AbstractValueObject;
-use AGmakonts\STL\ValueObjectInterface;
 
 abstract class AbstractNumber extends AbstractValueObject
 {
@@ -26,7 +25,7 @@ abstract class AbstractNumber extends AbstractValueObject
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function value()
     {
@@ -41,13 +40,6 @@ abstract class AbstractNumber extends AbstractValueObject
         $this->value();
     }
 
-    /**
-     * @param $number
-     * @return ValueObjectInterface
-     */
-    static public function get($number)
-    {
-        return self::getInstanceForValue($number);
-    }
+
 
 } 

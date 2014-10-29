@@ -45,7 +45,7 @@ class String extends AbstractValueObject implements StringInterface
      * @param string $string
      * @return \AGmakonts\STL\String\String
      */
-    static public function get($string)
+    static public function get($string = '')
     {
         return self::getInstanceForValue($string);
     }
@@ -115,7 +115,7 @@ class String extends AbstractValueObject implements StringInterface
             $testedCharacter = $this->charAtPosition(new Natural($i));
 
             if (TRUE === $testedCharacter->isEmpty()) {
-                return $this->substr(new Integer(0), new Integer($i - 1))
+                return $this->substr(Integer::get(), Integer::get($i - 1))
                             ->concat($ellipsis);
             }
 
