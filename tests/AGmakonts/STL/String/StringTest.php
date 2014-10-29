@@ -7,6 +7,7 @@
  */
 /**
  * @coversDefaultClass \AGmakonts\STL\String\String
+ * @runTestsInSeparateProcesses
  */
 class StringTest extends PHPUnit_Framework_TestCase
 {
