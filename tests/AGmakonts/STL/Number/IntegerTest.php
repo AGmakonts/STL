@@ -9,7 +9,6 @@ class IntegerTest extends PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider subtractProvider
-     * @expectedException PHPUnit_Framework_Error
      */
     public function testSubtract($int1, $int2, $int3)
     {
