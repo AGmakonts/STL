@@ -114,7 +114,7 @@ class String extends AbstractValueObject implements StringInterface
 
         for($i = $finalLength->value(); $i >= 0; $i--) {
 
-            $testedCharacter = $this->charAtPosition(new Natural($i));
+            $testedCharacter = $this->charAtPosition(Integer::get($i));
 
             if(TRUE === $testedCharacter->isEmpty()) {
                 return $this->substr(Integer::get(), Integer::get($i - 1))
