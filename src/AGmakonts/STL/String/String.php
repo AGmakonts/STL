@@ -241,7 +241,7 @@ class String extends AbstractValueObject implements StringInterface
      */
     public function padded(Integer $length, Padding $mode = NULL, StringInterface $fill)
     {
-        // TODO: Implement padded() method.
+
     }
 
     public function converted()
