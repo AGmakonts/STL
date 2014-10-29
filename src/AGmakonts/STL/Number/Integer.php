@@ -38,7 +38,7 @@ class Integer extends AbstractNumber implements NumberInterface
      */
     public function subtract(NumberInterface $from)
     {
-        // TODO: Implement subtract() method.
+        return Integer::get($this->value() - $from->value());
     }
 
     /**
