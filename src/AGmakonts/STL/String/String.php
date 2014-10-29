@@ -121,6 +121,7 @@ class String extends AbstractValueObject implements StringInterface
                             ->concat($ellipsis);
             }
 
+
             unset($testedCharacter);
 
         }
@@ -222,7 +223,7 @@ class String extends AbstractValueObject implements StringInterface
     /**
      * @param \AGmakonts\STL\Number\Integer  $position
      *
-     * @return String
+     * @return \AGmakonts\STL\String\String
      */
     public function charAtPosition(Integer $position)
     {
