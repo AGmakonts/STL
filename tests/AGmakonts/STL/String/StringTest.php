@@ -130,8 +130,10 @@ class StringTest extends PHPUnit_Framework_TestCase
         $firstString = \AGmakonts\STL\String\String::get("First part");
         $secondString = \AGmakonts\STL\String\String::get("second part");
 
-        self::assertEquals('First partsecond part', $firstString->concat($secondString)->value());
+        self::assertEquals('First partsecond part', $firstString->concat($secondString)
+                                                                ->value());
     }
+
 
     /**
      * @covers ::concat
