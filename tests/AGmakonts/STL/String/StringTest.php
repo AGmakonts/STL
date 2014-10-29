@@ -73,7 +73,7 @@ class StringTest extends PHPUnit_Framework_TestCase
     {
         $string = \AGmakonts\STL\String\String::get("Long string that needs to be chopped down");
 
-        $shortString = $string->truncate(new \AGmakonts\STL\Number\Natural(14));
+        $shortString = $string->truncate(\AGmakonts\STL\Number\Integer::get(14));
 
         self::assertEquals('Long string', $shortString->value());
     }
@@ -85,7 +85,7 @@ class StringTest extends PHPUnit_Framework_TestCase
     {
         $string = \AGmakonts\STL\String\String::get("Long string that needs to be chopped down");
 
-        $shortString = $string->truncate(new \AGmakonts\STL\Number\Natural(16), \AGmakonts\STL\String\String::get("..."));
+        $shortString = $string->truncate(\AGmakonts\STL\Number\Integer::get(16), \AGmakonts\STL\String\String::get("..."));
 
         self::assertEquals('Long string...', $shortString->value());
     }
@@ -97,7 +97,7 @@ class StringTest extends PHPUnit_Framework_TestCase
     {
         $string = \AGmakonts\STL\String\String::get("Short String");
 
-        $shortString = $string->truncate(new \AGmakonts\STL\Number\Natural(50));
+        $shortString = $string->truncate(\AGmakonts\STL\Number\Integer::get(50));
 
         self::assertEquals('Short String', $shortString->value());
     }
@@ -109,7 +109,7 @@ class StringTest extends PHPUnit_Framework_TestCase
     {
         $string = \AGmakonts\STL\String\String::get("Short String");
 
-        $shortString = $string->truncate(new \AGmakonts\STL\Number\Natural(50), \AGmakonts\STL\String\String::get("..."));
+        $shortString = $string->truncate(\AGmakonts\STL\Number\Integer::get(50), \AGmakonts\STL\String\String::get("..."));
 
         self::assertEquals('Short String', $shortString->value());
     }
@@ -152,7 +152,7 @@ class StringTest extends PHPUnit_Framework_TestCase
     {
         $string = \AGmakonts\STL\String\String::get('123456');
 
-        self::assertEquals('1234', $string->substr(new \AGmakonts\STL\Number\Integer(0), new \AGmakonts\STL\Number\Integer(4))->value());
+        self::assertEquals('1234', $string->substr(\AGmakonts\STL\Number\Integer::get(),\AGmakonts\STL\Number\Integer::get(4))->value());
     }
 
     /**
@@ -162,7 +162,7 @@ class StringTest extends PHPUnit_Framework_TestCase
     {
         $string = \AGmakonts\STL\String\String::get('asd');
 
-        self::assertEquals('s', $string->charAtPosition(new \AGmakonts\STL\Number\Natural(2))->value());
+        self::assertEquals('s', $string->charAtPosition(\AGmakonts\STL\Number\Integer::get(2))->value());
     }
 
     /**

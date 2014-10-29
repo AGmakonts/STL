@@ -22,7 +22,8 @@ class Integer extends AbstractNumber implements NumberInterface
     }
 
     /**
-     * @param $number
+     * @param int $number
+     *
      * @return \AGmakonts\STL\Number\Integer
      */
     static public function get($number = 0)
@@ -30,36 +31,65 @@ class Integer extends AbstractNumber implements NumberInterface
         return self::getInstanceForValue($number);
     }
 
+    /**
+     * @param NumberInterface $from
+     *
+     * @return \AGmakonts\STL\Number\Integer
+     */
     public function subtract(NumberInterface $from)
     {
         // TODO: Implement subtract() method.
     }
 
+    /**
+     * @param NumberInterface $to
+     *
+     * @return \AGmakonts\STL\Number\Integer
+     */
     public function add(NumberInterface $to)
     {
         // TODO: Implement add() method.
     }
 
+    /**
+     * @param NumberInterface $by
+     * @return \AGmakonts\STL\Number\Integer
+     */
     public function divide(NumberInterface $by)
     {
         // TODO: Implement divide() method.
     }
 
+    /**
+     * @param NumberInterface $by
+     * @return \AGmakonts\STL\Number\Integer
+     */
     public function multiply(NumberInterface $by)
     {
         // TODO: Implement multiply() method.
     }
 
+    /**
+     * @param NumberInterface $of
+     * @return \AGmakonts\STL\Number\Integer
+     */
     public function power(NumberInterface $of)
     {
         // TODO: Implement power() method.
     }
 
+    /**
+     * @param NumberInterface $root
+     * @return \AGmakonts\STL\Number\Integer
+     */
     public function root(NumberInterface $root)
     {
         // TODO: Implement root() method.
     }
 
+    /**
+     * @return \AGmakonts\STL\Number\Integer
+     */
     public function factorial()
     {
         // TODO: Implement factorial() method.
@@ -100,16 +130,27 @@ class Integer extends AbstractNumber implements NumberInterface
         // TODO: Implement isOdd() method.
     }
 
+    /**
+     * @param NumberInterface $number
+     * @return \AGmakonts\STL\Number\Integer
+     */
     public function modulo(NumberInterface $number)
     {
         // TODO: Implement modulo() method.
     }
 
+    /**
+     * @return \AGmakonts\STL\Number\Integer
+     */
     public function absolute()
     {
         // TODO: Implement absolute() method.
     }
 
+    /**
+     * @param \AGmakonts\STL\Number\Integer $base
+     * @return \AGmakonts\STL\Number\Integer
+     */
     public function convertedToBase(Integer $base)
     {
         // TODO: Implement convertedToBase() method.

@@ -4,7 +4,6 @@ namespace AGmakonts\STL\String;
 
 use AGmakonts\STL\AbstractValueObject;
 use AGmakonts\STL\Number\Integer;
-use AGmakonts\STL\Number\Natural;
 use AGmakonts\STL\String\Exception\InvalidStringValueException;
 
 /**
@@ -23,19 +22,19 @@ class String extends AbstractValueObject implements StringInterface
     {
         $value = $value[0];
 
-        if (FALSE === is_string($value) && FALSE === ($value instanceof StringInterface) && NULL !== $value) {
+        if(FALSE === is_string($value) && FALSE === ($value instanceof StringInterface) && NULL !== $value) {
             throw new InvalidStringValueException($value);
         }
 
-        if ($value instanceof StringInterface) {
+        if($value instanceof StringInterface) {
             $value = $value->value();
         }
 
         $this->value = $value;
 
-        if (NULL === $value || TRUE === ctype_space($value)) {
+        if(NULL === $value || TRUE === ctype_space($value)) {
             $this->isEmpty = TRUE;
-            $this->value   = '';
+            $this->value = '';
         }
 
 
@@ -43,6 +42,7 @@ class String extends AbstractValueObject implements StringInterface
 
     /**
      * @param string $string
+     *
      * @return \AGmakonts\STL\String\String
      */
     static public function get($string = '')
@@ -84,23 +84,24 @@ class String extends AbstractValueObject implements StringInterface
 
 
     /**
-     * @param Natural              $length
-     * @param null|StringInterface $ellipsis
+     * @param \AGmakonts\STL\Number\Integer $length
+     * @param null|StringInterface          $ellipsis
+     *
      * @return \AGmakonts\STL\String\String
      */
-    public function truncate(Natural $length, StringInterface $ellipsis = NULL)
+    public function truncate(Integer $length, StringInterface $ellipsis = NULL)
     {
         /**
          * Create empty ellipsis for unified length calculations
          */
-        if (NULL === $ellipsis) {
+        if(NULL === $ellipsis) {
             $ellipsis = self::get();
         }
 
         /**
          * If desired length is greater than string itself do nothing
          */
-        if (TRUE === $length->assertIsGreaterOrEqualTo($this->length())) {
+        if(TRUE === $length->isGreaterOrEqualTo($this->length())) {
             return $this;
         }
 
@@ -108,13 +109,14 @@ class String extends AbstractValueObject implements StringInterface
          * Subtract elispis length from desired length
          * to know where to start chopping string
          */
+        /** @var StringInterface $ellipsis */
         $finalLength = $length->subtract($ellipsis->length());
 
-        for ($i = $finalLength->value(); $i >= 0; $i--) {
+        for($i = $finalLength->value(); $i >= 0; $i--) {
 
             $testedCharacter = $this->charAtPosition(new Natural($i));
 
-            if (TRUE === $testedCharacter->isEmpty()) {
+            if(TRUE === $testedCharacter->isEmpty()) {
                 return $this->substr(Integer::get(), Integer::get($i - 1))
                             ->concat($ellipsis);
             }
@@ -142,14 +144,11 @@ class String extends AbstractValueObject implements StringInterface
     }
 
     /**
-     * (non-PHPdoc)
-     *
-     * @see \AGmakonts\STL\String\StringInterface::length()
-     *
+     * @return \AGmakonts\STL\Number\Integer
      */
     public function length()
     {
-        return new Natural(strlen($this->value()));
+        return Integer::get(strlen($this->value()));
 
     }
 
@@ -158,7 +157,7 @@ class String extends AbstractValueObject implements StringInterface
      *
      * @see \AGmakonts\STL\String\StringInterface::concat()
      *
-     * @param StringInterface $string
+     * @param StringInterface      $string
      * @param null|StringInterface $glue
      *
      * @return \AGmakonts\STL\String\String
@@ -177,18 +176,20 @@ class String extends AbstractValueObject implements StringInterface
      *
      * @see \AGmakonts\STL\String\StringInterface::substr()
      *
-     * @param \AGmakonts\STL\Number\Integer $start
+     * @param \AGmakonts\STL\Number\Integer      $start
      * @param null|\AGmakonts\STL\Number\Integer $length
      *
      * @return \AGmakonts\STL\String\String
      */
     public function substr(Integer $start, Integer $length = NULL)
     {
-        if (NULL !== $length) {
-            $length = $length->value();
+        if(NULL !== $length) {
+            $lengthPlain = $length->value();
+        } else {
+            $lengthPlain = NULL;
         }
 
-        return self::get(substr($this->value(), $start->value(), $length));
+        return self::get(substr($this->value(), $start->value(), $lengthPlain));
     }
 
     /**
@@ -219,18 +220,24 @@ class String extends AbstractValueObject implements StringInterface
     }
 
     /**
-     * @param Natural $position
+     * @param \AGmakonts\STL\Number\Integer  $position
      *
      * @return String
      */
-    public function charAtPosition(Natural $position)
+    public function charAtPosition(Integer $position)
     {
-        $one = new Natural(1);
+        $one = Integer::get(1);
 
         return $this->substr($position->subtract($one), $one);
 
     }
 
+    /**
+     * @param \AGmakonts\STL\Number\Integer         $length
+     * @param \AGmakonts\STL\String\Padding         $mode
+     * @param \AGmakonts\STL\String\StringInterface $fill
+     * @return \AGmakonts\STL\String\String
+     */
     public function padded(Integer $length, Padding $mode = NULL, StringInterface $fill)
     {
         // TODO: Implement padded() method.

@@ -12,7 +12,7 @@ use AGmakonts\STL\Number\Integer;
 interface StringInterface extends ValueObjectInterface
 {
     /**
-     * @return Natural
+     * @return \AGmakonts\STL\Number\Integer
      */
     public function length();
 
@@ -51,12 +51,12 @@ interface StringInterface extends ValueObjectInterface
 
     /**
      *
-     * @param \AGmakonts\STL\Number\Natural $length
+     * @param \AGmakonts\STL\Number\Integer $length
      * @param StringInterface $ellipsis
      *
      * @return StringInterface
      */
-    public function truncate(Natural $length, StringInterface $ellipsis = NULL);
+    public function truncate(Integer $length, StringInterface $ellipsis = NULL);
 
     /**
      * @return StringInterface
@@ -65,10 +65,10 @@ interface StringInterface extends ValueObjectInterface
 
     /**
      *
-     * @param \AGmakonts\STL\Number\Natural $position
+     * @param \AGmakonts\STL\Number\Integer $position
      * @return StringInterface
      */
-    public function charAtPosition(Natural $position);
+    public function charAtPosition(Integer $position);
 
     public function padded(Integer $length, Padding $mode = NULL, StringInterface $fill);
 
