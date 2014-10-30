@@ -18,6 +18,14 @@ class Integer extends AbstractNumber implements NumberInterface
      */
     protected function __construct(array $value)
     {
+        $number = filter_var($value[0], FILTER_VALIDATE_INT);
+
+        if (FALSE === $number) {
+
+            throw new \InvalidArgumentException("Value is not an integer");
+        }
+
+        $this->value($number);
 
     }
 
