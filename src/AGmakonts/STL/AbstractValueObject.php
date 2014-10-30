@@ -93,7 +93,11 @@ abstract class AbstractValueObject implements ValueObjectInterface
     {
         if($value instanceof AbstractValueObject) {
             return $value->extractedValue();
+        } elseif (TRUE === is_object($value)) {
+            throw new \InvalidArgumentException('Value needs to be plain PHP type or AbstractValueObject');
         }
+
+
 
         return sha1(strval($value));
     }

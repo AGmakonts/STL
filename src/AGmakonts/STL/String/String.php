@@ -20,6 +20,7 @@ class String extends AbstractValueObject implements StringInterface
 
     protected function __construct(array $value)
     {
+
         $value = $value[0];
 
         if(FALSE === is_string($value) && FALSE === ($value instanceof StringInterface) && NULL !== $value) {
@@ -52,7 +53,8 @@ class String extends AbstractValueObject implements StringInterface
 
     public function extractedValue()
     {
-        return parent::extractValue($this->value());
+        return parent::extractValue([$this->value()]);
+
     }
 
 
@@ -214,7 +216,7 @@ class String extends AbstractValueObject implements StringInterface
     /**
      * @return string
      */
-    public function _toString()
+    public function __toString()
     {
 
         return $this->value();

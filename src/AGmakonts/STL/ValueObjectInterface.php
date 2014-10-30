@@ -17,6 +17,6 @@ interface ValueObjectInterface
     /**
      * @return string
      */
-    public function _toString();
+    public function __toString();
 
 }

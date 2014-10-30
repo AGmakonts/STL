@@ -21,7 +21,7 @@ abstract class AbstractNumber extends AbstractValueObject
      */
     public function extractedValue()
     {
-        return self::extractValue($this->value());
+        return self::extractValue([$this->value()]);
     }
 
     /**
@@ -35,9 +35,9 @@ abstract class AbstractNumber extends AbstractValueObject
     /**
      * @return string
      */
-    public function _toString()
+    public function __toString()
     {
-        $this->value();
+        return (string) $this->value();
     }
 
 
