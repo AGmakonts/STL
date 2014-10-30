@@ -14,8 +14,33 @@ class StringTest extends PHPUnit_Framework_TestCase
 
     /**
      * @covers ::get
+     * @dataProvider getProvider
      */
-    public function testGet()
+    public function testGet($value, $expected)
+    {
+        self::setExpectedException(AGmakonts\STL\String\Exception\InvalidStringValueException::class);
+
+
+        self::assertEquals($expected,\AGmakonts\STL\String\String::get($value)->value());
+
+    }
+
+    public function getProvider()
+    {
+        return [
+            ['String', 'String'],
+            ['', ''],
+            ['              ', ''],
+            [\AGmakonts\STL\String\String::get('Bla Bla Bla'), 'Bla Bla Bla'],
+            [\AGmakonts\STL\Number\Integer::get(25), 25],
+
+        ];
+    }
+
+    /**
+     * @covers ::get
+     */
+    public function testSameInstance()
     {
         $stringTest = \AGmakonts\STL\String\String::get("Testing string");
 
@@ -28,8 +53,6 @@ class StringTest extends PHPUnit_Framework_TestCase
 
         self::assertFalse($spl->contains($differentString));
         self::assertTrue($spl->contains($sameString));
-
-
     }
 
     /**
