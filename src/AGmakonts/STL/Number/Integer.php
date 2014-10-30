@@ -43,7 +43,7 @@ class Integer extends AbstractNumber implements NumberInterface
      */
     public function subtract(NumberInterface $from)
     {
-        return Integer::get($this->value() - $from->value());
+        return self::get($this->value() - $from->value());
     }
 
     /**
@@ -53,7 +53,7 @@ class Integer extends AbstractNumber implements NumberInterface
      */
     public function add(NumberInterface $to)
     {
-        // TODO: Implement add() method.
+        return self::get($this->value() + $to->value());
     }
 
     /**
@@ -71,7 +71,7 @@ class Integer extends AbstractNumber implements NumberInterface
      */
     public function multiply(NumberInterface $by)
     {
-        // TODO: Implement multiply() method.
+        return self::get($this->value() * $by->value());
     }
 
     /**

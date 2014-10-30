@@ -21,8 +21,6 @@ abstract class AbstractValueObject implements ValueObjectInterface
      *                                              VALUE => INSTANCE
      *                                       ]
      *            ]
-     *
-     *
      */
     private static $instanceMap = [];
 
