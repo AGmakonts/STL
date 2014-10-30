@@ -8,9 +8,6 @@
 
 namespace AGmakonts\STL\Number;
 
-
-use AGmakonts\STL\Number\Exception\InvalidTypeException;
-
 class Integer extends AbstractNumber implements NumberInterface
 {
     /**
@@ -113,9 +110,13 @@ class Integer extends AbstractNumber implements NumberInterface
         // TODO: Implement isLessThan() method.
     }
 
+    /**
+     * @param NumberInterface $number
+     * @return bool
+     */
     public function isGreaterOrEqualTo(NumberInterface $number)
     {
-        // TODO: Implement isGreaterOrEqualTo() method.
+        return ($this->value() >= $number->value());
     }
 
     public function isLessOrEqualTo(NumberInterface $number)
