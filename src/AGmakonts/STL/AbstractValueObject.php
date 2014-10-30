@@ -38,15 +38,16 @@ abstract class AbstractValueObject implements ValueObjectInterface
      */
     final static protected function getInstanceForValue($value)
     {
+
+        if(FALSE === is_array($value)) {
+            $value = [$value];
+        }
+
         /* @var $type AbstractValueObject */
         $type           = get_called_class();
         $extractedValue = self::extractValue($value);
 
         if(FALSE === self::assertInstanceExists($type, $extractedValue)) {
-
-            if(FALSE === is_array($value)) {
-                $value = [$value];
-            }
 
             /** @var string $type */
             self::$instanceMap[$type][$extractedValue] = new $type($value);
@@ -62,12 +63,11 @@ abstract class AbstractValueObject implements ValueObjectInterface
     abstract public function extractedValue();
 
     /**
+     * @param $value
      * @return string
      */
-    static public function extractValue()
+    static public function extractValue(array $value)
     {
-
-        $value = func_get_args();
 
         if(1 === count($value)) {
             return self::processSimpleValue($value[0]);
