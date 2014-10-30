@@ -99,7 +99,7 @@ class StringTest extends PHPUnit_Framework_TestCase
 
         $shortString = $string->truncate(\AGmakonts\STL\Number\Integer::get(50));
 
-        self::assertEquals('Short String', $shortString->value());
+        self::assertEquals('Short String', $shortString->value(), \AGmakonts\STL\Number\Integer::get(50)->value());
     }
 
     /**
