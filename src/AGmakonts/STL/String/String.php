@@ -112,12 +112,13 @@ class String extends AbstractValueObject implements StringInterface
         /** @var StringInterface $ellipsis */
         $finalLength = $length->subtract($ellipsis->length());
 
+
         for($i = $finalLength->value(); $i >= 0; $i--) {
 
-            $testedCharacter = $this->charAtPosition(Integer::get($i));
+            $testedCharacter = $this->charAtPosition(Integer::get($i + 1));
 
             if(TRUE === $testedCharacter->isEmpty()) {
-                return $this->substr(Integer::get(), Integer::get($i - 1))
+                return $this->substr(Integer::get(), Integer::get($i))
                             ->concat($ellipsis);
             }
 
