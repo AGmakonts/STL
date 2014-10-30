@@ -1,6 +1,6 @@
 <?php
 /**
- * @coversDefaultClass \AGmakonts\STL\String\Integer
+ * @coversDefaultClass \AGmakonts\STL\Number\Integer
  */
 class IntegerTest extends PHPUnit_Framework_TestCase
 {
