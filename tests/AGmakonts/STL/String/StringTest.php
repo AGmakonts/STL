@@ -95,11 +95,19 @@ class StringTest extends PHPUnit_Framework_TestCase
      */
     public function testTruncateShortString()
     {
-        $string = \AGmakonts\STL\String\String::get("Short String");
+        $string1 = \AGmakonts\STL\String\String::get("Short String");
 
-        $shortString = $string->truncate(\AGmakonts\STL\Number\Integer::get(50));
+        $shortString1 = $string1->truncate(\AGmakonts\STL\Number\Integer::get(50));
 
-        self::assertEquals('Short String', $shortString->value(), \AGmakonts\STL\Number\Integer::get(50)->value());
+        self::assertEquals('Short String', $shortString1->value(), \AGmakonts\STL\Number\Integer::get(50)->value());
+
+        $string2 = \AGmakonts\STL\String\String::get("Short String but not so much");
+
+        $shortString2 = $string2->truncate(\AGmakonts\STL\Number\Integer::get(20));
+
+        self::assertEquals('Short String but not', $shortString2->value(), \AGmakonts\STL\Number\Integer::get(50)->value());
+
+
     }
 
     /**
@@ -109,7 +117,7 @@ class StringTest extends PHPUnit_Framework_TestCase
     {
         $string = \AGmakonts\STL\String\String::get("Short String");
 
-        $shortString = $string->truncate(\AGmakonts\STL\Number\Integer::get(50), \AGmakonts\STL\String\String::get("..."));
+        $shortString = $string->truncate(\AGmakonts\STL\Number\Integer::get(50));
 
         self::assertEquals('Short String', $shortString->value());
     }
