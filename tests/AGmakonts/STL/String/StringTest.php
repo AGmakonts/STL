@@ -18,10 +18,14 @@ class StringTest extends PHPUnit_Framework_TestCase
      */
     public function testGet($value, $expected)
     {
-        self::setExpectedException(AGmakonts\STL\String\Exception\InvalidStringValueException::class);
 
 
-        self::assertEquals($expected,\AGmakonts\STL\String\String::get($value)->value());
+        if(FALSE !== $expected) {
+            self::assertEquals($expected,\AGmakonts\STL\String\String::get($value)->value());
+        } else {
+            self::setExpectedException(AGmakonts\STL\String\Exception\InvalidStringValueException::class);
+        }
+
 
     }
 
@@ -32,7 +36,7 @@ class StringTest extends PHPUnit_Framework_TestCase
             ['', ''],
             ['              ', ''],
             [\AGmakonts\STL\String\String::get('Bla Bla Bla'), 'Bla Bla Bla'],
-            [\AGmakonts\STL\Number\Integer::get(25), 25],
+            [\AGmakonts\STL\Number\Integer::get(25), FALSE],
 
         ];
     }
