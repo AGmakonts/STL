@@ -72,6 +72,62 @@ class IntegerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @dataProvider divideProvider
+     * @covers ::divide
+     */
+    public function testDivide($first, $second, $expected)
+    {
+        $integerOne = \AGmakonts\STL\Number\Integer::get($first);
+        $integerTwo = \AGmakonts\STL\Number\Integer::get($second);
+
+        self::assertEquals($expected, $integerOne->divide($integerTwo)->value());
+    }
+
+    public function divideProvider()
+    {
+        return [
+            [10, 2 , 5],
+            [0 , 20, 0],
+            [100, 100, 1]
+        ];
+    }
+
+
+    /**
+     * @covers ::divide
+     */
+    public function testDivideByZero()
+    {
+
+        self::setExpectedException(\AGmakonts\STL\Number\Exception\DivisionByZeroException::class);
+
+        $integerOne = \AGmakonts\STL\Number\Integer::get(10);
+        $integerTwo = \AGmakonts\STL\Number\Integer::get(0);
+
+        $integerOne->divide($integerTwo)->value();
+    }
+
+    /**
+     * @dataProvider isZeroProvider
+     * @covers ::isZero
+     */
+    public function testIsZero($first, $expected)
+    {
+        $integerOne = \AGmakonts\STL\Number\Integer::get($first);
+
+        self::assertEquals($expected, $integerOne->isZero());
+    }
+
+    public function isZeroProvider()
+    {
+        return [
+            [10, FALSE],
+            [-10, FALSE],
+            [0, TRUE]
+        ];
+    }
+
+    /**
      * @dataProvider gteqProvider
      * @covers ::isGreaterOrEqualTo
      */
@@ -95,7 +151,8 @@ class IntegerTest extends PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider getProvider
-     * @covers ::get
+     * @covers ::getT
+     * T
      */
     public function testGet($value)
     {
@@ -134,7 +191,7 @@ class IntegerTest extends PHPUnit_Framework_TestCase
     {
 
         self::setExpectedException(\InvalidArgumentException::class);
-        $integer = \AGmakonts\STL\Number\Integer::get($value);
+        \AGmakonts\STL\Number\Integer::get($value);
 
 
     }
@@ -147,5 +204,7 @@ class IntegerTest extends PHPUnit_Framework_TestCase
             [new DateTime()]
         ];
     }
+
+
 
 }

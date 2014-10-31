@@ -8,6 +8,8 @@
 
 namespace AGmakonts\STL\Number;
 
+use AGmakonts\STL\Number\Exception\DivisionByZeroException;
+
 class Integer extends AbstractNumber implements NumberInterface
 {
     /**
@@ -62,7 +64,11 @@ class Integer extends AbstractNumber implements NumberInterface
      */
     public function divide(NumberInterface $by)
     {
-        // TODO: Implement divide() method.
+        if(TRUE === $by->isZero()) {
+            throw new DivisionByZeroException();
+        }
+
+        return self::get($this->value() / $by->value());
     }
 
     /**
@@ -182,7 +188,7 @@ class Integer extends AbstractNumber implements NumberInterface
 
     public function isZero()
     {
-        // TODO: Implement isZero() method.
+        return ($this->value() === 0);
     }
 
     public function round(RoundingMode $mode)
