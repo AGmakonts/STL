@@ -151,7 +151,7 @@ class IntegerTest extends PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider getProvider
-     * @covers ::getT
+     * @covers ::get
      * T
      */
     public function testGet($value)
