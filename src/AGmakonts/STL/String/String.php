@@ -237,19 +237,20 @@ class String extends AbstractValueObject implements StringInterface
     }
 
     /**
-     * @param \AGmakonts\STL\Number\Integer         $length
-     * @param \AGmakonts\STL\String\Padding         $mode
-     * @param \AGmakonts\STL\String\StringInterface $fill
+     * @param \AGmakonts\STL\Number\Integer              $length
+     * @param null|\AGmakonts\STL\String\Padding         $mode
+     * @param null|\AGmakonts\STL\String\StringInterface $fill
+     *
      * @return \AGmakonts\STL\String\String
      */
-    public function padded(Integer $length, Padding $mode = NULL, StringInterface $fill)
+    public function padded(Integer $length, Padding $mode = NULL, StringInterface $fill = NULL)
     {
 
     }
 
     public function converted()
     {
-        // TODO: Implement converted() method.
+
     }
 
 

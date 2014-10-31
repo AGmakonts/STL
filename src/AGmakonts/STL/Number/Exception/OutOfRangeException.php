@@ -8,9 +8,6 @@
 
 namespace AGmakonts\STL\Number\Exception;
 
-
-use Exception;
-
 /**
  * Class OutOfRangeException
  *
@@ -29,5 +26,4 @@ class OutOfRangeException extends \RangeException
 
         $this->message = sprintf($message, $value, $maxValue, $minValue);
     }
-
-} 
+}

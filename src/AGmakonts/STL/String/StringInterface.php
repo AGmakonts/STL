@@ -3,6 +3,7 @@ namespace AGmakonts\STL\String;
 
 use AGmakonts\STL\ValueObjectInterface;
 use AGmakonts\STL\Number\Integer;
+
 /**
  *
  * @author adamgrabek
@@ -49,11 +50,10 @@ interface StringInterface extends ValueObjectInterface
     public function lowercase();
 
     /**
+     * @param \AGmakonts\STL\Number\Integer         $length
+     * @param \AGmakonts\STL\String\StringInterface $ellipsis
      *
-     * @param \AGmakonts\STL\Number\Integer $length
-     * @param StringInterface $ellipsis
-     *
-     * @return StringInterface
+     * @return \AGmakonts\STL\String\StringInterface
      */
     public function truncate(Integer $length, StringInterface $ellipsis = NULL);
 
@@ -65,19 +65,21 @@ interface StringInterface extends ValueObjectInterface
     /**
      *
      * @param \AGmakonts\STL\Number\Integer $position
-     * @return StringInterface
+     * @return \AGmakonts\STL\String\StringInterface
      */
     public function charAtPosition(Integer $position);
 
-    public function padded(Integer $length, Padding $mode = NULL, StringInterface $fill);
-
-    public function converted();
+    /**
+     * @param \AGmakonts\STL\Number\Integer         $length
+     * @param \AGmakonts\STL\String\Padding         $mode
+     * @param \AGmakonts\STL\String\StringInterface $fill
+     * @return \AGmakonts\STL\String\StringInterface
+     */
+    public function padded(Integer $length, Padding $mode = NULL, StringInterface $fill = NULL);
 
     /**
      * @param $string
-     * @return StringInterface
+     * @return \AGmakonts\STL\String\StringInterface
      */
     static public function get($string);
-
-
 }

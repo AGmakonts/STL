@@ -21,7 +21,7 @@ class Integer extends AbstractNumber implements NumberInterface
 
         if (FALSE === $number) {
 
-            throw new \InvalidArgumentException("Value is not an integer");
+            throw new \InvalidArgumentException('Value is not an integer');
         }
 
         $this->value = $number;

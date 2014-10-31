@@ -16,6 +16,4 @@ class Padding extends Enum
     const LEFT   = 0;
     const RIGHT  = 1;
     const CENTER = 2;
-
-
-} 
+}

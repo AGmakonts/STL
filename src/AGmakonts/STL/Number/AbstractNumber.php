@@ -39,7 +39,4 @@ abstract class AbstractNumber extends AbstractValueObject
     {
         return (string) $this->value();
     }
-
-
-
 } 

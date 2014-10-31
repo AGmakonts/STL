@@ -26,6 +26,8 @@ abstract class AbstractValueObject implements ValueObjectInterface
 
     /**
      * @param array $value
+     *
+     * @return \AGmakonts\STL\AbstractValueObject
      */
     abstract protected function __construct(array $value);
 
@@ -111,14 +113,4 @@ abstract class AbstractValueObject implements ValueObjectInterface
     {
         return  isset(self::$instanceMap[$type][$value]);
     }
-
-
-
-
-
-
-
-
-
-
-} 
+}
