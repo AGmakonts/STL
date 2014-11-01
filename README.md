@@ -15,9 +15,18 @@ All objects are immutable - this is required because instances are shared.
 
 Quick start
 -----------
-
-    //Create or get instance
+    ```php
+    //Create or get String instance
     $string = String::get('String value');
+    
+    //Create or get Integer instance
+    $integer = Integer::get(12213);
+    
+    //Chaining
+    
+    #integer = Integer::get(10)->add(Integer::get(10));
+    ```
+    
     
 
 
