@@ -10,9 +10,10 @@ namespace AGmakonts\STL\Structure;
 
 use AGmakonts\STL\Number\Integer;
 use AGmakonts\STL\Structure\Exception\InvalidElementContainerException;
+use AGmakonts\STL\Structure\Exception\InvalidElementException;
 use AGmakonts\STL\Structure\Exception\OffsetToLargeException;
 
-class TypedArray implements \Iterator, \ArrayAccess
+class TypedArray implements \Iterator, \ArrayAccess, \Countable
 {
     /**
      * @var \SplFixedArray
@@ -29,6 +30,13 @@ class TypedArray implements \Iterator, \ArrayAccess
      */
     private $size;
 
+    /**
+     * @param \AGmakonts\STL\Structure\Type $type
+     * @param \AGmakonts\STL\Number\Integer $size
+     * @param null|array|\Iterator $elements
+     *
+     * @throws \AGmakonts\STL\Structure\Exception\OffsetToLargeException
+     */
     public function __construct(Type $type, Integer $size, $elements = NULL)
     {
         $this->type = $type;
@@ -45,36 +53,44 @@ class TypedArray implements \Iterator, \ArrayAccess
 
     private function processElements($elements)
     {
+
+        $requestedElements = NULL;
+
+
         if(FALSE === is_array($elements) || FALSE === ($elements instanceof \Iterator)) {
+
             throw new InvalidElementContainerException();
         }
 
-        if(TRUE === is_array($elements)) {
-            return $this->processArray($elements);
-        } else {
-            return $this->processIterator($elements);
+
+        if(TRUE === is_array($elements) || TRUE === ($elements instanceof \Countable)) {
+
+            $requestedElements = count($elements);
+        }
+
+        if(NULL !== $requestedElements && $requestedElements > $this->size->value()) {
+
+            throw new OffsetToLargeException($this->size->value(), $requestedElements);
+        }
+
+        foreach ($elements as $element) {
+
+            $this->processSingleElement($element);
+
         }
 
     }
 
-    private function processArray(array $elements)
+    public function processSingleElement($element)
     {
-        $requestedSize = count($elements);
-
-        if($requestedSize > $this->size->value()) {
-            throw new OffsetToLargeException($this->size->value(), $requestedSize);
+        if(FALSE === $this->type->isTypeOf($element)) {
+            throw new InvalidElementException();
         }
 
 
 
 
     }
-
-    private function processIterator(\Iterator $elements)
-    {
-
-    }
-
 
 
     /**

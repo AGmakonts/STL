@@ -17,6 +17,14 @@ class Type extends AbstractValueObject
     private $typeName;
 
     /**
+     * @param $object
+     */
+    public function isTypeOf($object)
+    {
+        return (TRUE === is_object($object) && $this->value() === get_class($object));
+    }
+
+    /**
      * @param array $value
      *
      * @throws \AGmakonts\STL\Structure\Exception\NotExistingTypeException

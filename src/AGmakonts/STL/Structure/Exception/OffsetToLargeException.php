@@ -15,6 +15,6 @@ class OffsetToLargeException extends \Exception
 {
     public function __construct($allowed, $requested)
     {
-        $this->message = sprintf("Structure size (%s) is smaller than requested (%s)", $allowed, $requested);
+        $this->message = sprintf('Structure size (%s) is smaller than requested (%s)', $allowed, $requested);
     }
 }

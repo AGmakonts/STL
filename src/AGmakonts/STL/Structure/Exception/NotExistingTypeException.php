@@ -11,7 +11,7 @@ namespace AGmakonts\STL\Structure\Exception;
 
 class NotExistingTypeException extends \Exception
 {
-    function __construct($type)
+    public function __construct($type)
     {
         $this->message = sprintf('Type "%s" does not exist!', $type);
     }

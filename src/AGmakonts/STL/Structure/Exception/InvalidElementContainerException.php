@@ -11,7 +11,7 @@ namespace AGmakonts\STL\Structure\Exception;
 
 class InvalidElementContainerException extends \InvalidArgumentException
 {
-    function __construct()
+    public function __construct()
     {
         $this->message = 'Provided elements list is not an array or iterator';
     }
