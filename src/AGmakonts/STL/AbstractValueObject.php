@@ -27,7 +27,6 @@ abstract class AbstractValueObject implements ValueObjectInterface
     /**
      * @param array $value
      *
-     * @return \AGmakonts\STL\AbstractValueObject
      */
     abstract protected function __construct(array $value);
 

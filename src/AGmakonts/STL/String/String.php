@@ -252,6 +252,4 @@ class String extends AbstractValueObject implements StringInterface
     {
 
     }
-
-
 }

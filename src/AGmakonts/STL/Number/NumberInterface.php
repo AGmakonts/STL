@@ -161,4 +161,4 @@ interface NumberInterface extends ValueObjectInterface
      * @return \AGmakonts\STL\Number\NumberInterface
      */
     public function digitCount();
-} 
+}
