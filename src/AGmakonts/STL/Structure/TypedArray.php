@@ -9,6 +9,8 @@
 namespace AGmakonts\STL\Structure;
 
 use AGmakonts\STL\Number\Integer;
+use AGmakonts\STL\Structure\Exception\InvalidElementContainerException;
+use AGmakonts\STL\Structure\Exception\OffsetToLargeException;
 
 class TypedArray implements \Iterator, \ArrayAccess
 {
@@ -22,11 +24,57 @@ class TypedArray implements \Iterator, \ArrayAccess
      */
     private $type;
 
+    /**
+     * @var \AGmakonts\STL\Number\Integer
+     */
+    private $size;
+
     public function __construct(Type $type, Integer $size, $elements = NULL)
     {
         $this->type = $type;
-        $this->elements = new \SplFixedArray($size->value());
+        $this->size = $size;
+
+        if(NULL === $elements) {
+            $this->elements = new \SplFixedArray($size->value());
+        } else {
+            $this->elements = $this->processElements($elements);
+        }
+
+
     }
+
+    private function processElements($elements)
+    {
+        if(FALSE === is_array($elements) || FALSE === ($elements instanceof \Iterator)) {
+            throw new InvalidElementContainerException();
+        }
+
+        if(TRUE === is_array($elements)) {
+            return $this->processArray($elements);
+        } else {
+            return $this->processIterator($elements);
+        }
+
+    }
+
+    private function processArray(array $elements)
+    {
+        $requestedSize = count($elements);
+
+        if($requestedSize > $this->size->value()) {
+            throw new OffsetToLargeException($this->size->value(), $requestedSize);
+        }
+
+
+
+
+    }
+
+    private function processIterator(\Iterator $elements)
+    {
+
+    }
+
 
 
     /**

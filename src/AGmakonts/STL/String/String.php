@@ -13,10 +13,20 @@ use AGmakonts\STL\String\Exception\InvalidStringValueException;
  */
 class String extends AbstractValueObject implements StringInterface
 {
-
+    /**
+     * @var string
+     */
     private $value;
 
+    /**
+     * @var bool
+     */
     private $isEmpty = FALSE;
+
+    /**
+     * @var \AGmakonts\STL\Number\Integer
+     */
+    private $length;
 
     protected function __construct(array $value)
     {
@@ -31,12 +41,14 @@ class String extends AbstractValueObject implements StringInterface
             $value = $value->value();
         }
 
-        $this->value = $value;
-
         if(NULL === $value || TRUE === ctype_space($value)) {
             $this->isEmpty = TRUE;
             $this->value   = '';
+        } else {
+            $this->value = $value;
         }
+
+        $this->length = Integer::get(strlen($this->value()));
 
 
     }
@@ -152,7 +164,7 @@ class String extends AbstractValueObject implements StringInterface
      */
     public function length()
     {
-        return Integer::get(strlen($this->value()));
+        return $this->length;
 
     }
 
