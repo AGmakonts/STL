@@ -13,7 +13,7 @@ use MabeEnum\Enum;
 
 class Padding extends Enum
 {
-    const LEFT   = 0;
-    const RIGHT  = 1;
-    const CENTER = 2;
+    const LEFT   = STR_PAD_LEFT;
+    const RIGHT  = STR_PAD_RIGHT;
+    const CENTER = STR_PAD_BOTH;
 }

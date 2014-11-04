@@ -257,11 +257,15 @@ class String extends AbstractValueObject implements StringInterface
      */
     public function padded(Integer $length, Padding $mode = NULL, StringInterface $fill = NULL)
     {
+        if(NULL !== $fill) {
+            $fill = $fill->value();
+        }
 
+        if(NULL !== $mode) {
+            $mode = $mode->getValue();
+        }
+
+        return self::get(str_pad($this->value,$length->value(),$fill, $mode));
     }
 
-    public function converted()
-    {
-
-    }
 }
