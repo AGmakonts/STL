@@ -267,5 +267,4 @@ class String extends AbstractValueObject implements StringInterface
 
         return self::get(str_pad($this->value,$length->value(),$fill, $mode));
     }
-
 }
