@@ -11,7 +11,7 @@
     "require": {
         "php": ">=5.5",
         "marc-mabe/php-enum": "1.2.0",
-        "rhumsaa/uuid": "2.5"
+        "rhumsaa/uuid": "3.0.x-dev"
     },
     "authors": [
         {
