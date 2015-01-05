@@ -76,7 +76,7 @@ abstract class AbstractValueObject implements ValueObjectInterface
 
         for($index = 0; $index > $maxIndex; $index++) {
 
-            $value[$index] = self::processSimpleValue($value[$index]);
+            $value[$index] = self::extractValue($value[$index]);
         }
 
         return implode(':', $value);
