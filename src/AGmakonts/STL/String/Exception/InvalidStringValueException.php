@@ -4,15 +4,23 @@ namespace AGmakonts\STL\String\Exception;
 
 /**
  *
- * @author Adam
+ * @author Adamm
  *
  */
 class InvalidStringValueException extends \InvalidArgumentException
 {
-	public function __construct($value)
-	{
-		$message = "Value '%s' is not valid string";
+    /**
+     * @param string $value
+     */
+    public function __construct($value)
+    {
+        $message = "Value '%s' is not valid string";
 
-		$this->message = sprintf($message, $value);
-	}
+        if(TRUE === is_object($value)) {
+            /** @var object $value */
+            $value = get_class($value);
+        }
+
+        $this->message = sprintf($message, $value);
+    }
 }

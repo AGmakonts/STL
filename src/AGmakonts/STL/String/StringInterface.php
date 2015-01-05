@@ -1,25 +1,26 @@
 <?php
 namespace AGmakonts\STL\String;
 
-use AGmakonts\STL\Number\Natural;
-use AGmakonts\STL\SimpleTypeInterface;
+use AGmakonts\STL\ValueObjectInterface;
 use AGmakonts\STL\Number\Integer;
+
 /**
  *
  * @author adamgrabek
  *
  */
-interface StringInterface extends SimpleTypeInterface
+interface StringInterface extends ValueObjectInterface
 {
-	/**
-	 * @return Natural
-	 */
-    public function getLength();
+    /**
+     * @return \AGmakonts\STL\Number\Integer
+     */
+    public function length();
 
     /**
      *
-     * @param Integer $start
-     * @param Integer $length
+     * @param \AGmakonts\STL\Number\Integer $start
+     * @param null|\AGmakonts\STL\Number\Integer $length
+     *
      * @return StringInterface
      */
     public function substr(Integer $start, Integer $length = NULL);
@@ -36,7 +37,7 @@ interface StringInterface extends SimpleTypeInterface
      * @param StringInterface $string
      * @return boolean
      */
-    public function assertIsEqualTo(StringInterface $string);
+    public function equalTo(StringInterface $string);
 
     /**
      * @return StringInterface
@@ -49,12 +50,12 @@ interface StringInterface extends SimpleTypeInterface
     public function lowercase();
 
     /**
+     * @param \AGmakonts\STL\Number\Integer         $length
+     * @param \AGmakonts\STL\String\StringInterface $ellipsis
      *
-     * @param Natural $length
-     * @param StringInterface $elipsis
-     * @return StringInterface
+     * @return \AGmakonts\STL\String\StringInterface
      */
-    public function truncate(Natural $length, StringInterface $elipsis = NULL);
+    public function truncate(Integer $length, StringInterface $ellipsis = NULL);
 
     /**
      * @return StringInterface
@@ -63,10 +64,23 @@ interface StringInterface extends SimpleTypeInterface
 
     /**
      *
-     * @param Natural $position
-     * @return StringInterface
+     * @param \AGmakonts\STL\Number\Integer $position
+     * @return \AGmakonts\STL\String\StringInterface
      */
-    public function getCharAtPosition(Natural $position);
+    public function charAtPosition(Integer $position);
 
+    /**
+     * @param \AGmakonts\STL\Number\Integer              $length
+     * @param null|\AGmakonts\STL\String\Padding         $mode
+     * @param null|\AGmakonts\STL\String\StringInterface $fill
+     *
+     * @return \AGmakonts\STL\String\StringInterface
+     */
+    public function padded(Integer $length, Padding $mode = NULL, StringInterface $fill = NULL);
 
+    /**
+     * @param $string
+     * @return \AGmakonts\STL\String\StringInterface
+     */
+    static public function get($string);
 }

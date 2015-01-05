@@ -1,16 +1,20 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: adam
+ * Date: 29.10.14
+ * Time: 11:09
+ */
+
 namespace AGmakonts\STL\Number;
+
+
 use MabeEnum\Enum;
 
-/**
- *
- * @author adamgrabek
- *
- */
 class RoundingMode extends Enum
 {
-    const HALF_UP   = PHP_ROUND_HALF_UP;
-    const HALF_DOWN = PHP_ROUND_HALF_DOWN;
-    const HALF_EVEN = PHP_ROUND_HALF_EVEN;
-    const HALF_ODD  = PHP_ROUND_HALF_ODD;
+    const HALF_UP   = 0;
+    const HALF_DOWN = 1;
+    const UP        = 2;
+    const DOWN      = 3;
 }

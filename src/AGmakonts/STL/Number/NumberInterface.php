@@ -1,124 +1,164 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Adam
+ * Date: 2014-10-28
+ * Time: 23:29
+ */
+
 namespace AGmakonts\STL\Number;
 
-use AGmakonts\STL\SimpleTypeInterface;
-/**
- *
- * @author adamgrabek
- *
- */
-interface NumberInterface extends SimpleTypeInterface
+
+use AGmakonts\STL\ValueObjectInterface;
+
+interface NumberInterface extends ValueObjectInterface
 {
-
-
     /**
-     * 
-     * @param NumberInterface $number
-     * @return boolean
-     */
-    public function assertIsGreaterThan(NumberInterface $number);
-
-    /**
-     *
-     * @param NumberInterface $number
-     * @return boolean
-     */
-    public function assertIsGreaterOrEqualTo(NumberInterface $number);
-
-    /**
-     *
-     * @param NumberInterface $number
-     * @return boolean
-     */
-    public function assertIsSmallerThan(NumberInterface $number);
-
-    /**
-     *
-     * @param NumberInterface $number
-     * @return boolean
-     */
-    public function assertIsSmallerOrEqualTo(NumberInterface $number);
-
-    /**
-     *
-     * @param NumberInterface $number
-     * @return boolean
-     */
-    public function assertIsEqualTo(NumberInterface $number);
-
-    /**
-     * 
-     * @param NumberInterface $number
+     * @param $number
      * @return NumberInterface
      */
-    public function subtract(NumberInterface $number);
+    static public function get($number);
 
     /**
+     * @param \AGmakonts\STL\Number\NumberInterface $from
      *
-     * @param NumberInterface $number
-     * @return NumberInterface
+     * @return \AGmakonts\STL\Number\NumberInterface
      */
-    public function add(NumberInterface $number);
+    public function subtract(NumberInterface $from);
 
     /**
+     * @param \AGmakonts\STL\Number\NumberInterface $to
      *
-     * @param NumberInterface $number
-     * @return NumberInterface
+     * @return \AGmakonts\STL\Number\NumberInterface
      */
-    public function multiply(NumberInterface $number);
+    public function add(NumberInterface $to);
 
     /**
+     * @param \AGmakonts\STL\Number\NumberInterface $by
      *
-     * @param NumberInterface $number
-     * @return NumberInterface
+     * @return \AGmakonts\STL\Number\NumberInterface
      */
-    public function divide(NumberInterface $number);
+    public function divide(NumberInterface $by);
 
     /**
+     * @param \AGmakonts\STL\Number\NumberInterface $by
      *
-     * @param NumberInterface $number
-     * @return NumberInterface
+     * @return \AGmakonts\STL\Number\NumberInterface
      */
-    public function power(NumberInterface $number);
+    public function multiply(NumberInterface $by);
 
     /**
+     * @param \AGmakonts\STL\Number\NumberInterface $of
      *
-     * @param NumberInterface $number
-     * @return NumberInterface
+     * @return \AGmakonts\STL\Number\NumberInterface
      */
-    public function root(NumberInterface $number);
+    public function power(NumberInterface $of);
 
     /**
+     * @param \AGmakonts\STL\Number\NumberInterface $root
      *
-     * @return boolean
+     * @return \AGmakonts\STL\Number\NumberInterface
      */
-    public function assertIsZero();
-    
-    /**
-     *
-     * @param NumberInterface $number
-     * @return NumberInterface
-     */
-    public function round(RoundingMode $mode = NULL);
-    
-    /**
-     *
-     * @return boolean
-     */
-    public function assertIsPositive();
-    
-    /**
-     *
-     * @return boolean
-     */
-    public function assertIsNegative();
+    public function root(NumberInterface $root);
 
     /**
-     *
-     * @param NumberInterface $number
-     * @return NumberInterface
+     * @return \AGmakonts\STL\Number\NumberInterface
      */
-    public static function createFrom(NumberInterface $number);
-    
+    public function factorial();
 
+    /**
+     * @param \AGmakonts\STL\Number\NumberInterface $number
+     *
+     * @return bool
+     */
+    public function isGreaterThan(NumberInterface $number);
+
+    /**
+     * @param \AGmakonts\STL\Number\NumberInterface $number
+     *
+     * @return bool
+     */
+    public function isLessThan(NumberInterface $number);
+
+    /**
+     * @param \AGmakonts\STL\Number\NumberInterface $number
+     *
+     * @return bool
+     */
+    public function isGreaterOrEqualTo(NumberInterface $number);
+
+    /**
+     * @param \AGmakonts\STL\Number\NumberInterface $number
+     *
+     * @return bool
+     */
+    public function isLessOrEqualTo(NumberInterface $number);
+
+    /**
+     * @param \AGmakonts\STL\Number\NumberInterface $number
+     *
+     * @return bool
+     */
+    public function isEqualTo(NumberInterface $number);
+
+    /**
+     * @return bool
+     */
+    public function isEven();
+
+    /**
+     * @return bool
+     */
+    public function isOdd();
+
+    /**
+     * @param \AGmakonts\STL\Number\NumberInterface $number
+     *
+     * @return bool
+     */
+    public function modulo(NumberInterface $number);
+
+    /**
+     * @return \AGmakonts\STL\Number\NumberInterface
+     */
+    public function absolute();
+
+    /**
+     * @param \AGmakonts\STL\Number\Integer $base
+     *
+     * @return \AGmakonts\STL\Number\NumberInterface
+     */
+    public function convertedToBase(Integer $base);
+
+    /**
+     * @return \AGmakonts\STL\Number\Sign
+     */
+    public function sign();
+
+    /**
+     * @return bool
+     */
+    public function isNegative();
+
+    /**
+     * @return bool
+     */
+    public function isPositive();
+
+    /**
+     * @return bool
+     */
+    public function isZero();
+
+    /**
+     * @param \AGmakonts\STL\Number\RoundingMode $mode
+     *
+     * @return \AGmakonts\STL\Number\NumberInterface
+     */
+    public function round(RoundingMode $mode);
+
+    /**
+     * @return \AGmakonts\STL\Number\NumberInterface
+     */
+    public function digitCount();
 }

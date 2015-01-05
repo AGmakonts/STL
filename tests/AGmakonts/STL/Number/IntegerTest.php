@@ -1,70 +1,210 @@
 <?php
-use AGmakonts\STL\Number\Integer;
-use AGmakonts\STL\Number\Exception\InvalidValueException;
-use AGmakonts\STL\Number\Real;
-
-
-
 /**
- * Integer test case.
+ * @coversDefaultClass \AGmakonts\STL\Number\Integer
  */
 class IntegerTest extends PHPUnit_Framework_TestCase
 {
 
 
     /**
-     * Prepares the environment before running a test.
+     * @dataProvider subtractProvider
+     * @covers ::subtract
      */
-    protected function setUp ()
+    public function testSubtract($int1, $int2, $int3)
     {
-        parent::setUp();
+        $starter = \AGmakonts\STL\Number\Integer::get($int1);
+        $subtract = \AGmakonts\STL\Number\Integer::get($int2);
 
-        // TODO Auto-generated IntegerTest::setUp()
+        self::assertEquals($int3, $starter->subtract($subtract)->value());
+    }
 
+    public function subtractProvider()
+    {
+        return [
+            [10 , 2  , 8  ],
+            [5  , 5  , 0  ],
+            [10 , 20 , -10],
+            [5  , 0  , 5  ]
+        ];
+    }
+
+    /**
+     * @dataProvider addProvider
+     * @covers ::add
+     */
+    public function testAdd($first, $second, $expected)
+    {
+        $integerOne = \AGmakonts\STL\Number\Integer::get($first);
+        $integerTwo = \AGmakonts\STL\Number\Integer::get($second);
+
+        self::assertEquals($expected, $integerOne->add($integerTwo)->value());
+    }
+
+    public function addProvider()
+    {
+        return [
+            [10, 10, 20],
+            [0 , 10, 10],
+            [0 , 0 , 0 ],
+            [-4, 2 , -2]
+        ];
+    }
+
+    /**
+     * @dataProvider multiplyProvider
+     * @covers ::multiply
+     */
+    public function testMultiply($first, $second, $expected)
+    {
+        $integerOne = \AGmakonts\STL\Number\Integer::get($first);
+        $integerTwo = \AGmakonts\STL\Number\Integer::get($second);
+
+        self::assertEquals($expected, $integerOne->multiply($integerTwo)->value());
+    }
+
+    public function multiplyProvider()
+    {
+        return [
+            [1, 10, 10],
+            [2, 10, 20],
+            [0, 10, 0 ]
+        ];
+    }
+
+    /**
+     * @dataProvider divideProvider
+     * @covers ::divide
+     */
+    public function testDivide($first, $second, $expected)
+    {
+        $integerOne = \AGmakonts\STL\Number\Integer::get($first);
+        $integerTwo = \AGmakonts\STL\Number\Integer::get($second);
+
+        self::assertEquals($expected, $integerOne->divide($integerTwo)->value());
+    }
+
+    public function divideProvider()
+    {
+        return [
+            [10, 2 , 5],
+            [0 , 20, 0],
+            [100, 100, 1]
+        ];
+    }
+
+
+    /**
+     * @covers ::divide
+     */
+    public function testDivideByZero()
+    {
+
+        self::setExpectedException(\AGmakonts\STL\Number\Exception\DivisionByZeroException::class);
+
+        $integerOne = \AGmakonts\STL\Number\Integer::get(10);
+        $integerTwo = \AGmakonts\STL\Number\Integer::get(0);
+
+        $integerOne->divide($integerTwo)->value();
+    }
+
+    /**
+     * @dataProvider isZeroProvider
+     * @covers ::isZero
+     */
+    public function testIsZero($first, $expected)
+    {
+        $integerOne = \AGmakonts\STL\Number\Integer::get($first);
+
+        self::assertEquals($expected, $integerOne->isZero());
+    }
+
+    public function isZeroProvider()
+    {
+        return [
+            [10, FALSE],
+            [-10, FALSE],
+            [0, TRUE]
+        ];
+    }
+
+    /**
+     * @dataProvider gteqProvider
+     * @covers ::isGreaterOrEqualTo
+     */
+    public function testIsGreaterOrEqualTo($integer, $compare, $expected)
+    {
+
+        $int = \AGmakonts\STL\Number\Integer::get($integer);
+        $secondInt = \AGmakonts\STL\Number\Integer::get($compare);
+
+        self::assertTrue($expected === $int->isGreaterOrEqualTo($secondInt));
+    }
+
+    public function gteqProvider()
+    {
+        return [
+            [11 , 10 , TRUE  ],
+            [5  , 5  , TRUE  ],
+            [1  , 340, FALSE ],
+        ];
+    }
+
+    /**
+     * @dataProvider getProvider
+     * @covers ::get
+     * T
+     */
+    public function testGet($value)
+    {
+        $integer = \AGmakonts\STL\Number\Integer::get($value);
+
+        self::assertInstanceOf(\AGmakonts\STL\Number\Integer::class, $integer);
 
     }
 
     /**
-     * Cleans up the environment after running a test.
+     * @dataProvider getProvider
+     * @covers ::get
      */
-    protected function tearDown ()
+    public function testSameInstance($value)
     {
-        // TODO Auto-generated IntegerTest::tearDown()
-        $this->Integer = null;
+        $integer = \AGmakonts\STL\Number\Integer::get($value);
 
-        parent::tearDown();
+        self::assertTrue($integer === \AGmakonts\STL\Number\Integer::get($value));
+
+    }
+
+    public function getProvider()
+    {
+        return [
+            [23],
+            [100],
+            [0]
+        ];
     }
 
     /**
-     * Constructs the test case.
+     * @dataProvider invalidValueProvider
+     * @covers ::get
      */
-    public function __construct ()
-    {
-        // TODO Auto-generated constructor
-    }
-
-    /**
-     * Tests Integer->__construct()
-     * @expectedException AGmakonts\STL\Number\Exception\InvalidValueException
-     */
-    public function test__construct ()
+    public function testInvalidValue($value)
     {
 
+        self::setExpectedException(\InvalidArgumentException::class);
+        \AGmakonts\STL\Number\Integer::get($value);
 
 
-        $int = new Integer(-2.3);
     }
 
-    /**
-     * Tests Integer::createFrom()
-     */
-    public function testCreateFrom ()
+    public function invalidValueProvider()
     {
-        $real = new Real(-2.54);
-
-        $int = Integer::createFrom($real);
-
-        self::assertInstanceOf(Integer::class, $int);
+        return [
+            ['a'],
+            [NULL],
+            [new DateTime()]
+        ];
     }
+
+
+
 }
-

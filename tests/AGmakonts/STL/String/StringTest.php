@@ -1,185 +1,298 @@
 <?php
-use AGmakonts\STL\String\String;
-use AGmakonts\STL\Number\Natural;
+/**
+ * Created by PhpStorm.
+ * User: Adam
+ * Date: 2014-10-25
+ * Time: 00:58
+ */
 use AGmakonts\STL\Number\Integer;
-require_once 'PHPUnit/Framework/TestCase.php';
+use AGmakonts\STL\String\String;
 
 /**
- * String test case.
+ * @coversDefaultClass \AGmakonts\STL\String\String
  */
-class StringTest extends PHPUnit_Framework_TestCase {
+class StringTest extends PHPUnit_Framework_TestCase
+{
 
 
+    /**
+     * @covers ::get
+     * @dataProvider getProvider
+     */
+    public function testGet($value, $expected)
+    {
 
-	/**
-	 * Prepares the environment before running a test.
-	 */
-	protected function setUp() {
-		parent::setUp ();
+        $string = String::get($value);
 
+        self::assertEquals($expected,$string->value());
 
 
-	}
 
-	/**
-	 * Cleans up the environment after running a test.
-	 */
-	protected function tearDown() {
+    }
 
 
-		parent::tearDown ();
-	}
 
-	/**
-	 * Constructs the test case.
-	 */
-	public function __construct() {
-		// TODO Auto-generated constructor
-	}
 
-	/**
-	 * Tests String->__construct()
-	 */
-	public function test__construct() {
 
-	    $emptyString = new String();
-	    $notEmptyString = new String("String");
+    public function getProvider()
+    {
+        return [
+            ['String', 'String'],
+            ['', ''],
+            ['              ', ''],
+            [String::get('Bla Bla Bla'), 'Bla Bla Bla'],
 
-	    self::assertTrue($emptyString->assertIsEmpty());
-	    self::assertFalse($notEmptyString->assertIsEmpty());
+        ];
+    }
 
+    /**
+     * @covers ::get
+     * @dataProvider invalidGetProvider
+     */
+    public function testGetWithInvalidValues($value)
+    {
+        self::setExpectedException(\InvalidArgumentException::class);
+        $string = String::get($value);
 
-	}
+    }
 
-	/**
-	 * Tests String->uppercase()
-	 */
-	public function testUppercase() {
+    public function invalidGetProvider()
+    {
+        return [
+            [32],
+            [TRUE],
+            [new DateTime()],
 
-	    $string = new String("string");
 
-	    self::assertEquals('STRING', $string->uppercase()->getValue());
+        ];
+    }
 
-	}
+    /**
+     * @covers ::get
+     */
+    public function testSameInstance()
+    {
+        $stringTest = String::get("Testing string");
 
-	/**
-	 * Tests String->lowercase()
-	 */
-	public function testLowercase() {
+        $differentString = String::get("Bla Bla Bla");
+        $sameString = String::get("Testing string");
 
-	    $string = new String("STRING");
+        $spl = new SplObjectStorage();
 
-	    self::assertEquals('string', $string->lowercase()->getValue());
+        $spl->attach($stringTest);
 
-	}
+        self::assertFalse($spl->contains($differentString));
+        self::assertTrue($spl->contains($sameString));
+    }
 
-	/**
-	 * Tests String->reverse()
-	 */
-	public function testReverse() {
+    /**
+     * @covers ::uppercase
+     */
+    public function testUppercase()
+    {
+        $string = String::get("uppercase");
 
-	    $string = new String('qwerty');
+        $uppercase = $string->uppercase();
 
-	    self::assertEquals('ytrewq', $string->reverse()->getValue());
+        self::assertEquals('UPPERCASE', $uppercase->value());
+    }
 
-	}
+    /**
+     * @covers ::lowercase
+     */
+    public function testLowercase()
+    {
+        $string = String::get("loWerCaSE");
 
+        $lowercase = $string->lowercase();
 
+        self::assertEquals('lowercase', $lowercase->value());
+    }
 
-	/**
-	 * Tests String->truncate()
-	 */
-	public function testTruncate() {
+    /**
+     * @covers ::reverse
+     */
+    public function testReverse()
+    {
+        $string = String::get("qwerty");
 
-		$string = new String("Testing truncate method");
+        self::assertEquals('ytrewq', $string->reverse()->value());
+    }
 
-		$truncated = $string->truncate(new Natural(20))->getValue();
+    /**
+     * @covers ::truncate
+     */
+    public function testTruncateWithoutEllipsis()
+    {
+        $string = String::get("Long string that needs to be chopped down");
 
-		$withElipsis = $string->truncate(new Natural(20), new String("..."));
+        $shortString = $string->truncate(Integer::get(14));
 
-		self::assertEquals('Testing truncate', $truncated, "Actual: {$truncated}");
-		self::assertEquals('Testing truncate...', $withElipsis, "Actual: {$withElipsis}");
+        self::assertEquals('Long string', $shortString->value());
+    }
 
-	}
+    /**
+     * @covers ::truncate
+     */
+    public function testTruncateWithEllipsis()
+    {
+        $string = String::get("Long string that needs to be chopped down");
 
+        $shortString = $string->truncate(Integer::get(16), String::get("..."));
 
+        self::assertEquals('Long string...', $shortString->value());
+    }
 
-	/**
-	 * Tests String->getLength()
-	 */
-	public function testGetLength() {
+    /**
+     * @covers ::truncate
+     */
+    public function testTruncateShortString()
+    {
+        $string1 = String::get("Short String");
 
-        $string = new String("abc");
+        $shortString1 = $string1->truncate(Integer::get(50));
 
-        self::assertEquals(3, $string->getLength()->getValue());
+        self::assertEquals('Short String', $shortString1->value(), Integer::get(50)->value());
+
+        $string2 = String::get("Short String but not so much");
 
-	}
+        $shortString2 = $string2->truncate(Integer::get(20));
+
+        self::assertEquals('Short String but not', $shortString2->value(), Integer::get(50)->value());
 
-	/**
-	 * Tests String->concat()
-	 */
-	public function testConcat() {
+
+    }
+
+    /**
+     * @covers ::truncate
+     */
+    public function testTruncateShortStringWithEllipsis()
+    {
+        $string = String::get("Short String");
+
+        $shortString = $string->truncate(Integer::get(50));
+
+        self::assertEquals('Short String', $shortString->value());
+    }
+
+    public function testLength()
+    {
+        $string = String::get("String with 20 chars");
+
+        self::assertEquals(20, $string->length()->value());
+    }
+
+    /**
+     * @covers ::concat
+     */
+    public function testConcatWithoutGlue()
+    {
+        $firstString = String::get("First part");
+        $secondString = String::get("second part");
+
+        self::assertEquals('First partsecond part', $firstString->concat($secondString)
+                                                                ->value());
+    }
+
+
+    /**
+     * @covers ::concat
+     */
+    public function testConcatWithGlue()
+    {
+        $firstString = String::get("First part");
+        $secondString = String::get("second part");
 
-	    $string = new String('abc');
-	    $secondString = new String('def');
+        $glue = String::get(' - ');
 
-	    self::assertEquals('abcdef', $string->concat($secondString)->getValue());
+        self::assertEquals('First part - second part', $firstString->concat($secondString, $glue)->value());
+    }
 
-	}
+    /**
+     * @covers ::substr
+     */
+    public function testSubstr()
+    {
+        $string = String::get('123456');
 
-	/**
-	 * Tests String->substr()
-	 */
-	public function testSubstr() {
+        self::assertEquals('1234', $string->substr(Integer::get(), Integer::get(4))->value());
+    }
 
-		$string = new String("qwerty");
+    /**
+     * @covers ::charAtPosition
+     */
+    public function testCharAtPosition()
+    {
+        $string = String::get('asd');
 
-		$substr = $string->substr(new Integer(0), new Integer(4));
+        self::assertEquals('s', $string->charAtPosition(Integer::get(2))->value());
+    }
 
-		self::assertEquals('qwer', $substr->getValue(), "Actual: {$substr}");
+    /**
+     * @covers ::value
+     */
+    public function testValue()
+    {
+        $string = String::get('Alpha');
 
-	}
+        self::assertEquals('Alpha', $string->value());
+    }
 
-	/**
-	 * Tests String->assertIsEmpty()
-	 */
-	public function testAssertIsEmpty() {
+    /**
+     * @covers ::isEmpty
+     */
+    public function testAssertIsEmptyForNotEmpty()
+    {
+        $string = String::get('Not empty');
 
-	    $emptyString = new String();
-	    $notEmptyString = new String("String");
+        self::assertFalse($string->isEmpty());
+    }
 
-	    self::assertTrue($emptyString->assertIsEmpty());
-	    self::assertFalse($notEmptyString->assertIsEmpty());
+    /**
+     * @covers ::isEmpty
+     */
+    public function testAssertIsEmptyForEmpty()
+    {
+        $string = String::get('');
 
+        self::assertFalse($string->isEmpty());
+    }
 
-	}
+    /**
+     * @param $string
+     * @param $length
+     * @param $fill
+     * @param $mode
+     * @param $expected
+     *
+     * @covers ::padded
+     * @dataProvider paddedProvider
+     */
+    public function testPadded($string, $length, $fill, $mode, $expected)
+    {
+        $string = String::get($string);
+        $length = Integer::get($length);
 
-	/**
-	 * Tests String->getValue()
-	 */
-	public function testGetValue() {
+        if(NULL !== $fill) {
+            $fill = String::get($fill);
+        }
 
-	    $string = new String('abc');
+        $mode = \AGmakonts\STL\String\Padding::get($mode);
 
-	    self::assertEquals('abc', $string->getValue());
+        self::assertEquals($expected, $string->padded($length, $mode, $fill)->value());
 
-	}
+    }
 
+    public function paddedProvider()
+    {
+        return [
+            ['string', 10, '.',   \AGmakonts\STL\String\Padding::LEFT, '....string'],
+            ['string', 10, 'ok',  \AGmakonts\STL\String\Padding::LEFT, 'okokstring'],
+            ['string', 10, 'qwe', \AGmakonts\STL\String\Padding::LEFT, 'qweqstring']
+        ];
 
+    }
 
-	/**
-	 * Tests String->getCharAtPosition()
-	 */
-	public function testGetCharAtPosition() {
 
-		$string = new String("asdfghjkl");
 
-		$char = $string->getCharAtPosition(new Natural(3));
-
-		self::assertEquals('d', $char->getValue(), "Actual: {$char}");
-
-
-
-	}
 }
-

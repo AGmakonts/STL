@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="./tests/bootstrap.php">
+<phpunit bootstrap="tests/bootstrap.php"
+		 colors="true" >
 	<testsuites>
-		<testsuite name="Number">
-			<directory>tests/AGmakonts/STL/Number</directory>
-			<directory>tests/AGmakonts/STL/String</directory>
+		<testsuite name="STL">
+			<directory>tests/AGmakonts/STL</directory>
+
 		</testsuite>
+
 	</testsuites>
 </phpunit>
