@@ -71,7 +71,7 @@ abstract class AbstractValueObject implements ValueObjectInterface
 
         $maxIndex = count($value);
 
-        for($index = 0; $index > $maxIndex; $index++) {
+        for($index = 0; $index < $maxIndex; $index++) {
 
             $value[$index] = self::extractValue([$value[$index]]);
         }
