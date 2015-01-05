@@ -64,8 +64,8 @@ abstract class AbstractValueObject implements ValueObjectInterface
      */
     static public function extractValue(array $value)
     {
-
         if(1 === count($value)) {
+
             return self::processSimpleValue($value[0]);
         }
 
@@ -87,17 +87,26 @@ abstract class AbstractValueObject implements ValueObjectInterface
      */
     static private function processSimpleValue($value)
     {
+
+
         if(TRUE === is_array($value) && 1 === count($value)) {
             $value = $value[0];
         }
-        
+
+        if(TRUE === is_array($value) && TRUE === empty($value)) {
+            $value = NULL;
+        }
+
+        if(NULL === $value) {
+            $value = 'NULL';
+        }
+
+
         if($value instanceof AbstractValueObject || $value instanceof ValueObjectInterface) {
             return $value->extractedValue();
         } elseif (TRUE === is_object($value)) {
             throw new \InvalidArgumentException('Value needs to be plain PHP type or AbstractValueObject');
         }
-
-
 
         return sha1(strval($value));
     }
