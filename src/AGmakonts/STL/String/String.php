@@ -41,7 +41,7 @@ class String extends AbstractValueObject implements StringInterface
             $value = $value->value();
         }
 
-        if(NULL === $value || TRUE === ctype_space($value) || TRUE === empty($value)) {
+        if(NULL === $value || TRUE === ctype_space($value) || $value === '') {
             $this->isEmpty = TRUE;
             $this->value   = '';
         } else {
