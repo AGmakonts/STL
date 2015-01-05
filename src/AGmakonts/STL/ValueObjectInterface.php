@@ -18,4 +18,9 @@ interface ValueObjectInterface
      * @return string
      */
     public function __toString();
+
+    /**
+     * @return string
+     */
+    public function extractedValue();
 }

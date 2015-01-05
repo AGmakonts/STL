@@ -56,10 +56,7 @@ abstract class AbstractValueObject implements ValueObjectInterface
 
     }
 
-    /**
-     * @return string
-     */
-    abstract public function extractedValue();
+
 
     /**
      * @param $value
@@ -76,7 +73,7 @@ abstract class AbstractValueObject implements ValueObjectInterface
 
         for($index = 0; $index > $maxIndex; $index++) {
 
-            $value[$index] = self::extractValue($value[$index]);
+            $value[$index] = self::extractValue([$value[$index]]);
         }
 
         return implode(':', $value);
@@ -90,7 +87,11 @@ abstract class AbstractValueObject implements ValueObjectInterface
      */
     static private function processSimpleValue($value)
     {
-        if($value instanceof AbstractValueObject) {
+        if(TRUE === is_array($value) && 1 === count($value)) {
+            $value = $value[0];
+        }
+        
+        if($value instanceof AbstractValueObject || $value instanceof ValueObjectInterface) {
             return $value->extractedValue();
         } elseif (TRUE === is_object($value)) {
             throw new \InvalidArgumentException('Value needs to be plain PHP type or AbstractValueObject');
