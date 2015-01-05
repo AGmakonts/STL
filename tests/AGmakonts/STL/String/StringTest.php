@@ -255,7 +255,11 @@ class StringTest extends PHPUnit_Framework_TestCase
     {
         $string = String::get('');
 
-        self::assertFalse($string->isEmpty());
+        self::assertTrue($string->isEmpty());
+
+        $string = String::get();
+
+        self::assertTrue($string->isEmpty());
     }
 
     /**

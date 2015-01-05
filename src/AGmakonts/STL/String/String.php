@@ -41,7 +41,7 @@ class String extends AbstractValueObject implements StringInterface
             $value = $value->value();
         }
 
-        if(NULL === $value || TRUE === ctype_space($value)) {
+        if(NULL === $value || TRUE === ctype_space($value) || $value === '') {
             $this->isEmpty = TRUE;
             $this->value   = '';
         } else {
@@ -58,7 +58,7 @@ class String extends AbstractValueObject implements StringInterface
      *
      * @return \AGmakonts\STL\String\String
      */
-    static public function get($string = '')
+    static public function get($string = NULL)
     {
         return self::getInstanceForValue($string);
     }
