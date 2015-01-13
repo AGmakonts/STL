@@ -16,11 +16,11 @@ abstract class Enum extends \MabeEnum\Enum implements ValueObjectInterface
 {
 
     /**
-     * @return mixed
+     * @return string
      */
     public function value()
     {
-        return $this->getValue();
+        return (string) $this->getValue();
     }
 
     /**
