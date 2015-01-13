@@ -27,7 +27,7 @@ class DateTimeTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers ::__value()
+     * @covers ::value()
      * @return string
      */
     public function testValue()
