@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by IntelliJ IDEA.
- * User: radek
+ * User: Radek Adamiec<radek@adamiec.it>
  * Date: 13.01.15
  * Time: 16:22
  */
