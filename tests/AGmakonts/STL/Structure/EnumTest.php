@@ -20,6 +20,8 @@ class EnumTest extends PHPUnit_Framework_TestCase
         require_once("EnumMock.php");
         $enumMock = EnumMock::get(EnumMock::FIRST_CONST);
         $this->assertEquals(EnumMock::FIRST_CONST, $enumMock->value());
+        $this->assertTrue(is_string($enumMock->value()));
+
     }
 
 
