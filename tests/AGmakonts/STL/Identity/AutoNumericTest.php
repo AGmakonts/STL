@@ -9,12 +9,12 @@ use AGmakonts\STL\Identity\AutoNumeric;
 
 
 /**
- * @coversDefaultClass \AGmakonts\STL\String\String
+ * @coversDefaultClass \AGmakonts\STL\Identity\AutoNumeric
  */
 class AutoNumericTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers ::_construct
+     * @covers ::__construct
      */
     public function test__construct()
     {
