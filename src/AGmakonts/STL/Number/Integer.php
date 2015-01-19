@@ -9,6 +9,7 @@
 namespace AGmakonts\STL\Number;
 
 use AGmakonts\STL\Number\Exception\DivisionByZeroException;
+use AGmakonts\STL\String\String;
 
 class Integer extends AbstractNumber implements NumberInterface
 {
@@ -86,7 +87,7 @@ class Integer extends AbstractNumber implements NumberInterface
      */
     public function power(NumberInterface $of)
     {
-        // TODO: Implement power() method.
+        return self::get(pow($this->value(), $of->value()));
     }
 
     /**
@@ -95,7 +96,7 @@ class Integer extends AbstractNumber implements NumberInterface
      */
     public function root(NumberInterface $root)
     {
-        // TODO: Implement root() method.
+        return self::get(pow($this->value(), 1/$root->value()));
     }
 
     /**
@@ -103,17 +104,22 @@ class Integer extends AbstractNumber implements NumberInterface
      */
     public function factorial()
     {
-        // TODO: Implement factorial() method.
+
     }
 
+    /**
+     * @param \AGmakonts\STL\Number\NumberInterface $number
+     *
+     * @return bool
+     */
     public function isGreaterThan(NumberInterface $number)
     {
-        // TODO: Implement isGreaterThan() method.
+        return ($this->value() > $number->value());
     }
 
     public function isLessThan(NumberInterface $number)
     {
-        // TODO: Implement isLessThan() method.
+        return ($this->value() < $number->value());
     }
 
     /**
@@ -127,22 +133,22 @@ class Integer extends AbstractNumber implements NumberInterface
 
     public function isLessOrEqualTo(NumberInterface $number)
     {
-        // TODO: Implement isLessOrEqualTo() method.
+        return ($this->value() <= $number->value());
     }
 
     public function isEqualTo(NumberInterface $number)
     {
-        // TODO: Implement isEqualTo() method.
+        return ($this->value() === $number->value());
     }
 
     public function isEven()
     {
-        // TODO: Implement isEven() method.
+        return (0 === $this->value() % 2);
     }
 
     public function isOdd()
     {
-        // TODO: Implement isOdd() method.
+        return (FALSE === $this->isEven());
     }
 
     /**
@@ -151,7 +157,7 @@ class Integer extends AbstractNumber implements NumberInterface
      */
     public function modulo(NumberInterface $number)
     {
-        // TODO: Implement modulo() method.
+        return Integer::get($this->value() % $number->value());
     }
 
     /**
@@ -159,7 +165,7 @@ class Integer extends AbstractNumber implements NumberInterface
      */
     public function absolute()
     {
-        // TODO: Implement absolute() method.
+        return self::get(abs($this->value()));
     }
 
     /**
@@ -168,38 +174,56 @@ class Integer extends AbstractNumber implements NumberInterface
      */
     public function convertedToBase(Integer $base)
     {
-        // TODO: Implement convertedToBase() method.
+
     }
 
+    /**
+     * @return Sign
+     */
     public function sign()
     {
-        // TODO: Implement sign() method.
+        return Sign::get(strval(intval($this->isLessOrEqualTo(Integer::get()))));
     }
 
+    /**\
+     * @return boolean
+     */
     public function isNegative()
     {
-        // TODO: Implement isNegative() method.
+        return ($this->sign()->getValue() === Sign::NEGATIVE);
     }
 
+    /**
+     * @return boolean
+     */
     public function isPositive()
     {
-        // TODO: Implement isPositive() method.
+        return (FALSE === $this->isNegative());
     }
 
+    /**
+     * @return boolean
+     */
     public function isZero()
     {
         return ($this->value() === 0);
     }
 
+    /**
+     * @param \AGmakonts\STL\Number\RoundingMode $mode
+     *
+     * @return \AGmakonts\STL\Number\Integer
+     */
     public function round(RoundingMode $mode)
     {
-        // TODO: Implement round() method.
+        return self::get(round($this->value(), 0, $mode->getValue()));
     }
 
+    /**
+     * @return \AGmakonts\STL\Number\Integer
+     */
     public function digitCount()
     {
-        // TODO: Implement digitCount() method.
+        return String::get((string) $this->value())->length();
     }
-
-
 } 
