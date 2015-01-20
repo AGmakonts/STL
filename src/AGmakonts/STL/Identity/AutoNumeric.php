@@ -8,10 +8,14 @@
 
 namespace AGmakonts\STL\Identity;
 
-
 use AGmakonts\STL\AbstractValueObject;
 use AGmakonts\STL\String\String;
 
+/**
+ * Class AutoNumeric
+ *
+ * @package AGmakonts\STL\Identity
+ */
 class AutoNumeric extends AbstractValueObject implements IdentityInterface
 {
     private $identity;
