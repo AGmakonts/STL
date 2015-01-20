@@ -17,6 +17,10 @@ class DateTime extends AbstractValueObject
 {
 
     const DATETIME_FORMAT = \DateTime::ISO8601;
+
+    /**
+     * @var \AGmakonts\STL\Number\Integer
+     */
     private $timestamp;
 
     /**
@@ -39,7 +43,7 @@ class DateTime extends AbstractValueObject
      */
     public function value()
     {
-        return (string) (new \DateTime())->setTimestamp($this->timestamp->value())->format(self::DATETIME_FORMAT);
+        return (string)(new \DateTime())->setTimestamp($this->getTimestamp()->value())->format(self::DATETIME_FORMAT);
     }
 
     /**
@@ -58,6 +62,14 @@ class DateTime extends AbstractValueObject
         return AbstractValueObject::extractValue([$this->value()]);
     }
 
+
+    /**
+     * @return \AGmakonts\STL\Number\Integer
+     */
+    public function getTimestamp()
+    {
+       return $this->timestamp; 
+    }
 
     /**
      * Creates instance of DateTime from timestamp
