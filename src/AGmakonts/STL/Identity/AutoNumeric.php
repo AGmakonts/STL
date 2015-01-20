@@ -24,11 +24,19 @@ class AutoNumeric extends AbstractValueObject implements IdentityInterface
     {
         $this->identity = $value[0];
     }
+
+    /**
+     * @param \AGmakonts\STL\String\String $identity
+     * @return \AGmakonts\STL\Identity\AutoNumeric
+     */
     public static function get(String $identity)
     {
         return self::getInstanceForValue($identity);
     }
 
+    /**
+     * @return \AGmakonts\STL\Identity\AutoNumeric
+     */
     public static function generate()
     {
         $server = hexdec(basename(__FILE__)) ^ hexdec(gethostname()) % 99;
@@ -44,20 +52,23 @@ class AutoNumeric extends AbstractValueObject implements IdentityInterface
      */
     public function extractedValue()
     {
-        // TODO: Implement extractedValue() method.
-    }
-
-    public function identity()
-    {
-        // TODO: Implement identity() method.
+        return self::extractValue([$this->identity()]);
     }
 
     /**
      * @return mixed
      */
+    public function identity()
+    {
+        return $this->identity;
+    }
+
+    /**
+     * @return string
+     */
     public function value()
     {
-        // TODO: Implement value() method.
+        return $this->identity()->value();
     }
 
     /**
