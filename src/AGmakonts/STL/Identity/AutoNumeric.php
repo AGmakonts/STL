@@ -60,7 +60,7 @@ class AutoNumeric extends AbstractValueObject implements IdentityInterface
     }
 
     /**
-     * @return mixed
+     * @return \AGmakonts\STL\String\String
      */
     public function identity()
     {
