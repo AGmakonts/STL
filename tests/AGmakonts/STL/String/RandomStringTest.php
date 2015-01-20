@@ -15,7 +15,7 @@ use AGmakonts\STL\Number\Integer;
 /**
  * Class RandomStringTest
  *
- * @coversDefaultClass RandomString
+ * @coversDefaultClass \AGmakonts\STL\String\RandomString
  * @package   AGmakonts\STL\String
  * @author    Radek Adamiec <radek@procreative.eu>
  * @copyright 1985 - 2015 Kelleher, Helmrich and Associates, Inc.
