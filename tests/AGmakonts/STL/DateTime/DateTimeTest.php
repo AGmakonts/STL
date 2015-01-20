@@ -28,7 +28,6 @@ class DateTimeTest extends PHPUnit_Framework_TestCase
 
     /**
      * @covers ::value()
-     * @return string
      */
     public function testValue()
     {
@@ -40,7 +39,6 @@ class DateTimeTest extends PHPUnit_Framework_TestCase
 
     /**
      * @covers ::__toString()
-     * @return string
      */
     public function test__toString()
     {
@@ -53,7 +51,6 @@ class DateTimeTest extends PHPUnit_Framework_TestCase
 
     /**
      * @covers ::extractedValue
-     * @return string
      */
     public function testExtractedValue()
     {
@@ -64,11 +61,20 @@ class DateTimeTest extends PHPUnit_Framework_TestCase
 
     /**
      * @covers ::get
-     * @return mixed
      */
     public function testGet()
     {
         $testClass1 = \AGmakonts\STL\DateTime\DateTime::get(Integer::get(1));
         $this->assertInstanceOf(\AGmakonts\STL\DateTime\DateTime::class, $testClass1);
+    }
+
+    /**
+     * @covers ::getTimestamp()
+     */
+    public function testGetTimestamp()
+    {
+        $testClass1 = \AGmakonts\STL\DateTime\DateTime::get(Integer::get(1));
+        $this->assertInstanceOf(Integer::class, $testClass1->getTimestamp());
+        $this->assertEquals(1, $testClass1->getTimestamp()->value());
     }
 }
