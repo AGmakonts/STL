@@ -224,6 +224,6 @@ class Integer extends AbstractNumber implements NumberInterface
      */
     public function digitCount()
     {
-        return String::get((string) $this->value())->length();
+        return self::get(String::get((string) $this->value())->length());
     }
 } 
