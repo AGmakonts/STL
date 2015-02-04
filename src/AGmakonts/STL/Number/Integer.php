@@ -182,7 +182,7 @@ class Integer extends AbstractNumber implements NumberInterface
      */
     public function sign()
     {
-        return Sign::get(intval($this->isLessOrEqualTo(Integer::get())));
+        return Sign::get(intval($this->isLessThan(Integer::get())));
     }
 
     /**\
@@ -224,6 +224,6 @@ class Integer extends AbstractNumber implements NumberInterface
      */
     public function digitCount()
     {
-        return String::get((string) $this->value())->length();
+        return self::get(String::get((string) $this->value())->length());
     }
 } 

@@ -205,6 +205,27 @@ class IntegerTest extends PHPUnit_Framework_TestCase
         ];
     }
 
+    /**
+     * @dataProvider isNegativeProvider
+     * @covers ::isNegative
+     */
+    public function testIsNegative($integer, $expected)
+    {
 
+        $int = \AGmakonts\STL\Number\Integer::get($integer);
+
+        self::assertTrue($expected === $int->isNegative($int));
+    }
+
+    public function isNegativeProvider()
+    {
+        return [
+            [2  , FALSE  ],
+            [0  , FALSE  ],
+            [-3 , TRUE  ],
+        ];
+    }
+
+    
 
 }
