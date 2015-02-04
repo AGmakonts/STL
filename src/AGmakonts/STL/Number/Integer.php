@@ -182,7 +182,7 @@ class Integer extends AbstractNumber implements NumberInterface
      */
     public function sign()
     {
-        return Sign::get(intval($this->isLessOrEqualTo(Integer::get())));
+        return Sign::get(intval($this->isLessThan(Integer::get())));
     }
 
     /**\
