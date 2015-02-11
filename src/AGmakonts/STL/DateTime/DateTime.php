@@ -104,6 +104,8 @@ class DateTime extends AbstractValueObject
      */
     public static function get(Integer $timestamp = NULL)
     {
+        $timestamp = (NULL === $timestamp) ? Integer::get((new \DateTime())->getTimestamp()) : $timestamp;
+        
         return self::getInstanceForValue($timestamp);
     }
 }
