@@ -69,7 +69,7 @@ class DateTime extends AbstractValueObject
      */
     public function isEarlierThan(DateTime $date)
     {
-        return $date->getTimestamp()->isLessThan($this->getTimestamp());
+        return $date->getTimestamp()->isGreaterThan($this->getTimestamp());
         
     }
 
@@ -80,7 +80,7 @@ class DateTime extends AbstractValueObject
      */
     public function isFurtherThan(DateTime $date)
     {
-        return $date->getTimestamp()->isGreaterThan($this->getTimestamp());
+        return $date->getTimestamp()->isLessThan($this->getTimestamp());
         
     }
     
