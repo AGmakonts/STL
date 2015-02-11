@@ -62,6 +62,30 @@ class DateTime extends AbstractValueObject
         return AbstractValueObject::extractValue([$this->value()]);
     }
 
+    /**
+     * @param \AGmakonts\STL\DateTime\DateTime $date
+     * 
+     * @return boolean
+     */
+    public function isEarlierThan(DateTime $date)
+    {
+        return $date->getTimestamp()->isLessThan($this->getTimestamp());
+        
+    }
+
+    /**
+     * @param \AGmakonts\STL\DateTime\DateTime $date
+     *
+     * @return boolean
+     */
+    public function isFurtherThan(DateTime $date)
+    {
+        return $date->getTimestamp()->isGreaterThan($this->getTimestamp());
+        
+    }
+    
+    
+
 
     /**
      * @return \AGmakonts\STL\Number\Integer
