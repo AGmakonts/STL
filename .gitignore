@@ -8,3 +8,4 @@ composer.lock
 .project
 /.settings/
 *.iml
+atlassian-ide-plugin.xml
