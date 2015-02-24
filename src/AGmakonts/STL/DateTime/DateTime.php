@@ -83,8 +83,22 @@ class DateTime extends AbstractValueObject
         return $date->getTimestamp()->isLessThan($this->getTimestamp());
         
     }
-    
-    
+
+    /**
+     * @return boolean
+     */
+    public function isToday()
+    {
+        $nativeDateTime = new \DateTime();
+        $nativeDateTime->setTimestamp($this->getTimestamp()->value());
+        
+        $nativeDateTime->setTime(0,0,0);
+        
+        $todayNativeDateTime = new \DateTime();
+        $todayNativeDateTime->setTime(0,0,0);
+        
+        return $nativeDateTime->getTimestamp() === $todayNativeDateTime->getTimestamp();
+    }
 
 
     /**
