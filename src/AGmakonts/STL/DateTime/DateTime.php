@@ -132,7 +132,15 @@ class DateTime extends AbstractValueObject
      */
     public static function getFromFormat(String $date, String $format)
     {
-        $timestamp = Integer::get(\DateTime::createFromFormat($format->value(), $date->value())->getTimestamp());
+        $dateTime = \DateTime::createFromFormat($format->value(), $date->value());
+
+        if(FALSE === $dateTime)
+        {
+            throw new \InvalidArgumentException("Wrong format or date provided");
+
+        }
+
+        $timestamp = Integer::get($dateTime->getTimestamp());
         return self::getInstanceForValue($timestamp);
     }
 }
