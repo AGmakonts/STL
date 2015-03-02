@@ -11,6 +11,7 @@ namespace AGmakonts\STL\DateTime;
 
 use AGmakonts\STL\AbstractValueObject;
 use AGmakonts\STL\Number\Integer;
+use AGmakonts\STL\String\String;
 use STL\DateTime\Exception\InvalidDateTimeValueException;
 
 class DateTime extends AbstractValueObject
@@ -120,6 +121,26 @@ class DateTime extends AbstractValueObject
     {
         $timestamp = (NULL === $timestamp) ? Integer::get((new \DateTime())->getTimestamp()) : $timestamp;
         
+        return self::getInstanceForValue($timestamp);
+    }
+
+    /**
+     * @param \AGmakonts\STL\String\String $date
+     * @param \AGmakonts\STL\String\String $format
+     *
+     * @return DateTime
+     */
+    public static function getFromFormat(String $date, String $format)
+    {
+        $dateTime = \DateTime::createFromFormat($format->value(), $date->value());
+
+        if(FALSE === $dateTime)
+        {
+            throw new \InvalidArgumentException("Wrong format or date provided");
+
+        }
+
+        $timestamp = Integer::get($dateTime->getTimestamp());
         return self::getInstanceForValue($timestamp);
     }
 }
