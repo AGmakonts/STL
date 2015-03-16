@@ -5,6 +5,7 @@ use AGmakonts\STL\Number\RoundingMode;
 
 /**
  * @author Mateusz Lisik <matt@procreative.eu>
+ * @coversDefaultClass \AGmakonts\STL\Number\Decimal
  */
 class DecimalTest extends PHPUnit_Framework_TestCase
 {
@@ -126,20 +127,59 @@ class DecimalTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(4.99, $result->value());
     }
 
-    public function testIsNegative()
+    /**
+     * @dataProvider isNegativeProvider
+     * @covers ::isNegative
+     *
+     * @param $decimal
+     * @param $expected
+     */
+    public function testIsNegative($decimal, $expected)
     {
-        $decimal = Decimal::get(4.99);
-        $result = $decimal->isNegative();
-        $this->assertFalse($result);
+        $number = Decimal::get($decimal);
+
+        self::assertTrue($expected === $number->isNegative());
     }
 
-    public function testIsPositive()
+    public function isNegativeProvider()
     {
-        $decimal = Decimal::get(4.99);
-        $result = $decimal->isPositive();
-        $this->assertTrue($result);
+        return [
+            [2.4  , FALSE  ],
+            [1    , FALSE  ],
+            [0    , FALSE  ],
+            [-3.3 , TRUE  ],
+            [-3   , TRUE  ],
+        ];
     }
 
+    /**
+     * @dataProvider isPositiveProvider
+     * @covers ::isPositive
+     *
+     * @param $decimal
+     * @param $expected
+     */
+    public function testIsPositive($decimal, $expected)
+    {
+        $number = Decimal::get($decimal);
+
+        self::assertTrue($expected === $number->isPositive());
+    }
+
+    public function isPositiveProvider()
+    {
+        return [
+            [2.4  , TRUE  ],
+            [1    , TRUE  ],
+            [0    , TRUE  ],
+            [-3.3 , FALSE  ],
+            [-3   , FALSE  ],
+        ];
+    }
+
+    /**
+     * @covers ::isZero
+     */
     public function testIsZero()
     {
         $decimal = Decimal::get(0.001);

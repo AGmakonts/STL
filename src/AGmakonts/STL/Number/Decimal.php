@@ -194,7 +194,7 @@ class Decimal extends AbstractNumber implements NumberInterface
      */
     public function sign()
     {
-        return Sign::get(intval($this->isLessOrEqualTo(Integer::get())));
+        return Sign::get(intval($this->isLessThan(Integer::get())));
     }
 
     /**
@@ -210,7 +210,7 @@ class Decimal extends AbstractNumber implements NumberInterface
      */
     public function isPositive()
     {
-        return ($this->sign()->getValue() === Sign::POSITIVE);
+        return (FALSE === $this->isNegative());
     }
 
     /**

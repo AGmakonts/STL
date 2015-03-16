@@ -214,7 +214,7 @@ class IntegerTest extends PHPUnit_Framework_TestCase
 
         $int = \AGmakonts\STL\Number\Integer::get($integer);
 
-        self::assertTrue($expected === $int->isNegative($int));
+        self::assertTrue($expected === $int->isNegative());
     }
 
     public function isNegativeProvider()
