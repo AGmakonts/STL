@@ -226,4 +226,18 @@ class Integer extends AbstractNumber implements NumberInterface
     {
         return self::get(String::get((string) $this->value())->length());
     }
+
+    /**
+     * @return \AGmakonts\STL\Number\Integer
+     */
+    public function decrement(){
+        return self::get($this->value() - 1);
+    }
+
+    /**
+     * @return \AGmakonts\STL\Number\Integer
+     */
+    public function increment(){
+        return self::get($this->value() + 1);
+    }
 } 
