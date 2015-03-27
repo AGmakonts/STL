@@ -38,6 +38,17 @@ class DateTimeTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers ::value()
+     */
+    public function testValueWithFormat()
+    {
+        $testClass = \AGmakonts\STL\DateTime\DateTime::get(Integer::get(1));
+        $this->assertEquals((new DateTime())->setTimestamp(1)
+                                            ->format('d'),
+                            $testClass->value('d'));
+    }
+
+    /**
      * @covers ::__toString()
      */
     public function test__toString()
@@ -45,7 +56,7 @@ class DateTimeTest extends PHPUnit_Framework_TestCase
         $testClass = \AGmakonts\STL\DateTime\DateTime::get(Integer::get(1));
         $this->assertEquals((new DateTime())->setTimestamp(1)
                                             ->format(\AGmakonts\STL\DateTime\DateTime::DATETIME_FORMAT),
-                            $testClass->value());
+                            $testClass->__toString());
         $this->assertTrue(is_string($testClass->value()));
     }
 

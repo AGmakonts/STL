@@ -40,11 +40,13 @@ class DateTime extends AbstractValueObject
     }
 
     /**
+     * @param string $format
+     *
      * @return string
      */
-    public function value()
+    public function value($format = self::DATETIME_FORMAT)
     {
-        return (string)(new \DateTime())->setTimestamp($this->getTimestamp()->value())->format(self::DATETIME_FORMAT);
+        return (string)(new \DateTime())->setTimestamp($this->getTimestamp()->value())->format($format);
     }
 
     /**
@@ -143,4 +145,6 @@ class DateTime extends AbstractValueObject
         $timestamp = Integer::get($dateTime->getTimestamp());
         return self::getInstanceForValue($timestamp);
     }
+
+
 }
