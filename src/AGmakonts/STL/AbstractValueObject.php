@@ -102,7 +102,7 @@ abstract class AbstractValueObject implements ValueObjectInterface
         }
 
 
-        if($value instanceof AbstractValueObject || $value instanceof ValueObjectInterface) {
+        if($value instanceof AbstractValueObject || $value instanceof ValueObjectInterface || is_array($value)) {
             return $value->extractedValue();
         } elseif (TRUE === is_object($value)) {
             throw new \InvalidArgumentException('Value needs to be plain PHP type or AbstractValueObject');
