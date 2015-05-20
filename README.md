@@ -41,9 +41,9 @@ Roadmap
 Currently, after quite a big rebuild (that is still in progress) only String is implemented almost fully, rest of planned data types and value objects is listed below:
 
 - Number
-    + Integer
+    + Integer - Ready
     + Float
-    + Decimal
+    + Decimal - Ready
     + Fraction
 - DateTime
     + Date
@@ -55,15 +55,16 @@ Currently, after quite a big rebuild (that is still in progress) only String is 
     + Hour
     + Minute
     + Second
-    + DateTime
+    + DateTime - Started
 - Structure
     + TypedArray
     + TypedList
     + Dictionary
 - Identity
     + UUID
-    + Numeric
+    + Numeric 
     + Alphanumeric
+    + Autonumeric - Ready
 - Text
     + Word
     + Sentence
