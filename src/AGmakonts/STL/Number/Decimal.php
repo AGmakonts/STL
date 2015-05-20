@@ -1,6 +1,7 @@
 <?php
 /**
  * @author Mateusz Lisik <matt@procreative.eu>
+ * @author Michał Nicz <michael@procreative.eu>
  */
 
 namespace AGmakonts\STL\Number;
@@ -21,7 +22,7 @@ class Decimal extends AbstractNumber implements NumberInterface
             throw new \InvalidArgumentException("Value is not an decimal");
         }
 
-        $this->value = $number;
+        $this->value = (string) $number;
     }
 
     /**
@@ -39,7 +40,7 @@ class Decimal extends AbstractNumber implements NumberInterface
      */
     public function subtract(NumberInterface $from)
     {
-        return self::get($this->value() - $from->value());
+        return self::get(bcsub($this->value(), $from->value(),10));
     }
 
     /**
@@ -48,7 +49,7 @@ class Decimal extends AbstractNumber implements NumberInterface
      */
     public function add(NumberInterface $to)
     {
-        return self::get($this->value() + $to->value());
+        return self::get(bcadd($this->value(), $to->value(),10));
     }
 
     /**
@@ -57,7 +58,7 @@ class Decimal extends AbstractNumber implements NumberInterface
      */
     public function divide(NumberInterface $by)
     {
-        return self::get($this->value() / $by->value());
+        return self::get(bcdiv($this->value(), $by->value(),10));
     }
 
     /**
@@ -66,7 +67,7 @@ class Decimal extends AbstractNumber implements NumberInterface
      */
     public function multiply(NumberInterface $by)
     {
-        return self::get($this->value() * $by->value());
+        return self::get(bcmul($this->value(), $by->value()),10);
     }
 
     /**
@@ -75,7 +76,7 @@ class Decimal extends AbstractNumber implements NumberInterface
      */
     public function power(NumberInterface $of)
     {
-        return self::get(pow($this->value(), $of->value()));
+        return self::get(bcpow($this->value(), $of->value(),10));
     }
 
     /**
@@ -85,7 +86,7 @@ class Decimal extends AbstractNumber implements NumberInterface
      */
     public function root(NumberInterface $root)
     {
-        return self::get(pow($this->value(), 1 / $root->value()));
+        return self::get(bcsqrt($this->value(), $root->value(),10));
     }
 
     /**
@@ -103,7 +104,7 @@ class Decimal extends AbstractNumber implements NumberInterface
      */
     public function isGreaterThan(NumberInterface $number)
     {
-        return $this->value() > $number->value();
+        return 1 === bccomp($this->value(), $number->value(),10);
     }
 
     /**
@@ -112,7 +113,7 @@ class Decimal extends AbstractNumber implements NumberInterface
      */
     public function isLessThan(NumberInterface $number)
     {
-        return $this->value() < $number->value();
+        return -1 === bccomp($this->value(), $number->value(),10);
     }
 
     /**
@@ -122,7 +123,8 @@ class Decimal extends AbstractNumber implements NumberInterface
      */
     public function isGreaterOrEqualTo(NumberInterface $number)
     {
-        return $this->value() >= $number->value();
+        return (0 === bccomp($this->value(), $number->value(),10) || (1 === bccomp($this->value(), $number->value(),10)));
+
     }
 
     /**
@@ -132,7 +134,8 @@ class Decimal extends AbstractNumber implements NumberInterface
      */
     public function isLessOrEqualTo(NumberInterface $number)
     {
-        return $this->value() <= $number->value();
+        return (0 === bccomp($this->value(), $number->value(),10) || (-1 === bccomp($this->value(), $number->value(),10)));
+
     }
 
     /**
@@ -142,7 +145,9 @@ class Decimal extends AbstractNumber implements NumberInterface
      */
     public function isEqualTo(NumberInterface $number)
     {
-        return $this->value() === $number->value();
+
+        return (0 === bccomp($this->value(), $number->value(),10));
+
     }
 
     /**
@@ -150,7 +155,7 @@ class Decimal extends AbstractNumber implements NumberInterface
      */
     public function isEven()
     {
-        return $this->value() % 2 ? TRUE : FALSE;
+        return 0===bcdiv($this->value(), 2,10) ? TRUE : FALSE;
     }
 
     /**
@@ -168,7 +173,7 @@ class Decimal extends AbstractNumber implements NumberInterface
      */
     public function modulo(NumberInterface $number)
     {
-        return self::get($this->value() % $number->value());
+        return self::get(bcmod($this->value(), $number->value()));
     }
 
     /**
@@ -202,7 +207,7 @@ class Decimal extends AbstractNumber implements NumberInterface
      */
     public function isNegative()
     {
-        return ($this->sign()->getValue() === Sign::NEGATIVE);
+        return 0===bccomp($this->sign()->getValue(), Sign::NEGATIVE);
     }
 
     /**
@@ -218,7 +223,8 @@ class Decimal extends AbstractNumber implements NumberInterface
      */
     public function isZero()
     {
-        return ($this->value() === 0);
+
+        return (0 === bccomp($this->value(), "0.0",10));
     }
 
     /**
@@ -236,7 +242,7 @@ class Decimal extends AbstractNumber implements NumberInterface
      */
     public function digitCount()
     {
-        $string = str_replace('.', '', (string) $this->value());
+        $string = str_replace('.', '', (string)$this->value());
         return self::get(String::get($string)->length());
     }
 }
