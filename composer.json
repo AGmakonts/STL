@@ -1,12 +1,7 @@
 {
     "autoload": {
-        "psr-4": {
+        "psr-0": {
             "AGmakonts\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "AGmakonts\\" : "tests/"
         }
     },
     "name": "agmakonts/stl",
