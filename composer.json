@@ -4,6 +4,11 @@
             "AGmakonts\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "AGmakonts\\" : "tests/"
+        }
+    },
     "name": "agmakonts/stl",
     "type": "library",
     "description": "Standard Type Lib",
