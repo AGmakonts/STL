@@ -7,7 +7,7 @@
 namespace AGmakonts\STL\Number;
 
 
-use AGmakonts\STL\String\String;
+use AGmakonts\STL\String\Text;
 
 class Decimal extends AbstractNumber implements NumberInterface
 {
@@ -243,6 +243,6 @@ class Decimal extends AbstractNumber implements NumberInterface
     public function digitCount()
     {
         $string = str_replace('.', '', (string)$this->value());
-        return self::get(String::get($string)->length());
+        return self::get(Text::get($string)->length());
     }
 }

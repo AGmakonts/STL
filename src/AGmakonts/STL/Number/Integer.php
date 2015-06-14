@@ -9,7 +9,7 @@
 namespace AGmakonts\STL\Number;
 
 use AGmakonts\STL\Number\Exception\DivisionByZeroException;
-use AGmakonts\STL\String\String;
+use AGmakonts\STL\String\Text;
 
 class Integer extends AbstractNumber implements NumberInterface
 {
@@ -224,7 +224,7 @@ class Integer extends AbstractNumber implements NumberInterface
      */
     public function digitCount()
     {
-        return self::get(String::get((string) $this->value())->length());
+        return self::get(Text::get((string) $this->value())->length());
     }
 
     /**

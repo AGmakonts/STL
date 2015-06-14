@@ -6,10 +6,10 @@
  * Time: 00:58
  */
 use AGmakonts\STL\Number\Integer;
-use AGmakonts\STL\String\String;
+use AGmakonts\STL\String\Text;
 
 /**
- * @coversDefaultClass \AGmakonts\STL\String\String
+ * @coversDefaultClass \AGmakonts\STL\String\Text
  */
 class StringTest extends PHPUnit_Framework_TestCase
 {
@@ -22,7 +22,7 @@ class StringTest extends PHPUnit_Framework_TestCase
     public function testGet($value, $expected)
     {
 
-        $string = String::get($value);
+        $string = Text::get($value);
 
         self::assertEquals($expected,$string->value());
 
@@ -40,7 +40,7 @@ class StringTest extends PHPUnit_Framework_TestCase
             ['String', 'String'],
             ['', ''],
             ['              ', ''],
-            [String::get('Bla Bla Bla'), 'Bla Bla Bla'],
+            [Text::get('Bla Bla Bla'), 'Bla Bla Bla'],
 
         ];
     }
@@ -52,7 +52,7 @@ class StringTest extends PHPUnit_Framework_TestCase
     public function testGetWithInvalidValues($value)
     {
         self::setExpectedException(\InvalidArgumentException::class);
-        $string = String::get($value);
+        $string = Text::get($value);
 
     }
 
@@ -72,10 +72,10 @@ class StringTest extends PHPUnit_Framework_TestCase
      */
     public function testSameInstance()
     {
-        $stringTest = String::get("Testing string");
+        $stringTest = Text::get("Testing string");
 
-        $differentString = String::get("Bla Bla Bla");
-        $sameString = String::get("Testing string");
+        $differentString = Text::get("Bla Bla Bla");
+        $sameString = Text::get("Testing string");
 
         $spl = new SplObjectStorage();
 
@@ -90,7 +90,7 @@ class StringTest extends PHPUnit_Framework_TestCase
      */
     public function testUppercase()
     {
-        $string = String::get("uppercase");
+        $string = Text::get("uppercase");
 
         $uppercase = $string->uppercase();
 
@@ -102,7 +102,7 @@ class StringTest extends PHPUnit_Framework_TestCase
      */
     public function testLowercase()
     {
-        $string = String::get("loWerCaSE");
+        $string = Text::get("loWerCaSE");
 
         $lowercase = $string->lowercase();
 
@@ -114,7 +114,7 @@ class StringTest extends PHPUnit_Framework_TestCase
      */
     public function testReverse()
     {
-        $string = String::get("qwerty");
+        $string = Text::get("qwerty");
 
         self::assertEquals('ytrewq', $string->reverse()->value());
     }
@@ -124,7 +124,7 @@ class StringTest extends PHPUnit_Framework_TestCase
      */
     public function testTruncateWithoutEllipsis()
     {
-        $string = String::get("Long string that needs to be chopped down");
+        $string = Text::get("Long string that needs to be chopped down");
 
         $shortString = $string->truncate(Integer::get(14));
 
@@ -136,9 +136,9 @@ class StringTest extends PHPUnit_Framework_TestCase
      */
     public function testTruncateWithEllipsis()
     {
-        $string = String::get("Long string that needs to be chopped down");
+        $string = Text::get("Long string that needs to be chopped down");
 
-        $shortString = $string->truncate(Integer::get(16), String::get("..."));
+        $shortString = $string->truncate(Integer::get(16), Text::get("..."));
 
         self::assertEquals('Long string...', $shortString->value());
     }
@@ -148,13 +148,13 @@ class StringTest extends PHPUnit_Framework_TestCase
      */
     public function testTruncateShortString()
     {
-        $string1 = String::get("Short String");
+        $string1 = Text::get("Short String");
 
         $shortString1 = $string1->truncate(Integer::get(50));
 
         self::assertEquals('Short String', $shortString1->value(), Integer::get(50)->value());
 
-        $string2 = String::get("Short String but not so much");
+        $string2 = Text::get("Short String but not so much");
 
         $shortString2 = $string2->truncate(Integer::get(20));
 
@@ -168,7 +168,7 @@ class StringTest extends PHPUnit_Framework_TestCase
      */
     public function testTruncateShortStringWithEllipsis()
     {
-        $string = String::get("Short String");
+        $string = Text::get("Short String");
 
         $shortString = $string->truncate(Integer::get(50));
 
@@ -177,7 +177,7 @@ class StringTest extends PHPUnit_Framework_TestCase
 
     public function testLength()
     {
-        $string = String::get("String with 20 chars");
+        $string = Text::get("String with 20 chars");
 
         self::assertEquals(20, $string->length()->value());
     }
@@ -187,8 +187,8 @@ class StringTest extends PHPUnit_Framework_TestCase
      */
     public function testConcatWithoutGlue()
     {
-        $firstString = String::get("First part");
-        $secondString = String::get("second part");
+        $firstString = Text::get("First part");
+        $secondString = Text::get("second part");
 
         self::assertEquals('First partsecond part', $firstString->concat($secondString)
                                                                 ->value());
@@ -200,10 +200,10 @@ class StringTest extends PHPUnit_Framework_TestCase
      */
     public function testConcatWithGlue()
     {
-        $firstString = String::get("First part");
-        $secondString = String::get("second part");
+        $firstString = Text::get("First part");
+        $secondString = Text::get("second part");
 
-        $glue = String::get(' - ');
+        $glue = Text::get(' - ');
 
         self::assertEquals('First part - second part', $firstString->concat($secondString, $glue)->value());
     }
@@ -213,7 +213,7 @@ class StringTest extends PHPUnit_Framework_TestCase
      */
     public function testSubstr()
     {
-        $string = String::get('123456');
+        $string = Text::get('123456');
 
         self::assertEquals('1234', $string->substr(Integer::get(), Integer::get(4))->value());
     }
@@ -223,7 +223,7 @@ class StringTest extends PHPUnit_Framework_TestCase
      */
     public function testCharAtPosition()
     {
-        $string = String::get('asd');
+        $string = Text::get('asd');
 
         self::assertEquals('s', $string->charAtPosition(Integer::get(2))->value());
     }
@@ -233,7 +233,7 @@ class StringTest extends PHPUnit_Framework_TestCase
      */
     public function testValue()
     {
-        $string = String::get('Alpha');
+        $string = Text::get('Alpha');
 
         self::assertEquals('Alpha', $string->value());
     }
@@ -243,7 +243,7 @@ class StringTest extends PHPUnit_Framework_TestCase
      */
     public function testAssertIsEmptyForNotEmpty()
     {
-        $string = String::get('Not empty');
+        $string = Text::get('Not empty');
 
         self::assertFalse($string->isEmpty());
     }
@@ -253,11 +253,11 @@ class StringTest extends PHPUnit_Framework_TestCase
      */
     public function testAssertIsEmptyForEmpty()
     {
-        $string = String::get('');
+        $string = Text::get('');
 
         self::assertTrue($string->isEmpty());
 
-        $string = String::get();
+        $string = Text::get();
 
         self::assertTrue($string->isEmpty());
     }
@@ -274,11 +274,11 @@ class StringTest extends PHPUnit_Framework_TestCase
      */
     public function testPadded($string, $length, $fill, $mode, $expected)
     {
-        $string = String::get($string);
+        $string = Text::get($string);
         $length = Integer::get($length);
 
         if(NULL !== $fill) {
-            $fill = String::get($fill);
+            $fill = Text::get($fill);
         }
 
         $mode = \AGmakonts\STL\String\Padding::get($mode);

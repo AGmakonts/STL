@@ -25,7 +25,7 @@ class AutoNumericTest extends \PHPUnit_Framework_TestCase
         $identityProperty = $identityReflection->getProperty('identity');
         $identityProperty->setAccessible(TRUE);
 
-        self::assertInstanceOf(\AGmakonts\STL\String\String::class, $identityProperty->getValue($identity));
+        self::assertInstanceOf(\AGmakonts\STL\String\Text::class, $identityProperty->getValue($identity));
     }
 
     /**

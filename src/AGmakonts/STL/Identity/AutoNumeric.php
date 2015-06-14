@@ -9,7 +9,7 @@
 namespace AGmakonts\STL\Identity;
 
 use AGmakonts\STL\AbstractValueObject;
-use AGmakonts\STL\String\String;
+use AGmakonts\STL\String\Text;
 
 /**
  * Class AutoNumeric
@@ -30,10 +30,11 @@ class AutoNumeric extends AbstractValueObject implements IdentityInterface
     }
 
     /**
-     * @param \AGmakonts\STL\String\String $identity
-     * @return \AGmakonts\STL\Identity\AutoNumeric
+     * @param \AGmakonts\STL\String\Text $identity
+     *
+*@return \AGmakonts\STL\Identity\AutoNumeric
      */
-    public static function get(String $identity)
+    public static function get(Text $identity)
     {
         return self::getInstanceForValue($identity);
     }
@@ -47,7 +48,7 @@ class AutoNumeric extends AbstractValueObject implements IdentityInterface
         $pid    = str_pad(substr(getmypid(), -2), 2, '0', STR_PAD_LEFT);
         $time   = substr(str_pad(str_replace('.', '', microtime(TRUE)), 14, '0'), 2);
 
-        return self::get(String::get($time . str_pad($server . $pid . mt_rand(0, 9), 5, '0', STR_PAD_LEFT)));
+        return self::get(Text::get($time . str_pad($server . $pid . mt_rand(0, 9), 5, '0', STR_PAD_LEFT)));
     }
 
 
@@ -60,7 +61,7 @@ class AutoNumeric extends AbstractValueObject implements IdentityInterface
     }
 
     /**
-     * @return \AGmakonts\STL\String\String
+     * @return \AGmakonts\STL\String\Text
      */
     public function identity()
     {
