@@ -17,7 +17,16 @@
     {
       "name":  "Adam Grabek",
       "email": "adam@grabek.io",
+      "homepage": "http://grabek.io",
       "role":  "Author"
+    },
+    {
+      "name" : "Michał Nicz"
+    },
+    {
+      "name" : "Radosław Adamiec",
+      "email": "radek@adamiec.it",
+      "homepage": "http://adamiec.it"
     }
   ],
   "support":           {
