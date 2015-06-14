@@ -38,16 +38,17 @@ abstract class AbstractValueObject implements ValueObjectInterface
     final static protected function getInstanceForValue($value)
     {
 
-        if(FALSE === is_array($value)) {
+        if (FALSE === is_array($value)) {
             $value = [$value];
+        } else {
+            $value = array_values($value);
         }
 
         /* @var $type AbstractValueObject */
         $type           = get_called_class();
         $extractedValue = self::extractValue($value);
 
-        if(FALSE === self::assertInstanceExists($type, $extractedValue)) {
-
+        if (FALSE === self::assertInstanceExists($type, $extractedValue)) {
             /** @var string $type */
             self::$instanceMap[$type][$extractedValue] = new $type($value);
         }
@@ -57,21 +58,21 @@ abstract class AbstractValueObject implements ValueObjectInterface
     }
 
 
-
     /**
      * @param $value
+     *
      * @return string
      */
     static public function extractValue(array $value)
     {
-        if(1 === count($value)) {
+        if (1 === count($value)) {
 
             return self::processSimpleValue($value[0]);
         }
 
         $maxIndex = count($value);
 
-        for($index = 0; $index < $maxIndex; $index++) {
+        for ($index = 0; $index < $maxIndex; $index++) {
 
             $value[$index] = self::extractValue([$value[$index]]);
         }
@@ -83,31 +84,32 @@ abstract class AbstractValueObject implements ValueObjectInterface
 
     /**
      * @param $value
+     *
      * @return string
      */
     static private function processSimpleValue($value)
     {
 
 
-        if(TRUE === is_array($value) && 1 === count($value)) {
+        if (TRUE === is_array($value) && 1 === count($value)) {
             $value = $value[0];
         }
 
-        if(TRUE === is_array($value) && TRUE === empty($value)) {
+        if (TRUE === is_array($value) && TRUE === empty($value)) {
             $value = NULL;
         }
 
-        if(NULL === $value) {
+        if (NULL === $value) {
             $value = 'NULL';
         }
 
 
-        if($value instanceof AbstractValueObject || $value instanceof ValueObjectInterface) {
+        if ($value instanceof AbstractValueObject || $value instanceof ValueObjectInterface) {
             return $value->extractedValue();
         } elseif (TRUE === is_object($value)) {
             throw new \InvalidArgumentException('Value needs to be plain PHP type or AbstractValueObject');
-        }elseif(is_array($value)){
-            $value =  self::extractValue($value);
+        } elseif (is_array($value)) {
+            $value = self::extractValue($value);
         }
 
         return sha1(strval($value));
@@ -115,13 +117,13 @@ abstract class AbstractValueObject implements ValueObjectInterface
 
 
     /**
-     * @param $type
+     * @param        $type
      * @param string $value
      *
      * @return boolean
      */
     final static private function assertInstanceExists($type, $value)
     {
-        return  isset(self::$instanceMap[$type][$value]);
+        return isset(self::$instanceMap[$type][$value]);
     }
 }
