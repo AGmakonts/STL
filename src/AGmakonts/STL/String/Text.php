@@ -11,7 +11,7 @@ use AGmakonts\STL\String\Exception\InvalidStringValueException;
  * @author Adam
  *
  */
-class String extends AbstractValueObject implements StringInterface
+class Text extends AbstractValueObject implements StringInterface
 {
     /**
      * @var string
@@ -56,7 +56,7 @@ class String extends AbstractValueObject implements StringInterface
     /**
      * @param string $string
      *
-     * @return \AGmakonts\STL\String\String
+     * @return \AGmakonts\STL\String\Text
      */
     static public function get($string = NULL)
     {
@@ -71,7 +71,7 @@ class String extends AbstractValueObject implements StringInterface
 
 
     /**
-     * @return \AGmakonts\STL\String\String
+     * @return \AGmakonts\STL\String\Text
      */
     public function uppercase()
     {
@@ -81,7 +81,7 @@ class String extends AbstractValueObject implements StringInterface
     }
 
     /**
-     * @return \AGmakonts\STL\String\String
+     * @return \AGmakonts\STL\String\Text
      */
     public function lowercase()
     {
@@ -89,7 +89,7 @@ class String extends AbstractValueObject implements StringInterface
     }
 
     /**
-     * @return \AGmakonts\STL\String\String
+     * @return \AGmakonts\STL\String\Text
      */
     public function reverse()
     {
@@ -101,7 +101,7 @@ class String extends AbstractValueObject implements StringInterface
      * @param \AGmakonts\STL\Number\Integer $length
      * @param null|StringInterface          $ellipsis
      *
-     * @return \AGmakonts\STL\String\String
+     * @return \AGmakonts\STL\String\Text
      */
     public function truncate(Integer $length, StringInterface $ellipsis = NULL)
     {
@@ -176,7 +176,7 @@ class String extends AbstractValueObject implements StringInterface
      * @param StringInterface      $string
      * @param null|StringInterface $glue
      *
-     * @return \AGmakonts\STL\String\String
+     * @return \AGmakonts\STL\String\Text
      */
     public function concat(StringInterface $string, StringInterface $glue = NULL)
     {
@@ -195,7 +195,7 @@ class String extends AbstractValueObject implements StringInterface
      * @param \AGmakonts\STL\Number\Integer      $start
      * @param null|\AGmakonts\STL\Number\Integer $length
      *
-     * @return \AGmakonts\STL\String\String
+     * @return \AGmakonts\STL\String\Text
      */
     public function substr(Integer $start, Integer $length = NULL)
     {
@@ -238,7 +238,7 @@ class String extends AbstractValueObject implements StringInterface
     /**
      * @param \AGmakonts\STL\Number\Integer  $position
      *
-     * @return \AGmakonts\STL\String\String
+     * @return \AGmakonts\STL\String\Text
      */
     public function charAtPosition(Integer $position)
     {
@@ -253,7 +253,7 @@ class String extends AbstractValueObject implements StringInterface
      * @param null|\AGmakonts\STL\String\Padding         $mode
      * @param null|\AGmakonts\STL\String\StringInterface $fill
      *
-     * @return \AGmakonts\STL\String\String
+     * @return \AGmakonts\STL\String\Text
      */
     public function padded(Integer $length, Padding $mode = NULL, StringInterface $fill = NULL)
     {

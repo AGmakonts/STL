@@ -95,7 +95,7 @@ class DateTimeTest extends PHPUnit_Framework_TestCase
      */
     public function testGetFromFormat()
     {
-        $testClass1 = \AGmakonts\STL\DateTime\DateTime::getFromFormat(\AGmakonts\STL\String\String::get("2005-08-15T15:52:01+0000"), \AGmakonts\STL\String\String::get('Y-m-d\TH:i:sO'));
+        $testClass1 = \AGmakonts\STL\DateTime\DateTime::getFromFormat(\AGmakonts\STL\String\Text::get("2005-08-15T15:52:01+0000"), \AGmakonts\STL\String\Text::get('Y-m-d\TH:i:sO'));
         
         $this->assertInstanceOf(\AGmakonts\STL\DateTime\DateTime::class, $testClass1);
         $this->assertSame(1124121121, $testClass1->getTimestamp()->value());
