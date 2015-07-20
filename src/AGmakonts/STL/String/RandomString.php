@@ -27,7 +27,7 @@ class RandomString
     /**
      * @param \AGmakonts\STL\Number\Integer $stringLength
      *
-     * @return \AGmakonts\STL\String\String
+     * @return \AGmakonts\STL\String\Text
      */
     static public function generate(Integer $stringLength)
     {
@@ -40,7 +40,7 @@ class RandomString
             $randString = substr($randString, 0, -1);
         }
 
-        return String::get($randString);
+        return Text::get($randString);
     }
 
 

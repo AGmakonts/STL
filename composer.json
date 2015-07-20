@@ -1,41 +1,41 @@
 {
-  "autoload":          {
-    "psr-0": {
-      "AGmakonts\\": "src/"
-    }
-  },
-  "name":              "agmakonts/stl",
-  "type":              "library",
-  "description":       "Standard Type Lib",
-  "license":           "Apache-2.0",
-  "require":           {
-    "php":                ">=5.5",
-    "marc-mabe/php-enum": "2.0.*",
-    "rhumsaa/uuid":       "2.8.*"
-  },
-  "authors":           [
-    {
-      "name":  "Adam Grabek",
-      "email": "adam@grabek.io",
-      "homepage": "http://grabek.io",
-      "role":  "Author"
+    "autoload": {
+        "psr-0": {
+            "AGmakonts\\": "src/"
+        }
     },
-    {
-      "name" : "Michał Nicz"
+    "name": "agmakonts/stl",
+    "type": "library",
+    "description": "Standard Type Lib",
+    "license": "Apache-2.0",
+    "require": {
+        "php": ">=5.5",
+        "marc-mabe/php-enum": "2.0.*",
+        "ramsey/uuid": "2.8.*"
     },
-    {
-      "name" : "Radosław Adamiec",
-      "email": "radek@adamiec.it",
-      "homepage": "http://adamiec.it"
+    "authors": [
+        {
+            "name": "Adam Grabek",
+            "email": "adam@grabek.io",
+            "homepage": "http://grabek.io",
+            "role": "Author"
+        },
+        {
+            "name": "Michał Nicz"
+        },
+        {
+            "name": "Radosław Adamiec",
+            "email": "radek@adamiec.it",
+            "homepage": "http://adamiec.it"
+        }
+    ],
+    "support": {
+        "email": "adam@grabek.io"
+    },
+    "minimum-stability": "stable",
+    "require-dev": {
+        "phpunit/phpunit": "4.3.4",
+        "fzaninotto/faker": "1.5.*@dev",
+        "devster/ubench": "1.1.*"
     }
-  ],
-  "support":           {
-    "email": "adam@grabek.io"
-  },
-  "minimum-stability": "stable",
-  "require-dev":       {
-    "phpunit/phpunit":  "4.3.4",
-    "fzaninotto/faker": "1.5.*@dev",
-    "devster/ubench":   "1.1.*"
-  }
 }
