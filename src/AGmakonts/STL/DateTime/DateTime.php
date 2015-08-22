@@ -1,7 +1,6 @@
 <?php
 /**
- * Created by IntelliJ IDEA.
- * User: Radek Adamiec<radek@procreative.eu>
+ * @author Radek Adamiec Adamiec<radek@procreative.eu>
  * Date: 13.01.15
  * Time: 17:57
  */
@@ -17,6 +16,12 @@ use STL\DateTime\Exception\InvalidDateTimeValueException;
 class DateTime extends AbstractValueObject
 {
 
+
+    /**
+     * @var Text
+     */
+    private static $timezone;
+
     const DATETIME_FORMAT = \DateTime::ISO8601;
 
     /**
@@ -30,11 +35,18 @@ class DateTime extends AbstractValueObject
      */
     protected function __construct(array $value)
     {
+
+        if (NULL !== self::$timezone) {
+            date_default_timezone_set(self::$timezone->value());
+        }
+
+
         $value = $value[0];
 
         if (NULL === $value) {
             $value = Integer::get(time());
         }
+
 
         $this->timestamp = $value;
     }
@@ -67,13 +79,13 @@ class DateTime extends AbstractValueObject
 
     /**
      * @param \AGmakonts\STL\DateTime\DateTime $date
-     * 
+     *
      * @return boolean
      */
     public function isEarlierThan(DateTime $date)
     {
         return $date->getTimestamp()->isGreaterThan($this->getTimestamp());
-        
+
     }
 
     /**
@@ -84,7 +96,7 @@ class DateTime extends AbstractValueObject
     public function isFurtherThan(DateTime $date)
     {
         return $date->getTimestamp()->isLessThan($this->getTimestamp());
-        
+
     }
 
     /**
@@ -94,12 +106,12 @@ class DateTime extends AbstractValueObject
     {
         $nativeDateTime = new \DateTime();
         $nativeDateTime->setTimestamp($this->getTimestamp()->value());
-        
-        $nativeDateTime->setTime(0,0,0);
-        
+
+        $nativeDateTime->setTime(0, 0, 0);
+
         $todayNativeDateTime = new \DateTime();
-        $todayNativeDateTime->setTime(0,0,0);
-        
+        $todayNativeDateTime->setTime(0, 0, 0);
+
         return $nativeDateTime->getTimestamp() === $todayNativeDateTime->getTimestamp();
     }
 
@@ -109,7 +121,7 @@ class DateTime extends AbstractValueObject
      */
     public function getTimestamp()
     {
-       return $this->timestamp; 
+        return $this->timestamp;
     }
 
     /**
@@ -122,7 +134,7 @@ class DateTime extends AbstractValueObject
     public static function get(Integer $timestamp = NULL)
     {
         $timestamp = (NULL === $timestamp) ? Integer::get((new \DateTime())->getTimestamp()) : $timestamp;
-        
+
         return self::getInstanceForValue($timestamp);
     }
 
@@ -136,15 +148,22 @@ class DateTime extends AbstractValueObject
     {
         $dateTime = \DateTime::createFromFormat($format->value(), $date->value());
 
-        if(FALSE === $dateTime)
-        {
+        if (FALSE === $dateTime) {
             throw new \InvalidArgumentException("Wrong format or date provided");
 
         }
 
         $timestamp = Integer::get($dateTime->getTimestamp());
+
         return self::getInstanceForValue($timestamp);
     }
 
+    /**
+     * @param \AGmakonts\STL\String\Text $timezone
+     */
+    public static function setDefaultTimeZone(Text $timezone)
+    {
+        self::$timezone = $timezone;
+    }
 
 }
